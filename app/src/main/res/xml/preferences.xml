@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="phone"
+        android:title= "@string/phonenumber_pref"
+        android:summary="@string/phonesummary"
+        android:defaultValue=""
+        android:dialogTitle="@string/enterphone" />
+
+    <EditTextPreference
+        android:key="name"
+        android:title="@string/cameraname"
+        android:summary="@string/namesummary"
+        android:defaultValue=""
+        android:dialogTitle="@string/cameraname" />
+
+    <CheckBoxPreference
+        android:key="sms"
+        android:title="@string/sms"
+        android:summary="@string/smssummary"
+        android:defaultValue="true" />
+
+    <CheckBoxPreference
+        android:key="mms"
+        android:title="@string/mms"
+        android:summary="@string/mmssummary"
+        android:defaultValue="true" />
+
+    <CheckBoxPreference
+        android:key="mms_refresh"
+        android:title="@string/mmsrefresh"
+        android:summary="@string/mmsrefreshsummary"
+        android:defaultValue="true"
+        android:dependency="mms"/>
+
+    <CheckBoxPreference
+        android:key="smtp"
+        android:title="@string/smtpusage"
+        android:summary="@string/smtpsummary"
+        android:defaultValue="false" />
+
+    <EditTextPreference
+        android:key="smtpFrom"
+        android:title="@string/smtpFrom"
+        android:summary="@string/smtpfromsummary"
+        android:defaultValue=""
+        android:dialogTitle="@string/smtpFrom"
+        android:dependency="smtp"/>
+    <EditTextPreference
+        android:key="smtpTo"
+        android:title="@string/smtpTo"
+        android:summary="@string/smtptosummary"
+        android:defaultValue=""
+        android:dialogTitle="@string/smtpTo"
+        android:dependency="smtp"/>
+    <EditTextPreference
+        android:key="smtpToPwd"
+        android:title="@string/smtpToPwd"
+        android:summary=""
+        android:defaultValue=""
+        android:dialogTitle="smtpToPwd"
+        android:dependency="smtp"/>
+
+    <CheckBoxPreference
+        android:key="push"
+        android:title="@string/smtppush"
+        android:summary="@string/smtppushsummary"
+        android:defaultValue="false"
+        android:dependency="smtp"/>
+
+    <CheckBoxPreference
+        android:key="alwaysOn"
+        android:title="@string/online"
+        android:summary="@string/onlinesummary"
+        android:defaultValue="false"
+        android:dependency="push"/>
+
+    <CheckBoxPreference
+        android:key="smtp_refresh"
+        android:title="@string/smtprefresh"
+        android:summary="@string/smtprefreshsummary"
+        android:defaultValue="true"
+        android:dependency="smtp"/>
+
+</PreferenceScreen>

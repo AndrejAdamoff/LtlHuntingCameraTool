@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffe5e5e5"
+    android:gravity="center_horizontal">
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch1"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:checked="false" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText55"
+        android:layout_below="@+id/switch1"
+        android:layout_centerHorizontal="true"
+        android:maxLength="4"
+        android:layout_marginTop="23dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editText55"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/setmailbutton2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:layout_alignTop="@+id/setmailbutton1"
+            android:layout_toEndOf="@+id/setmailbutton1"
+            android:layout_alignParentRight="true"
+            android:layout_weight="5"
+            android:textSize="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_marginLeft="5dp" />
+
+        <Button
+            android:id="@+id/setmailbutton1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Send SMS"
+            android:layout_below="@+id/editText55"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="5"
+            android:textSize="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_marginRight="5dp" />
+    </LinearLayout>
+
+</RelativeLayout>

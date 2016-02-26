@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Ltl Hunting Camera Tool</string>
+    <string name="Ok">Ок</string>
+    <string name="title_activity_edit_camera">Редактирование камеры</string>
+    <string name="title_addcamera">Новая камера</string>
+    <string name="title_activity_camera_control">SMS управление Ltl Acorn</string>
+    <string name="title_activity_camera_view">Camera View</string>
+    <string name="title_activity_service_dialog1">ServiceDialog1</string>
+    <string name="title_activity_camera_control2">SMS управление Ltl Acorn</string>
+    <string name="mainactbtnaddcamera">Добавить камеру</string>
+    <string name="maintxtaddcamera">Добавьте камеру</string> />
+    <string name="addcameraphone">Введите номер камеры \n +(код страны)номер</string> />
+    <string name="addcameraname">Имя/адрес или другая информация о камере</string> />
+    <string name="writedata">Запись данных... </string> />
+    <string name="readdata">Чтение данных...</string> />
+    <string name="wrongnumber">Номер введён неправильно</string> />
+    <string name="exit">Выйти?</string> />
+    <string name="noSMSyet">нет SMS</string> />
+    <string name="noMMSyet">нет MMS</string> />
+    <string name="getfoto">Ltl Acorn получить фото</string> />
+    <string name="SMScontrol">Ltl Acorn SMS управление</string> />
+    <string name="cameraedit">Редактиро- вать камеру</string> />
+    <string name="fotoreceived">Фото получено: </string> />
+    <string name="smsreceived">SMS получено: </string> />
+    <string name="mode">Режим работы: </string>
+    <string name="fotosize">Размер фото:</string>
+    <string name="videosize">Размер видео: </string>
+    <string name="fotonumber">Количество фото: </string>
+    <string name="videolength">Длительность видео:</string>
+    <string name="delay">Задержка повторного срабатывания:</string>
+    <string name="serial">Имя камеры:</string>
+    <string name="sense">Чувствительность датчика движения:</string>
+    <string name="timelapse">Интервал автосъёмки:</string>
+    <string name="sidePIR">Боковые датчики:</string>
+    <string name="mmstype">Вид MMS:</string>
+    <string name="mmslimit">Лимит MMS:</string>
+    <string name="timer">Таймер:</string>
+    <string name="timer2">Таймер2: </string>
+    <string name="phone2">Тел.номер2 или e-mail</string>
+    <string name="phone3">Тел.номер3 или e-mail</string>
+    <string name="email">email</string>
+    <string name="smsinterval">Интервал приёма SMS:</string>
+    <string name="delcamera">Удалить камеру</string>
+    <string name="editcamera">Редактирование камеры</string>
+    <string name="delcamconf">Удалить камеру?</string>
+    <string name="SMScntrl">SMS управление</string>
+    <string name="smsoff">Вы уверены, что желаете отключить SMS управление?\nУдалённое включение SMS управления невозможно!</string>
+    <string name="sure">Да, уверен!</string>
+    <string name="read">Посмотреть</string>
+    <string name="about">О программе</string>
+    <string name="version">Версия 2.0 \nРазработка Andrej Adamoff \nПоддержка: \nandrej.adamoff@gmail.com</string>
+    <string name="received">Получено</string>
+    <string name="from">от</string>
+    <string name="downloadMMS">Поиск новых \nMMS фото...</string>
+    <string name="downloadSMTP">Поиск новых \nфото в email...</string>
+    <string name="smtpFrom">Email отправителя</string>
+    <string name="smtpTo">Email получателя</string>
+    <string name="smtpToPwd">Пароль Email получателя</string>
+    <string name="sms_sent">SMS отправлено:</string>
+    <string name="samenumber">Этот номер уже используется</string>
+    <string name="downloadnewsmtp">Загрузка фото \nc email...</string>
+    <string name="downloadnewmms">Поиск MMS...</string>
+    <string name="phonenumber_pref">Номер телефона камеры</string>
+    <string name="phonesummary">+(код страны) номер </string>
+    <string name="enterphone">Номер телефона</string>
+    <string name="cameraname">Имя камеры</string>
+    <string name="namesummary">Имя камеры или другая информация</string>
+    <string name="smtpusage">Получать Email фото</string>
+    <string name="smtpsummary">Включите, если камера отправляет SMTP фото</string>
+    <string name="smtpfromsummary">С этого адреса камера отправляет SMTP фото</string>
+    <string name="smtptosummary">Один email адрес для приёма фото от всех камер. Рекомендуется Gmail</string>
+    <string name="mms">Получать MMS фото</string>
+    <string name="sms">Получать SMS</string>
+    <string name="smtprefresh">Oбновлять фотогалерею при открытии</string>
+    <string name="mmsrefresh">Обновлять фотогалерею MMS</string>
+    <string name="mmsrefreshsummary">Искать новые MMS в телефоне при открытии фотогалереи</string>
+    <string name="smtppush">Автозагрузка фото с Gmail</string>
+    <string name="smtppushsummary">Функция протестирована только с Gmail. Требуется постоянно включена Передача данных.</string>
+    <string name="pushwarning">Для использования функции автозагрузки фото с Gmail необходимо выполнение следующих условий: \n1. Активирован IMAP для Gmail \n2. Включен доступ для непроверенных приложений для Gmail \n3. Постоянно включена передача данных на вашем телефоне</string>
+    <string name="mmssummary">Включите, если камера отправляет MMS фото. \nОтключите, если приложение не запускается вашем телефоне</string>
+    <string name="smssummary">Включите, если камера отправляет SMS. \nОтключите, если приложение не запускается на вашем телефоне</string>
+    <string name="mmswarning">Прекратить поиск фото?</string>
+    <string name="wronglogin">Ошибка подключения к Email. Проверьте логин/пароль или включите Передачу Данных на вашем телефоне.</string>
+    <string name="title_activity_help">Подсказка</string>
+    <string name="imap_ticker">Автозагрузка email деактивирована</string>
+    <string name="imap_text">из-за проблем в сети. Проверьте ваш баланс и отключите/включите Передачу Данных.</string>
+    <string name="imap_title">Потеряно подключение к email imap</string>
+    <string name="notif_ticker">Новое фото от камеры</string>
+    <string name="notif_title">новые фото от:</string>
+    <string name="smtp_toast">Невозможно загрузить фото с email. Проверьте email логин, включение Передачи данных или баланс.</string>
+    <string name="smtp_toast1">Загружено</string>
+    <string name="smtp_toast2">новых фото с email</string>
+    <string name="smtprefreshsummary">Искать новые Email фото</string>
+    <string name="learn_imap">Как включить IMAP в Gmail</string>
+    <string name="learn_lesssecure">Как включить доступ сторонних приложений к Gmail</string>
+    <string name="addcamera">Добавить камеру</string>
+    <string name="online">Всегда на связи</string>
+    <string name="onlinesummary">Не позволяет отключаться процессору телефона, чтобы постоянно оставаться на связи с email. Вызывает повышенный разряд батареи.</string>
+    <![CDATA[
+    />
+
+
+
+]]>
+</resources>
