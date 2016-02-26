@@ -296,6 +296,7 @@ public class updatedbWithSmtp extends Activity {
                 } catch (NoSuchProviderException e) {
                     e.printStackTrace();
                     count.cancel(false);
+
                 }
 
                 if (store != null) {
