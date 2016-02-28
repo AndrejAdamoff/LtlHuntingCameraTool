@@ -1,0 +1,120 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="320dp"
+    android:background="#ffe5e5e5"
+    android:id="@+id/RL">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sec"
+        android:id="@+id/textView27"
+        android:textSize="18dp"
+        android:layout_alignLeft="@+id/numberPicker3"
+        android:layout_alignStart="@+id/numberPicker3"
+        android:layout_below="@+id/switch2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch2"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hours"
+        android:id="@+id/textView34"
+        android:textSize="18dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/switch2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_alignLeft="@+id/numberPicker1" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPicker3"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="7dp"
+        android:layout_below="@+id/textView27"
+        android:layout_toRightOf="@+id/numberPicker2"
+        android:layout_marginLeft="2dp" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPicker1"
+        android:layout_below="@+id/textView34"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="2dp" />
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/numberPicker2"
+        android:layout_alignTop="@+id/numberPicker1"
+        android:layout_toRightOf="@+id/numberPicker1"
+        android:layout_toEndOf="@+id/numberPicker1"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Min"
+        android:id="@+id/textView50"
+        android:layout_alignTop="@+id/textView34"
+        android:layout_toStartOf="@+id/textView27"
+        android:layout_alignLeft="@+id/numberPicker2"
+        android:layout_alignRight="@+id/numberPicker2"
+        android:layout_alignEnd="@+id/numberPicker2"
+        android:textSize="18dp"
+        android:textIsSelectable="false"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="12dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numberPicker3"
+        android:layout_toEndOf="@+id/numberPicker1"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/setmailbutton2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:layout_alignTop="@+id/setmailbutton1"
+            android:layout_alignRight="@+id/numberPicker3"
+            android:layout_alignEnd="@+id/numberPicker3"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="5"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp" />
+
+        <Button
+            android:id="@+id/setmailbutton1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Send SMS"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="true"
+            android:layout_alignLeft="@+id/numberPicker1"
+            android:layout_below="@+id/numberPicker1"
+            android:layout_alignParentTop="false"
+            android:layout_weight="5"
+            android:layout_marginRight="5dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

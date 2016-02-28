@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="#ffe5e5e5">
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch3"
+        android:singleLine="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/SMScntrl"
+        android:layout_marginRight="3dp"
+        android:layout_marginLeft="10dp"
+        android:checked="false"
+        android:layout_marginTop="10dp" />
+
+    <NumberPicker
+        android:id="@+id/numberPicker2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:layout_below="@+id/switch3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/numberPicker2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/setmailbutton2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:layout_below="@+id/numberPicker2"
+            android:layout_alignEnd="@+id/switch3"
+            android:layout_toRightOf="@+id/setmailbutton1"
+            android:layout_weight="5"
+            android:layout_marginLeft="5dp"
+            android:textSize="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp" />
+
+        <Button
+            android:id="@+id/setmailbutton1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Send SMS"
+            android:layout_alignBaseline="@+id/setmailbutton2"
+            android:layout_alignBottom="@+id/setmailbutton2"
+            android:layout_alignStart="@+id/switch3"
+            android:layout_weight="5"
+            android:layout_marginRight="5dp"
+            android:textSize="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp" />
+    </LinearLayout>
+
+</RelativeLayout>
