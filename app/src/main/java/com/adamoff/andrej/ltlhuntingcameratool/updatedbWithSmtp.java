@@ -299,6 +299,7 @@ public class updatedbWithSmtp extends Activity {
 
                 }
 
+
                 if (store != null) {
                     try {
                         String imap = "imap."+smtpToMail.substring(1+smtpToMail.indexOf("@"));
