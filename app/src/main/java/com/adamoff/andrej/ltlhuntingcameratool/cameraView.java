@@ -89,6 +89,7 @@ public class cameraView extends Activity {
 
         // устанавливаем PopUp окно SMS. PopUp обладает свойством прокрутки, scrollView не требуется
         popUp = new PopupWindow();
+        popUp.setWindowLayoutMode(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popUp.setContentView(listView);
 
         click = true;
@@ -342,8 +343,11 @@ public class cameraView extends Activity {
         // можно сделать методом PopUpWindows или как новую активность с layout-ом меньшего размера
         try { // исключение возникает когда отключен показ SMS, нет txt20.
             if (click){                           //       popUp.showAsDropDown(txtv20);/
-            popUp.showAtLocation(txtv20,Gravity.CENTER, 0, 0);
-            popUp.update(txtv20, 320, 240);
+       //     popUp.showAtLocation(txtv20,Gravity.CENTER, 0, 0);
+     //       popUp.update(txtv20, 320, 240);
+                popUp.setHeight(240);
+            popUp.showAsDropDown(txtv20,0,0);
+
             click = false;}
         else  {popUp.dismiss();  click = true;} }
         catch (Exception e){}

@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -191,7 +192,14 @@ public class CameraControl extends ActionBarActivity {
 
         dMode = new Dialog(CameraControl.this);
         dMode.setContentView(R.layout.setmode);
-        dMode.getWindow().setLayout(280, 290);
+     //   dMode.getWindow().setLayout(280, 290);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dMode.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+      //  d.show();
+        dMode.getWindow().setAttributes(lp);
         dMode.setTitle("Mode");
         txtmode = (TextView)findViewById(R.id.txtmode);
         txtmode.setText(mode);
@@ -200,7 +208,12 @@ public class CameraControl extends ActionBarActivity {
 
         dFotosize = new Dialog(CameraControl.this);
         dFotosize.setContentView(R.layout.setfotosize);
-        dFotosize.getWindow().setLayout(280, 290);
+      //  dFotosize.getWindow().setLayout(280, 290);
+        lp.copyFrom(dFotosize.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dFotosize.getWindow().setAttributes(lp);
         dFotosize.setTitle("Foto size");
         txtfotosize = (TextView)findViewById(R.id.txtfotosize);
         txtfotosize.setText(fotosize);
@@ -209,14 +222,24 @@ public class CameraControl extends ActionBarActivity {
 
         dVideosize = new Dialog(CameraControl.this);
         dVideosize.setContentView(R.layout.setvideosize);
-        dVideosize.getWindow().setLayout(280, 290);
+     //   dVideosize.getWindow().setLayout(280, 290);
+        lp.copyFrom(dVideosize.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dVideosize.getWindow().setAttributes(lp);
         dVideosize.setTitle("Video size");
         txtvideosize = (TextView)findViewById(R.id.txtvideosize);
         txtvideosize.setText(videosize);
 
         dfotonumber = new Dialog(CameraControl.this);
         dfotonumber.setContentView(R.layout.setfotonumber);
-        dfotonumber.getWindow().setLayout(280, 288);
+     //   dfotonumber.getWindow().setLayout(280, 288);
+        lp.copyFrom(dfotonumber.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dfotonumber.getWindow().setAttributes(lp);
         dfotonumber.setTitle("Foto number");
         txtfotonumber = (TextView)findViewById(R.id.txtfotonumber);
         txtfotonumber.setText(fotonumber);
@@ -226,7 +249,12 @@ public class CameraControl extends ActionBarActivity {
         tv.setText(videolength);
         dVL = new Dialog(CameraControl.this);
         dVL.setContentView(R.layout.setvideolength);
-        dVL.getWindow().setLayout(270, 335);
+     //   dVL.getWindow().setLayout(270, 335);
+        lp.copyFrom(dVL.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dVL.getWindow().setAttributes(lp);
         dVL.setTitle("Video length, sec");
         //  d.setContentView(R.layout.dialog);
      //   Button b1VL = (Button) dVL.findViewById(R.id.button1);
@@ -244,7 +272,12 @@ public class CameraControl extends ActionBarActivity {
         dl.setText(delayMin+"m:"+delaySec+"s");
         dDEL = new Dialog(CameraControl.this);
         dDEL.setContentView(R.layout.setdelay);
-        dDEL.getWindow().setLayout(280, 372);
+   //     dDEL.getWindow().setLayout(280, 372);
+        lp.copyFrom(dDEL.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dDEL.getWindow().setAttributes(lp);
         dDEL.setTitle("Delay");
         delnp1 = (NumberPicker) dDEL.findViewById(R.id.numberPicker1);
         delnp1.setMaxValue(59);
@@ -270,7 +303,12 @@ public class CameraControl extends ActionBarActivity {
         // установка имени (serial numbers) камеры:
         dserial = new Dialog(CameraControl.this);
         dserial.setContentView(R.layout.setserial);
-        dserial.getWindow().setLayout(280, 280);
+      //  dserial.getWindow().setLayout(280, 280);
+        lp.copyFrom(dserial.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dserial.getWindow().setAttributes(lp);
         dserial.setTitle("Set camera name");
         tview29 = (TextView)findViewById(R.id.textView29);
         tview29.setText(serial);
@@ -278,7 +316,12 @@ public class CameraControl extends ActionBarActivity {
 
         dsense = new Dialog(CameraControl.this);
         dsense.setContentView(R.layout.setsense);
-        dsense.getWindow().setLayout(280, 330);
+    //    dsense.getWindow().setLayout(280, 330);
+        lp.copyFrom(dsense.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dsense.getWindow().setAttributes(lp);
         dsense.setTitle("Sensor sensitivity");
         txtsense = (TextView)findViewById(R.id.txtsense);
         txtsense.setText(sense);
@@ -289,7 +332,12 @@ public class CameraControl extends ActionBarActivity {
         else {tv33.setText(lapseHH+"h: "+lapseMM+"m: "+lapseSS+"s: ");}
         dINT = new Dialog(CameraControl.this);
         dINT.setContentView(R.layout.setinterval);
-        dINT.getWindow().setLayout(280, 405);
+     //   dINT.getWindow().setLayout(280, 405);
+        lp.copyFrom(dINT.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dINT.getWindow().setAttributes(lp);
         dINT.setTitle("Set time lapse");
         sInt  = (Switch)dINT.findViewById(R.id.switch2);
         npInt1 = (NumberPicker) dINT.findViewById(R.id.numberPicker1);
@@ -315,7 +363,12 @@ public class CameraControl extends ActionBarActivity {
 // Боковые датчики:
         dpir = new Dialog(CameraControl.this);
         dpir.setContentView(R.layout.setpir);
-        dpir.getWindow().setLayout(280, 245);
+    //    dpir.getWindow().setLayout(280, 245);
+        lp.copyFrom(dpir.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dpir.getWindow().setAttributes(lp);
         dpir.setTitle("Side PIR");
         txtPIR = (TextView)findViewById(R.id.txtpir);
         txtPIR.setText(sidePIR);
@@ -324,7 +377,12 @@ public class CameraControl extends ActionBarActivity {
 // MMS:
         dmms = new Dialog(CameraControl.this);
         dmms.setContentView(R.layout.setmmstype);
-        dmms.getWindow().setLayout(280, 280);
+    //    dmms.getWindow().setLayout(280, 280);
+        lp.copyFrom(dmms.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dmms.getWindow().setAttributes(lp);
         dmms.setTitle("MMS type");
         txtMMStype = (TextView)findViewById(R.id.txtMMStype);
         txtMMStype.setText(MMStype);
@@ -333,7 +391,12 @@ public class CameraControl extends ActionBarActivity {
 
         dlimit = new Dialog(CameraControl.this);
         dlimit.setContentView(R.layout.setlimitmms);
-        dlimit.getWindow().setLayout(280, 380);
+   //     dlimit.getWindow().setLayout(280, 380);
+        lp.copyFrom(dlimit.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dlimit.getWindow().setAttributes(lp);
         dlimit.setTitle("MMS limit");
         tv38 = (TextView)findViewById(R.id.tv38);
         if (MMSlimit.equals("0")){tv38.setText("no limit");}
@@ -345,7 +408,12 @@ public class CameraControl extends ActionBarActivity {
         else {tv39.setText("Off");}
         dtimer = new Dialog(CameraControl.this);
         dtimer.setContentView(R.layout.settimer);
-        dtimer.getWindow().setLayout(298, 447);
+   //     dtimer.getWindow().setLayout(298, 447);
+        lp.copyFrom(dtimer.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dtimer.getWindow().setAttributes(lp);
         dtimer.setTitle("Set timer");
         sTimer = (Switch) dtimer.findViewById(R.id.switch2);
         npT1 = (NumberPicker) dtimer.findViewById(R.id.numberPicker11);
@@ -413,7 +481,12 @@ public class CameraControl extends ActionBarActivity {
         else {tv47.setText("Off");}
         dtimer2 = new Dialog(CameraControl.this);
         dtimer2.setContentView(R.layout.settimer2);
-        dtimer2.getWindow().setLayout(298, 447);
+    //    dtimer2.getWindow().setLayout(298, 447);
+        lp.copyFrom(dtimer2.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dtimer2.getWindow().setAttributes(lp);
         dtimer2.setTitle("Set timer2");
         sTimer2 = (Switch) dtimer2.findViewById(R.id.switch2);
         npT12 = (NumberPicker) dtimer2.findViewById(R.id.numberPicker11);
@@ -456,7 +529,12 @@ public class CameraControl extends ActionBarActivity {
         tv49.setText(SMScontrol);
         dsmsint = new Dialog(CameraControl.this);
         dsmsint.setContentView(R.layout.smsnterval);
-        dsmsint.getWindow().setLayout(280, 385);
+    //    dsmsint.getWindow().setLayout(280, 385);
+        lp.copyFrom(dsmsint.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dsmsint.getWindow().setAttributes(lp);
         dsmsint.setTitle("SMS interval");
         ssmsint = (Switch) dsmsint.findViewById(R.id.switch3);
         npsmsint = (NumberPicker) dsmsint.findViewById(R.id.numberPicker2);
@@ -469,14 +547,24 @@ public class CameraControl extends ActionBarActivity {
 
         dsmsoff = new Dialog(CameraControl.this);
         dsmsoff.setContentView(R.layout.smsoff);
-        dsmsoff.getWindow().setLayout(300, 268);
+     //   dsmsoff.getWindow().setLayout(300, 268);
+        lp.copyFrom(dsmsoff.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dsmsoff.getWindow().setAttributes(lp);
         dsmsoff.setTitle("Warning");
 
 
    // phone2 or email:
         dphone2 = new Dialog(CameraControl.this);
         dphone2.setContentView(R.layout.setaddphone2oremail);
-        dphone2.getWindow().setLayout(300, 228);
+   //     dphone2.getWindow().setLayout(300, 228);
+        lp.copyFrom(dphone2.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dphone2.getWindow().setAttributes(lp);
         dphone2.setTitle("Set phone2 or email");
         edtxtphone2 = (EditText)dphone2.findViewById(R.id.editText4);
         txtviewphone2 = (TextView)findViewById(R.id.txtviewphone2);
@@ -486,7 +574,12 @@ public class CameraControl extends ActionBarActivity {
    // phone3 or email:
         dphone3 = new Dialog(CameraControl.this);
         dphone3.setContentView(R.layout.setaddphone3oremail);
-        dphone3.getWindow().setLayout(300, 228);
+    //    dphone3.getWindow().setLayout(300, 228);
+        lp.copyFrom(dphone3.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        dphone3.getWindow().setAttributes(lp);
         dphone3.setTitle("Set phone3 or email");
         edtxtphone3 = (EditText)dphone3.findViewById(R.id.editText4);
         txtviewphone3 = (TextView)findViewById(R.id.txtviewphone3);
@@ -506,7 +599,12 @@ public class CameraControl extends ActionBarActivity {
     //    demail.setContentView(R.layout.setmail);
 
 
-        demail.getWindow().setLayout(300, 228);
+   //     demail.getWindow().setLayout(300, 228);
+        lp.copyFrom(demail.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //  d.show();
+        demail.getWindow().setAttributes(lp);
         demail.setTitle("Set email");
     //    edtxtemail = (EditText)demail.findViewById(R.id.edtxtemail);
         edtxtemail = (EditText)demail.findViewById(R.id.edtxtemail);
