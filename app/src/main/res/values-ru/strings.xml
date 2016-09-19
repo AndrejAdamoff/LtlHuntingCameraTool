@@ -50,7 +50,7 @@
     <string name="sure">Да, уверен!</string>
     <string name="read">Посмотреть</string>
     <string name="about">О программе</string>
-    <string name="version">Версия 3.0 \nРазработка Andrej Adamoff \nПоддержка: \nandrej.adamoff@gmail.com</string>
+    <string name="version">Версия 2.1 \nРазработка Andrej Adamoff \nПоддержка: \nandrej.adamoff@gmail.com</string>
     <string name="received">Получено</string>
     <string name="from">от</string>
     <string name="downloadMMS">Поиск новых \nMMS фото...</string>
