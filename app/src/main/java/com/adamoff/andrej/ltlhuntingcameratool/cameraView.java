@@ -10,6 +10,7 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -32,10 +33,14 @@ import android.widget.Toast;
 
 import com.example.t.ltlhuntingcameratool.R;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -500,8 +505,8 @@ public class cameraView extends Activity {
             //    dbHelper = new MainActivity.DBHelper(this);
             //    db = dbHelper.getWritableDatabase();
 
-            String columns[] = {"time", "path"};
-            String d = null;
+            String columns[] = {"time", "path","mmsid", "id"};
+            String d, mid, _id = null;
             String time;
             // читаем строку таблицы с помощью объекта cursor
             Cursor cursor = db.query(aphone, columns, null, null, null, null, null);
@@ -509,21 +514,69 @@ public class cameraView extends Activity {
             String timeStamp = cursor.getString(cursor.getColumnIndex("time"));
             java.util.Date date = new java.util.Date(Long.valueOf(timeStamp) * 1000);
             d = cursor.getString(cursor.getColumnIndex("path"));
+            mid = cursor.getString(cursor.getColumnIndex("mmsid"));
+            _id = cursor.getString(cursor.getColumnIndex("id"));
             cursor.close();
             db.close();
+            System.out.println("path to mms d: "+d);
+            System.out.println("mms id: "+mid);
+            System.out.println("id: "+_id);
+
+/*
+  // Samsung ------------
+
+            Uri partURI = Uri.parse("/data/data/com.android.providers.telephony/app_parts/PART_1474456746392_20160811_185507.jpeg");
+            InputStream is = null;
+
+            try {
+                is = openInputStream(partURI);
+                bitmap = BitmapFactory.decodeStream(is);
+            } catch (IOException e) {}
+            finally {
+                if (is != null) {
+                    try {
+                        is.close();
+                    } catch (IOException e) {}
+                }
+            }
+
+
+  // --------------------
+*/
             // ------- при необходимости уменьшаем изображение для устранения нехватки памяти ------
             try {
-                Drawable draw = Drawable.createFromPath(Uri.parse(d).toString());
-                BitmapDrawable bm = (BitmapDrawable)draw;
-                bm.getBitmap();
-                float heigth = bm.getBitmap().getHeight();
-                float width = bm.getBitmap().getWidth();
+           //   Drawable draw = Drawable.createFromPath(Uri.parse("/data/data/com.android.providers.telephony/app_parts/PART_1474456746392_20160811_185507.jpeg").toString());
+       //       ByteArrayOutputStream baos = new ByteArrayOutputStream();
+              InputStream is = null;
+      //       is = getContentResolver().openInputStream(Uri.parse("/data/data/com.android.providers.telephony/app_parts/PART_1474545275624"));
+     //         is = getContentResolver().openInputStream(Uri.parse(d).toString);
+      //          is = getContentResolver().openInputStream(Uri.parse("content://mms/part/10"));
+                is = getContentResolver().openInputStream(Uri.parse("content://mms/part/"+_id));
+       //         is = getContentResolver().openInputStream(Uri.parse("content://mms/part/"+id));
+              Bitmap bm = BitmapFactory.decodeStream(is);
+
+
+                //          Drawable draw = Drawable.createFromPath(Uri.parse(d).toString());
+    //           BitmapDrawable bm = (BitmapDrawable)draw;
+
+   //             Bitmap bm = BitmapFactory.decodeFile("/data/data/com.android.providers.telephony/app_parts/PART_1474456746392_20160811_185507.jpeg");
+   //             imageView.setImageBitmap(bm);
+
+     //          bm.getBitmap();
+   //             float heigth = bm.getBitmap().getHeight();
+               float heigth = bm.getHeight();
+   //             float width = bm.getBitmap().getWidth();
+                float width = bm.getWidth();
                 float ratio = width/heigth;
                 int nheigth = Math.round(640/ratio);
-                imageView.setImageBitmap(Bitmap.createScaledBitmap(bm.getBitmap(), 640, nheigth, false));
-            } catch (NullPointerException n) {n.printStackTrace();}
+   //             imageView.setImageBitmap(Bitmap.createScaledBitmap(bm.getBitmap(), 640, nheigth, false));
+               imageView.setImageBitmap(Bitmap.createScaledBitmap(bm, 640, nheigth, false));
 
+            } catch (Exception n) {n.printStackTrace();}
 
+// --Samsung -------------------
+//Bitmap bitmap = Bitmap.createBitmap(Uri.parse(d).toString());  decodeFile(d);
+//imageView.setImageURI(Uri.parse(d));
 
             // устанавливаем расположение textView с датой:
             //   TextView textView = new TextView(MainActivity.this);

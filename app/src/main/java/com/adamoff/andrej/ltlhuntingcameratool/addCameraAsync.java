@@ -225,7 +225,7 @@ String To1, ToPWD1;
                // а name - это имя таблицы = имя камеры
                // создаём SQL statement для создания таблицы:
                String SQLStatement = "create table " + aphone + " ("
-                       + "_id integer primary key autoincrement," + "path text," + "name text," + "time text," + "mmsid text" + ");";
+                       + "_id integer primary key autoincrement," + "path text," + "name text," + "time text," + "mmsid text," + "id text" + ");";
                // создаём таблицу с именем aphone для камеры в БД:
                //    db.execSQL(SQLStatement);
                try {
@@ -762,6 +762,7 @@ String To1, ToPWD1;
            //
            // поэтому нужно для каждого id проверить addr на совпадение с заданным номером.
 
+
            // получаем значения имеющихся id, для чего читаем столбец id таблицы pdu:
            String[] projection = {"_id", "date"};
            try {
@@ -774,45 +775,93 @@ String To1, ToPWD1;
                        // для этого MMS id проверяем тел.номер:
                        // Cursor curaddr = getContentResolver().query(Uri.parse("content://mms/Id/addr"), null, null, null, null);
                        String selectionAdd = new String("msg_id=" + Id);
+                 //      String selectionAdd = new String("_id=" + Id);
                        String uriStr = MessageFormat.format("content://mms/{0}/addr", Id);
                        Uri uriAddress = Uri.parse(uriStr);
                        String col[] = {"address"};
                        Cursor curaddr = getContentResolver().query(uriAddress, col, selectionAdd, null, null);
 
                        if (curaddr.moveToFirst()) {
+                   int x =0;
                            do {
                                String num = curaddr.getString(curaddr.getColumnIndex("address"));
                                if (num.equals(number)) {  // сравнение строк произв-ся через equals, не через ==
-                                   //
+                                   x++;
+                                   System.out.println("777! Found "+x+" mms");
+
+
+/*
+  // -----------Samsung:
+
+                                   Cursor cur3 = getContentResolver().query(Uri.parse("content://mms/part"), null, "msg_id=" + Id, null, null); // берём только для своего msg_id
+
+                                   // Cursor cur3 = getContentResolver().query(Uri.parse("content://mms/part"), null, null, null, null); // читаем все столбцы
+                                   cur3.moveToFirst();
+                                   do {
+                                       int f = cur3.getColumnCount();
+                                       //         String [] q = cur.getColumnNames();
+                                       //         System.out.println("1234: "+q);
+                                       int qq = 0;
+                                       do {
+                                           String w = cur3.getColumnName(qq);
+                                           System.out.println("# "+qq+" addCameraAsync content/mms name: " + w);
+                                           System.out.println("value: " + cur3.getString(cur3.getColumnIndex(w))); // содержимое столбца
+
+                                           //     catch (Exception e){};
+                                           qq++;
+                                       }
+                                       while (qq < f);
+
+                                   }  while (cur3.moveToNext());
+                                   cur3.close();
+//---------------------------------
+
+
+*/
+
+
                                    //нашли нужный MMS id и сразу находим путь к файлу:
-                                   String selectionPart = "mid=" + Id;
-                                   String[] column = {"_data"}; // , "date"};
+                         String selectionPart = "mid=" + Id;
+           //            String selectionPart = "id=" + Id;
+          System.out.println("Found mid: "+Id);
+
+       //                            String selectionPart = "_id=" + Id;
+                                   String[] column = {"_data", "cl", "_id"}; // , "date"};
                                    Uri uri = Uri.parse("content://mms/part");
                                    // читаем все? столбцы для данного Id
                                    Cursor curdata = getContentResolver().query(uri, column, selectionPart, null, null);
-                                   if (curdata.moveToFirst()) {
+                               //    if (curdata.moveToFirst()) {
+                                       curdata.moveToFirst();
                                        do {
-                                           String dat = curdata.getString(curdata.getColumnIndex("_data"));
+                                     try   {   String dat = curdata.getString(curdata.getColumnIndex("_data"));
+                                               String cl = curdata.getString(curdata.getColumnIndex("cl"));
+                                               String _id = curdata.getString(curdata.getColumnIndex("_id"));
+       //   System.out.println("Found _data: "+dat);
                                            //   String date = "0"; //curdata.getString(curdata.getColumnIndex("date"));        // получаем время приёма MMS
-                                           if (dat != null) { // пропускаем пустые поля таблицы
+                                           if (dat != null & cl !=null) { // пропускаем пустые поля таблицы
+                                  System.out.println("Found _data: " + dat);
                                                // пишем в поля БД камер:
                                                // New value for one column
                                                ContentValues cv = new ContentValues();
                                                cv.put("mmsid", Id);
+                                               cv.put("id", _id);
+                                         //      cv.put("id", "10");
                                                cv.put("time", date);
                                                cv.put("path", dat);
                                                // вставляем новую строку в таблицу:
                                                long rowId = db.insert(aphone, null, cv);
 
                                            }
+                                       }  catch (Exception e) {};
                                        }
                                        while (curdata.moveToNext());
                                        //      if (curdata != null) {
                                        //     curdata.close();
                                        //      }
-                                   }
+                             //      }
                                    curdata.close();
-                               }
+                               } else  System.out.println("777! Found "+x+" mms");
+
                            }
                            while (curaddr.moveToNext());
                            // здесь закончили перебор всех mms_id

@@ -138,10 +138,55 @@ public class updatedbWithMMS extends Activity {
             // получаем значения имеющихся id, для чего читаем столбец id таблицы pdu:
             String[] projection = {"_id", "date"};
             Cursor cur = getContentResolver().query(Uri.parse("content://mms/"), projection, null, null, null); // читаем только один столбец projection = "_id"
+
+ // -----------Samsung:
+
+   Cursor cur3 = getContentResolver().query(Uri.parse("content://mms/"), null, null, null, null); // читаем все столбцы
+
+//  Cursor cur3 = getContentResolver().query(Uri.parse("content://mms/part"), null, null, null, null); // читаем все столбцы
+                                        cur3.moveToFirst();
+                                        do {
+                                            int f = cur3.getColumnCount();
+                                        //         String [] q = cur.getColumnNames();
+                                        //         System.out.println("1234: "+q);
+                                        int qq = 0;
+                                        do {
+                                            String w = cur3.getColumnName(qq);
+                                            System.out.println("# "+qq+" updatedbWithMMS content/mms/ name: " + w);
+                                            System.out.println("value: " + cur3.getString(cur3.getColumnIndex(w))); // содержимое столбца
+
+                                            //     catch (Exception e){};
+                                            qq++;
+                                        }
+                                        while (qq < f);
+
+                                    }  while (cur3.moveToNext());
+                                        cur3.close();
+       /*
             // сразу получим курсор для нашей db:
             //         String columns[] = {"mmsid"};
             //          Cursor cursor = db.query(params[0], columns, null, null, null, null, null);
             //          if (cursor.moveToFirst()) {
+
+            Cursor cur2 = getContentResolver().query(Uri.parse("content://mms/part"), null, null, null, null); // читаем все столбцы
+            cur2.moveToFirst();
+            int f = cur2.getColumnCount();
+   //         String [] q = cur.getColumnNames();
+   //         System.out.println("1234: "+q);
+            int qq = 0;
+            do {
+               String w = cur2.getColumnName(qq);
+                System.out.println("5678: "+w);
+                System.out.println("9: "+cur2.getString(cur2.getColumnIndex(w))); // содержимое столбца
+
+          //     catch (Exception e){};
+                qq++;
+            }
+            while (qq<f);
+            cur2.close();
+*/
+ // --------Samsung End ------------------
+
             // перебираем все mms_id
             if (cur.moveToLast()) {
                 do {
@@ -179,6 +224,29 @@ public class updatedbWithMMS extends Activity {
                                 // если не ставить !=null, то может выскочить исключение
                                 if (num != null) {
                                     if (num.equals(params[1])) {  // сравнение строк произв-ся через equals, не через ==
+                        // -----------------------------
+                                       System.out.println("Found mms_id= "+Id);
+                                       Cursor cur2 = getContentResolver().query(Uri.parse("content://mms/part"), null, null, null, null); // читаем все столбцы
+                                        cur2.moveToFirst();
+                                        do {
+                                            int f = cur2.getColumnCount();
+                                        //         String [] q = cur.getColumnNames();
+                                        //         System.out.println("1234: "+q);
+                                        int qq = 0;
+                                        do {
+                                            String w = cur2.getColumnName(qq);
+                                            System.out.println("# "+qq+" name: " + w);
+                                            System.out.println("value: " + cur2.getString(cur2.getColumnIndex(w))); // содержимое столбца
+
+                                            //     catch (Exception e){};
+                                            qq++;
+                                        }
+                                        while (qq < f);
+
+                                    }  while (cur2.moveToNext());
+                                        cur2.close();
+
+                              //------------------------------------
 
                                         //нашли нужный MMS id и сразу находим путь к файлу:
                                         String selectionPart = "mid=" + Id;
@@ -186,23 +254,33 @@ public class updatedbWithMMS extends Activity {
                                         Uri uri = Uri.parse("content://mms/part");
                                         // читаем все? столбцы для данного Id
                                         Cursor curdata = getContentResolver().query(uri, null, selectionPart, null, null);
-                                        if (curdata.moveToFirst()) {
+                    System.out.println("888! here");
+                                        curdata.moveToFirst();
+                                //        do {} while (curdata.moveToNext());
+                                //        if (curdata.moveToFirst()) {
                                             do {
-                                                String dat = curdata.getString(curdata.getColumnIndex("_data"));
+                                                try {String dat = curdata.getString(curdata.getColumnIndex("_data"));
+                                                     String _id = curdata.getString(curdata.getColumnIndex("_id"));
+
+                    System.out.println("888!: "+ dat);
                                                 //    String date = "0"; //curdata.getString(curdata.getColumnIndex("date"));        // получаем время приёма MMS
                                                 if (dat != null) { // пропускаем пустые поля таблицы
                                                     // пишем в поля БД камер:
                                                     // New value for one column
                                                     ContentValues cv = new ContentValues();
                                                     cv.put("mmsid", Id);
+                                                    cv.put("id", _id);
                                                     cv.put("time", date);
                                                     cv.put("path", dat);
                                                     // вставляем новую строку в таблицу:
                                                     long rowId = db.insert(params[0], null, cv);
-                                                }
+                                                    break; // если нашли путь, то сразу выходим из цикла do
+                                                  }
+                                                }  catch (Exception e) {};
                                             } while (curdata.moveToNext());
                                             //  curdata.close();
-                                        }  curdata.close();
+                                  //      }
+                                        curdata.close();
                                     } break t; // номер чужой, выходим или обработали новую mms
                                 }
                             }  while (curaddr.moveToNext());
