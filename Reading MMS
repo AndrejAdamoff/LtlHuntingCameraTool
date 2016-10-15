@@ -1,6 +1,6 @@
 This code for mms attachement retrieval doesn't work on Samsung Galaxy S3 Mini, but works for Alcatel:
 Drawable draw = Drawable.createFromPath(Uri.parse("/data/data/com.android.providers.telephony/app_parts/PART_1474456746392_20160811_185507.jpeg").toString());
-// The name PART_1474456746392_20160811_185507.jpeg is wrong, there are no file with this name for Samsung.
+// Attachement name PART_1474456746392_20160811_185507.jpeg is wrong, there are no files with this names for Samsung.
 
 This code works for both Samsung and Alcatel:
 InputStream is = null;
