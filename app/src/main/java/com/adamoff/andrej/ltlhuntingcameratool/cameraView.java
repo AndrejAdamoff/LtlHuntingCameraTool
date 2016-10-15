@@ -574,10 +574,6 @@ public class cameraView extends Activity {
 
             } catch (Exception n) {n.printStackTrace();}
 
-// --Samsung -------------------
-//Bitmap bitmap = Bitmap.createBitmap(Uri.parse(d).toString());  decodeFile(d);
-//imageView.setImageURI(Uri.parse(d));
-
             // устанавливаем расположение textView с датой:
             //   TextView textView = new TextView(MainActivity.this);
             //   textView.setTextColor(Color.WHITE);
