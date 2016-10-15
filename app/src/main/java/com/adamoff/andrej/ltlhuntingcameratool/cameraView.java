@@ -546,15 +546,11 @@ public class cameraView extends Activity {
             // ------- при необходимости уменьшаем изображение для устранения нехватки памяти ------
             try {
            //   Drawable draw = Drawable.createFromPath(Uri.parse("/data/data/com.android.providers.telephony/app_parts/PART_1474456746392_20160811_185507.jpeg").toString());
-       //       ByteArrayOutputStream baos = new ByteArrayOutputStream();
-              InputStream is = null;
-      //       is = getContentResolver().openInputStream(Uri.parse("/data/data/com.android.providers.telephony/app_parts/PART_1474545275624"));
-     //         is = getContentResolver().openInputStream(Uri.parse(d).toString);
-      //          is = getContentResolver().openInputStream(Uri.parse("content://mms/part/10"));
-                is = getContentResolver().openInputStream(Uri.parse("content://mms/part/"+_id));
-       //         is = getContentResolver().openInputStream(Uri.parse("content://mms/part/"+id));
-              Bitmap bm = BitmapFactory.decodeStream(is);
 
+              InputStream is = null;
+              is = getContentResolver().openInputStream(Uri.parse("content://mms/part/"+_id));
+
+              Bitmap bm = BitmapFactory.decodeStream(is);
 
                 //          Drawable draw = Drawable.createFromPath(Uri.parse(d).toString());
     //           BitmapDrawable bm = (BitmapDrawable)draw;
@@ -576,7 +572,7 @@ public class cameraView extends Activity {
 
             // устанавливаем расположение textView с датой:
             //   TextView textView = new TextView(MainActivity.this);
-            //   textView.setTextColor(Color.WHITE);
+            //   textView.setTextColor(Color.WHITE);111111111
             //   textView.setTextSize(30);
             //   textView.setTypeface(Typeface.DEFAULT_BOLD);
             fdata = new SimpleDateFormat("HH:mm   dd-MM-yyyy").format(date);
