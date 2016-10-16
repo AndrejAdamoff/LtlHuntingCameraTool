@@ -907,12 +907,12 @@ String To1, ToPWD1;
                    String imap = "imap." + To.substring(1 + To.indexOf("@"));
                    //     store.connect("imap.gmail.com", smtpToMail, smtpToPassword);
                    store.connect(imap, 993, To, ToPWD);
-        //           System.out.println("9999 store connected");
+               System.out.println("9999 store connected");
 
                    //    Folder inbox = store.getFolder("Inbox");
                    Folder inbox = store.getFolder("Inbox");
                    inbox.open(Folder.READ_WRITE);
-       //            System.out.println("9999 folder open");
+               System.out.println("9999 folder open");
 
                    // находим все сообщения
                    Message[] messages = inbox.getMessages();  //.search(new FlagTerm(new Flags(Flags.Flag.SEEN), false));
@@ -932,9 +932,15 @@ String To1, ToPWD1;
                            } catch (Exception e) {
                                e.printStackTrace();
                            }
-            //               System.out.println("9999 message from" + from);
+                          System.out.println("9999! message from " + from);
                            //            if (smtpToMail.contains("gmail")) {
-                           if (!smtpFromMail.equals(from.substring(from.indexOf("<") + 1, from.indexOf(">")))) {
+                           String fr = "";
+                           try {
+                                fr = from.substring(from.indexOf("<") + 1, from.indexOf(">")); // because "from" address can doesn't contain simbols <>
+                           } catch (Exception e){
+                               fr = from;  // "from" address without brackets < >
+                               e.printStackTrace();}
+                           if (!smtpFromMail.equals(fr)) {
                                messages[i] = null; // обнуляем сообщение с чужого адреса
                                //  j++;
                            } else len++; // оставляем сообщения только со своего адреса
@@ -946,7 +952,7 @@ String To1, ToPWD1;
                        for (int i = 0; i < messages.length; i++) {
                            if (messages[i] == null) {
                            } else {
-                               messages1[k] = messages[i];
+                               messages1[k] = messages[i]; // rewriting to new array messages1
                                k++;
                                Log.d("tag", "Messages0 populated");
                            }
@@ -980,13 +986,14 @@ String To1, ToPWD1;
            for (int i = 0; i < listMessages.size(); i++) {
                MessageBean mes = it.next();
                // записываем путь к аттачменту:
-               if (mes.getAttachments().size() > 0) {
+              if (mes.getAttachments().size() > 0) {
                    for (int j = 0; j < mes.getAttachments().size(); j++) {
                        ContentValues cv = new ContentValues();
                        String date = mes.getDateSent();
                        cv.put("time", date);
                        String dat = mes.getAttachments().get(j);
                        cv.put("path", dat);
+                       cv.put("id", "smtp"); // признак того, что это не ммс и нужно открывать фото не по mms id, а по path
                        // вставляем новую строку в таблицу:
                        if (!db.isOpen()) db = MainActivity.dbHelper.getWritableDatabase();
                        db.insert(aphone, null, cv);
@@ -1007,14 +1014,16 @@ String To1, ToPWD1;
      //          System.out.println("9999 here 1 ");
                attachments.clear();
      //          System.out.println("9999 here 1.5 ");
-               messages[i].isMimeType("text/plain");
+//               messages[i].isMimeType("text/plain");
      //          System.out.println("9999 here 1.6 ");
-               if (messages[i].isMimeType("text/plain")) {
+  /*             if (messages[i].isMimeType("text/plain")) {
      //              System.out.println("9999 here 2 ");
                    MessageBean message = new MessageBean(messages[i].getMessageNumber(), MimeUtility.decodeText(messages[i].getSubject()), messages[i].getFrom()[0].toString(), null, String.valueOf((messages[i].getSentDate().getTime())/1000), (String)messages[i].getContent(), false, null);
                    listMessages.add(message);
                    //        m++;
-               } else if (messages[i].isMimeType("multipart/*")) {
+               } else
+     */
+               if (messages[i].isMimeType("multipart/*")) {
      //              System.out.println("9999 here 3 ");
                    Multipart mp = (Multipart)messages[i].getContent();
                    //    MessageBean message = null;

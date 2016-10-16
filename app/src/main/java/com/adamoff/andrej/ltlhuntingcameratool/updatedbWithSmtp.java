@@ -331,12 +331,16 @@ public class updatedbWithSmtp extends Activity {
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
-           //         System.out.println("8888 message from"+from);
-                    //            if (smtpToMail.contains("gmail")) {
-                                    if (!smtpFromMail.equals(from.substring(from.indexOf("<") + 1, from.indexOf(">")))) {
-                                        messages[i] = null;
-                                        //  j++;
-                                    } else len++; // считаем число непустых элементов
+                                String fr = "";
+                                try {
+                                    fr = from.substring(from.indexOf("<") + 1, from.indexOf(">")); // because "from" address can doesn't contain simbols <>
+                                } catch (Exception e){
+                                    fr = from;  // "from" address without brackets < >
+                                    e.printStackTrace();}
+                                if (!smtpFromMail.equals(fr)) {
+                                    messages[i] = null; // обнуляем сообщение с чужого адреса
+                                    //  j++;
+                                } else len++; // считаем число непустых элементов
                             }
 
                             Message[] messages1 = new Message[len];
@@ -381,6 +385,7 @@ public class updatedbWithSmtp extends Activity {
                                 cv.put("time", date);
                                 String dat = mes.getAttachments().get(j);
                                 cv.put("path", dat);
+                                cv.put("id", "smtp"); // признак того, что это не ммс и нужно открывать фото не по mms id, а по path
                                 // вставляем новую строку в таблицу:
                                 if (!db.isOpen()) db = MainActivity.dbHelper.getWritableDatabase();
                                 db.insert(aphone, null, cv);
@@ -406,12 +411,14 @@ public class updatedbWithSmtp extends Activity {
             for (int i =0; i< messages.length; i++) {
                 Log.d("tag", "Here31");
                 attachments.clear();
-                if (messages[i].isMimeType("text/plain")) {
+          /*      if (messages[i].isMimeType("text/plain")) {
                     Log.d("tag", "Here32");
                     MessageBean message = new MessageBean(messages[i].getMessageNumber(), MimeUtility.decodeText(messages[i].getSubject()), messages[i].getFrom()[0].toString(), null, String.valueOf((messages[i].getSentDate().getTime())/1000), (String)messages[i].getContent(), false, null);
                     listMessages.add(message);
                     //        m++;
-                } else if (messages[i].isMimeType("multipart/*")) {
+                } else
+                */
+                if (messages[i].isMimeType("multipart/*")) {
                     Log.d("tag", "Here33");
                     Multipart mp = (Multipart)messages[i].getContent();
                     //    MessageBean message = null;

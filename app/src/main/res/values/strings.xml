@@ -24,7 +24,7 @@
  />                                                    <string name="getfoto">Ltl Acorn \n get foto</string>
  />                                                    <string name="SMScontrol">Ltl Acorn SMS control</string>
  />                                                    <string name="cameraedit">Edit \n camera</string>
- />                                                    <string name="fotoreceived">Foto received: </string>
+ />                                                    <string name="fotoreceived">photo received:</string>
  />                                                    <string name="smsreceived">SMS received: </string>
     <string name="mode">Mode: </string>
     <string name="fotosize">Foto size:</string>

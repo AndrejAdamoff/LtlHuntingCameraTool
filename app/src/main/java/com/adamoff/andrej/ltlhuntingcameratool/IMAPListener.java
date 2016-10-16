@@ -922,8 +922,15 @@ public class IMAPListener extends Service {
              MessageBean mes = it.next();
 
              from = mes.getFrom();
-            // выделяем адрес из скобок <>
-            if (smtpToMail.contains("gmail")) from =  from.substring(from.indexOf ("<")+1, from.indexOf (">"));
+   // выделяем адрес из скобок <>
+   //         if (smtpToMail.contains("gmail")) from =  from.substring(from.indexOf ("<")+1, from.indexOf (">"));
+
+            String fr = "";
+            try {
+                fr = from.substring(from.indexOf("<") + 1, from.indexOf(">")); // because "from" address can doesn't contain simbols <>
+            } catch (Exception e){
+                fr = from;  // "from" address without brackets < >
+                e.printStackTrace();}
 
             //        Cursor cur = db.query("cameras",new String[]{"name","pphone"}, "smtpFromMail=?",new String[]{from},null,null,null);
             MainActivity.DBHelper dbHelper = new MainActivity.DBHelper(this); // так передаётся контекст из mainactivity в myservice, иначе db не открывается
@@ -933,7 +940,7 @@ public class IMAPListener extends Service {
             Cursor cur = db.query("cameras", new String[]{"name", "pphone", "smtpFromMail"}, null, null, null, null, null);
             if (cur.moveToFirst()) {
                 do {
-                    if (from.equals(cur.getString(cur.getColumnIndex("smtpFromMail")))) {
+                    if (fr.equals(cur.getString(cur.getColumnIndex("smtpFromMail")))) {
                         sname.add(cur.getString(cur.getColumnIndex("name")));
                         //    t.add(cur.getString(cur.getColumnIndex("name")));
                         spphone.add(cur.getString(cur.getColumnIndex("pphone")));
@@ -946,7 +953,8 @@ public class IMAPListener extends Service {
                                 cv.put("time", date);
                                 String dat = mes.getAttachments().get(j);
                                 cv.put("path", dat);
-                                // вставляем новую строку в таблицу:
+                                cv.put("id", "smtp"); // признак того, что это не ммс и нужно открывать фото не по mms id, а по path
+                             // вставляем новую строку в таблицу:
                                 db.insert(aphone, null, cv);
                             }
                         }
@@ -966,11 +974,13 @@ private LinkedList<MessageBean> getPart (Message[] messages, ArrayList < String 
         //  MessageBean message = null;
         for (int i =0; i< messages.length; i++) {
         attachments.clear();
-        if (messages[i].isMimeType("text/plain")) {
+ /*       if (messages[i].isMimeType("text/plain")) {
         MessageBean message = new MessageBean(messages[i].getMessageNumber(), MimeUtility.decodeText(messages[i].getSubject()), messages[i].getFrom()[0].toString(), null, String.valueOf((messages[i].getSentDate().getTime())/1000), (String)messages[i].getContent(), false, null);
         listMessages.add(message);
         //        m++;
-        } else if (messages[i].isMimeType("multipart/*")) {
+        } else
+    */
+        if (messages[i].isMimeType("multipart/*")) {
         Multipart mp = (Multipart)messages[i].getContent();
         //    MessageBean message = null;
         MessageBean message = new MessageBean(messages[i].getMessageNumber(), messages[i].getSubject(), messages[i].getFrom()[0].toString(), null, String.valueOf((messages[i].getSentDate().getTime())/1000), null, false, null);

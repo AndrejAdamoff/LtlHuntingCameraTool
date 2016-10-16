@@ -22,7 +22,7 @@
     <string name="getfoto">Ltl Acorn получить фото</string> />
     <string name="SMScontrol">Ltl Acorn SMS управление</string> />
     <string name="cameraedit">Редактиро- вать камеру</string> />
-    <string name="fotoreceived">Фото получено: </string> />
+    <string name="fotoreceived">фото получено: </string> />
     <string name="smsreceived">SMS получено: </string> />
     <string name="mode">Режим работы: </string>
     <string name="fotosize">Размер фото:</string>

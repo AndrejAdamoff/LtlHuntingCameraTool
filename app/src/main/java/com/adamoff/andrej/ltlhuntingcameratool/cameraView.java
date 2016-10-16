@@ -522,35 +522,31 @@ public class cameraView extends Activity {
             System.out.println("mms id: "+mid);
             System.out.println("id: "+_id);
 
-/*
-  // Samsung ------------
+            // устанавливаем расположение textView с датой:
+            //   TextView textView = new TextView(MainActivity.this);
+            //   textView.setTextColor(Color.WHITE);111111111
+            //   textView.setTextSize(30);
+            //   textView.setTypeface(Typeface.DEFAULT_BOLD);
+            fdata = new SimpleDateFormat("HH:mm   dd-MM-yyyy").format(date);
+            textView.setTextSize(18);
+            //          textView.setText(getResources().getString(R.string.fotoreceived) + fdata); // необходимо применять такую конструкцию, т.к. R.string даёт int идентификатор
 
-            Uri partURI = Uri.parse("/data/data/com.android.providers.telephony/app_parts/PART_1474456746392_20160811_185507.jpeg");
-            InputStream is = null;
+            Bitmap bm = null;
 
-            try {
-                is = openInputStream(partURI);
-                bitmap = BitmapFactory.decodeStream(is);
-            } catch (IOException e) {}
-            finally {
-                if (is != null) {
-                    try {
-                        is.close();
-                    } catch (IOException e) {}
-                }
-            }
-
-
-  // --------------------
-*/
             // ------- при необходимости уменьшаем изображение для устранения нехватки памяти ------
             try {
-           //   Drawable draw = Drawable.createFromPath(Uri.parse("/data/data/com.android.providers.telephony/app_parts/PART_1474456746392_20160811_185507.jpeg").toString());
+                if (_id.equals("smtp")) {
+                    Drawable draw = Drawable.createFromPath(Uri.parse(d).toString());
+                    BitmapDrawable bmd = (BitmapDrawable) draw;
+                    bm = bmd.getBitmap();
+                    textView.setText("SMTP "+getResources().getString(R.string.fotoreceived) + fdata); // необходимо применять такую конструкцию, т.к. R.string даёт int идентификатор
 
-              InputStream is = null;
-              is = getContentResolver().openInputStream(Uri.parse("content://mms/part/"+_id));
+                } else {                   //
+                    InputStream  is = getContentResolver().openInputStream(Uri.parse("content://mms/part/" + _id));
+                    bm = BitmapFactory.decodeStream(is);
+                    textView.setText("MMS "+getResources().getString(R.string.fotoreceived) + fdata); // необходимо применять такую конструкцию, т.к. R.string даёт int идентификатор
 
-              Bitmap bm = BitmapFactory.decodeStream(is);
+                }
 
                 //          Drawable draw = Drawable.createFromPath(Uri.parse(d).toString());
     //           BitmapDrawable bm = (BitmapDrawable)draw;
@@ -570,14 +566,6 @@ public class cameraView extends Activity {
 
             } catch (Exception n) {n.printStackTrace();}
 
-            // устанавливаем расположение textView с датой:
-            //   TextView textView = new TextView(MainActivity.this);
-            //   textView.setTextColor(Color.WHITE);111111111
-            //   textView.setTextSize(30);
-            //   textView.setTypeface(Typeface.DEFAULT_BOLD);
-            fdata = new SimpleDateFormat("HH:mm   dd-MM-yyyy").format(date);
-            textView.setTextSize(18);
-            textView.setText(getResources().getString(R.string.fotoreceived) + fdata); // необходимо применять такую конструкцию, т.к. R.string даёт int идентификатор
 
             layoutParams.gravity = Gravity.CENTER_HORIZONTAL;
             //   layoutParams.gravity = Gravity.LEFT;
