@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.adamoff.andrej.ltlhuntingcameratool.cameraView">
+    <item android:id="@+id/btngetphoto" android:title="@string/btngetphoto"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/delcamera" android:title="@string/delcamera"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/editcamera" android:title="@string/editcamera"
+        android:orderInCategory="100" app:showAsAction="never"
+        />
+</menu>

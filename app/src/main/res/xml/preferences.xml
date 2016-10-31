@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:key="type"
+        android:layout="@layout/camtype"
+        android:entries="@array/a_camtype"
+        android:entryValues="@array/b_camtype"
+    />
 
     <EditTextPreference
         android:key="phone"
         android:title= "@string/phonenumber_pref"
         android:summary="@string/phonesummary"
         android:defaultValue=""
-        android:dialogTitle="@string/enterphone" />
+        android:dialogTitle="@string/enterphone"
+        android:inputType="phone"/>
 
     <EditTextPreference
         android:key="name"

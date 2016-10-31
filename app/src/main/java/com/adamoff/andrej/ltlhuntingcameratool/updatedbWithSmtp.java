@@ -71,6 +71,7 @@ public class updatedbWithSmtp extends Activity {
      //   text = (TextView)findViewById(R.id.txtviewcam);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR); // запрещаем поворот экрана. Действует в пределах активити.
 
+
         intent = getIntent();
         pphone = intent.getStringExtra("phone");
         name = intent.getStringExtra("tname");
@@ -227,10 +228,22 @@ public class updatedbWithSmtp extends Activity {
 
                 listMessages = new LinkedList<>();
             attach = new ArrayList<String>();
-
+String type ="";
             db = MainActivity.dbHelper.getWritableDatabase();
+      // сначала определяем тип камеры, чтобы выбрать нужную таблицу
+            String[] column = {"camtype"};
+            Cursor cur1 = db.query(aphone, column, null, null, null, null, null);
+            if (cur1.moveToFirst()) {
+                do {
+                    type = cur1.getString(cur1.getColumnIndex("camtype"));
+                    if (type !=null) break;
+                }  while (cur1.moveToNext());
+
+            }
+            cur1.close();
+
             String columns[] = {"pphone", "smtpToMail", "smtpToPassword", "smtpFromMail", "smtp"};
-            Cursor cursor = db.query("cameras", columns, "pphone=?", new String[]{String.valueOf(params[1])}, null, null, null);
+            Cursor cursor = db.query(type, columns, "pphone=?", new String[]{String.valueOf(params[1])}, null, null, null);
             if (cursor.moveToFirst()) {
                 do {
                     flag = cursor.getString(cursor.getColumnIndex("smtp"));

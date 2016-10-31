@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll33">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/smsbgn"
+            android:editable="true"
+            android:enabled="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="before phone"
+            android:layout_weight="3"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="phone"
+            android:id="@+id/phone"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:gravity="center" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/smsend"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:hint="after phone"
+            android:layout_weight="3"
+            android:singleLine="true" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:id="@+id/ll34"
+        android:layout_below="@+id/ll33">
+
+        <Button
+            android:id="@+id/setmailbutton2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:layout_alignTop="@+id/setmailbutton1"
+            android:layout_toEndOf="@+id/setmailbutton1"
+            android:layout_alignParentRight="true"
+            android:layout_weight="5"
+            android:textSize="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="2dp" />
+
+        <Button
+            android:id="@+id/setmailbutton1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Ok"
+            android:layout_below="@+id/editText55"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="5"
+            android:textSize="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="2dp" />
+    </LinearLayout>
+
+</RelativeLayout>

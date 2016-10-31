@@ -570,7 +570,8 @@ public class IMAPListener extends Service {
                     MainActivity.DBHelper dbHelper = new MainActivity.DBHelper(getApplicationContext());
                     db = dbHelper.getWritableDatabase();
                     String table = "";
-                    Cursor cur = db.query("cameras", new String[]{"name", "pphone"}, "pphone=?", new String[]{pair2.getKey()}, null, null, null);
+                    String aphone = "a"+pair2.getKey().substring(1);
+                    Cursor cur = db.query(aphone, new String[]{"name"}, null, null, null, null, null);
                     if (cur.moveToFirst()) {
                         do {
                             table = cur.getString(cur.getColumnIndex("name"));
@@ -935,12 +936,14 @@ public class IMAPListener extends Service {
             //        Cursor cur = db.query("cameras",new String[]{"name","pphone"}, "smtpFromMail=?",new String[]{from},null,null,null);
             MainActivity.DBHelper dbHelper = new MainActivity.DBHelper(this); // так передаётся контекст из mainactivity в myservice, иначе db не открывается
             db = dbHelper.getWritableDatabase();
+// по from ищем номер телефона
+            // просматриваем по очереди все таблицы
 
-   //         db = MainActivity.dbHelper.getWritableDatabase();
-            Cursor cur = db.query("cameras", new String[]{"name", "pphone", "smtpFromMail"}, null, null, null, null, null);
+       //     Cursor cur = db.query("acorn", new String[]{"name", "pphone", "smtpFromMail"}, null, null, null, null, null);
+            Cursor cur = db.query("acorn", new String[]{"name", "pphone", "smtpFromMail"}, "smtpFromMail=?", new String[]{fr}, null, null, null);
             if (cur.moveToFirst()) {
-                do {
-                    if (fr.equals(cur.getString(cur.getColumnIndex("smtpFromMail")))) {
+          //      do {
+                //    if (fr.equals(cur.getString(cur.getColumnIndex("smtpFromMail")))) {
                         sname.add(cur.getString(cur.getColumnIndex("name")));
                         //    t.add(cur.getString(cur.getColumnIndex("name")));
                         spphone.add(cur.getString(cur.getColumnIndex("pphone")));
@@ -958,11 +961,56 @@ public class IMAPListener extends Service {
                                 db.insert(aphone, null, cv);
                             }
                         }
-                        break;
+        //                break;
+       //             }
+       //         }
+        //        while (cur.moveToNext());
+            } else {
+                Cursor cur1 = db.query("sifar", new String[]{"name", "pphone", "smtpFromMail"}, "smtpFromMail=?", new String[]{fr}, null, null, null);
+                if (cur1.moveToFirst()) {
+                    sname.add(cur1.getString(cur1.getColumnIndex("name")));
+                    //    t.add(cur.getString(cur.getColumnIndex("name")));
+                    spphone.add(cur1.getString(cur1.getColumnIndex("pphone")));
+                    // сразу записываем путь к аттачменту:
+                    aphone = "a" + (spphone.get(i).substring(1));
+                    if (mes.getAttachments().size() > 0) {
+                        for (int j = 0; j < mes.getAttachments().size(); j++) {
+                            ContentValues cv = new ContentValues();
+                            String date = mes.getDateSent();
+                            cv.put("time", date);
+                            String dat = mes.getAttachments().get(j);
+                            cv.put("path", dat);
+                            cv.put("id", "smtp"); // признак того, что это не ммс и нужно открывать фото не по mms id, а по path
+                            // вставляем новую строку в таблицу:
+                            db.insert(aphone, null, cv);
+                        }
                     }
-                }
-                while (cur.moveToNext());
-            } cur.close();
+
+                } else {
+                    Cursor cur2 = db.query("sifar", new String[]{"name", "pphone", "smtpFromMail"}, "smtpFromMail=?", new String[]{fr}, null, null, null);
+                    if (cur2.moveToFirst()) {
+                        sname.add(cur2.getString(cur2.getColumnIndex("name")));
+                        //    t.add(cur.getString(cur.getColumnIndex("name")));
+                        spphone.add(cur2.getString(cur2.getColumnIndex("pphone")));
+                        // сразу записываем путь к аттачменту:
+                        aphone = "a" + (spphone.get(i).substring(1));
+                        if (mes.getAttachments().size() > 0) {
+                            for (int j = 0; j < mes.getAttachments().size(); j++) {
+                                ContentValues cv = new ContentValues();
+                                String date = mes.getDateSent();
+                                cv.put("time", date);
+                                String dat = mes.getAttachments().get(j);
+                                cv.put("path", dat);
+                                cv.put("id", "smtp"); // признак того, что это не ммс и нужно открывать фото не по mms id, а по path
+                                // вставляем новую строку в таблицу:
+                                db.insert(aphone, null, cv);
+                            }
+                        }
+                    }
+                    cur2.close();
+                } cur1.close();
+            }
+            cur.close();
             db.close();
         }
     }
@@ -1007,7 +1055,6 @@ private LinkedList<MessageBean> getPart (Message[] messages, ArrayList < String 
         return listMessages;
         }
 
-
 public String saveFile(String filename, InputStream input) throws FileNotFoundException, IOException {
         String path = filename;
         //    File file = new File(Environment.getExternalStorageDirectory().toString(), path);
@@ -1039,7 +1086,6 @@ public String saveFile(String filename, InputStream input) throws FileNotFoundEx
         private boolean isNew;
         private int msgId;
         private ArrayList<String> attachments;
-
 
         public MessageBean(int msgId, String subject, String from, String to, String dateSent, String content, boolean isNew, ArrayList<String> attachments) {
             this.subject = subject;

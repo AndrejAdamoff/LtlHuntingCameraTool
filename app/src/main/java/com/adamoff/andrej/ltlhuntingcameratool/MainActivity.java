@@ -30,8 +30,13 @@ import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.t.ltlhuntingcameratool.R;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 
 import java.util.ArrayList;
 
@@ -83,13 +88,14 @@ public class MainActivity extends ActionBarActivity {
 
         // добавляем 2 обязательных метода onCreate и onUpdate:
         public void onCreate(SQLiteDatabase db) {
+
             // в этом методе первоначально создаётся БД с таблицами (можно пустыми)
 /*            {"pphone", "name","mode","fotosize","videosize","fotonumber","videolength",
                     "delayMin","delaySec","serial","sense","lapse","sidePIR","MMS","MMSlimit",
                     "timer","timer2","SMScontrol","phone2orEmail","phone3orEmail","Email"}; */
 
-            // создаём SQL statement для создания таблицы:
-            String SQLStatement = "create table cameras ("
+            // создаём SQL statement для создания пустой таблицы:
+            String SQLStatement = "create table acorn ("
                     + "id integer primary key autoincrement,"
                     + "pphone text,"
                     + "name text,"
@@ -133,21 +139,130 @@ public class MainActivity extends ActionBarActivity {
                     + "smtprefresh,"
                     + "mmsrefresh"
                     + ");";
-            // создаём заглавную таблицу cameras в БД:
             db.execSQL(SQLStatement);
 
-            // создаём таблицу smtp
-            String SQLStatement2 = "create table smtp ("
+            // создаём пустую таблицу sifar
+            String SQLStatement2 = "create table sifar ("
+                    + "id integer primary key autoincrement,"
+                    + "pphone text,"
+                    + "name text,"
+                    + "mode text,"
+                    + "fotosize text,"
+                    + "videosize text,"
+                    + "fotonumber text,"
+                    + "videolength text,"
+                    + "delay text,"
+                    + "delayH text,"
+                    + "delayMin text,"
+                    + "delaySec text,"
+                    + "serial text,"
+                    + "sense text,"
+                    + "lapse text,"
+                    + "lapseHH text,"
+                    + "lapseMM text,"
+                    + "lapseSS text,"
+                    + "MMSlimit text,"
+                    + "timer text,"
+                    + "timeronHH text,"
+                    + "timeronMin text,"
+                    + "timeroffHH text,"
+                    + "timeroffMin text,"
+                    + "SMScontrol text,"
+                    + "phone1 text,"
+                    + "phone2 text,"
+                    + "phone3 text,"
+                    + "phone4 text,"
+                    + "email1 text,"
+                    + "email2 text,"
+                    + "email3 text,"
+                    + "email4 text,"
+                    + "zoom text,"
+                    + "log text,"
+                    + "sendlog text,"
+                    + "smtpToMail,"
+                    + "smtpFromMail,"
+                    + "smtpToPassword,"
+                    + "sms,"
+                    + "smtp,"
+                    + "push,"
+                    + "mms,"
+                    + "smtprefresh,"
+                    + "mmsrefresh"
+                    + ");";
+            db.execSQL(SQLStatement2);
+
+            String SQLStatement3 = "create table other ("
+                    + "id integer primary key autoincrement,"
+                    + "pphone text,"
+                    + "name text,"
+                    + "getphoto text,"
+                    + "command1 text,"
+                    + "command2 text,"
+                    + "command3 text,"
+                    + "command4 text,"
+                    + "command5 text,"
+                    + "command6 text,"
+                    + "command7 text,"
+                    + "command8 text,"
+                    + "command9 text,"
+                    + "command10 text,"
+                    + "value1 text,"
+                    + "value2 text,"
+                    + "value3 text,"
+                    + "value4 text,"
+                    + "value5 text,"
+                    + "value6 text,"
+                    + "value7 text,"
+                    + "value8 text,"
+                    + "value9 text,"
+                    + "value10 text,"
+                    + "sms1 text,"
+                    + "sms2 text,"
+                    + "sms3 text,"
+                    + "sms4 text,"
+                    + "sms5 text,"
+                    + "sms6 text,"
+                    + "sms7 text,"
+                    + "sms8 text,"
+                    + "sms9 text,"
+                    + "sms10 text,"
+                    + "smsbgnphone text,"
+                    + "smsendphone text,"
+                    + "phone1 text,"
+                    + "phone2 text,"
+                    + "phone3 text,"
+                    + "phone4 text,"
+                    + "mail1 text,"
+                    + "mail2 text,"
+                    + "mail3 text,"
+                    + "mail4 text,"
+                    + "smsbgnmail text,"
+                    + "smsendmail text,"
+                    + "smtpToMail,"
+                    + "smtpFromMail,"
+                    + "smtpToPassword,"
+                    + "sms,"
+                    + "smtp,"
+                    + "push,"
+                    + "mms,"
+                    + "smtprefresh,"
+                    + "mmsrefresh"
+                    + ");";
+            db.execSQL(SQLStatement3);
+
+        // создаём одну таблицу smtp для всех камер:
+            String SQLStatementS = "create table smtp ("
                     + "_id integer primary key autoincrement," + "smtpToMail text," + "smtpToPassword text," + "push" + ");";
-            String SQLStatement3 = "INSERT INTO " + "smtp" + " (" + "smtpToMail" + ", " + "smtpToPassword" + ", " + "push" + ") Values ('','','')";
-            // создаём таблицу с именем smtp для всех камер:
+            String SQLStatementS1 = "INSERT INTO " + "smtp" + " (" + "smtpToMail" + ", " + "smtpToPassword" + ", " + "push" + ") Values ('','','')";
             try {
-                db.execSQL(SQLStatement2);
+                db.execSQL(SQLStatementS);
             } catch (SQLiteException e) {
+                e.printStackTrace();
             }
             try {
-                db.execSQL(SQLStatement3);
+                db.execSQL(SQLStatementS1);
             } catch (SQLiteException e2) {
+                e2.printStackTrace();
             }
         }
 
@@ -202,7 +317,7 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         rl = (RelativeLayout) findViewById(R.id.mainScreen);
 
-  //      downloadmode ="SMTPMMS";
+        //      downloadmode ="SMTPMMS";
 
 /*        // сначала определяем uri папки Inbox ящика
         Cursor labelsCursor = getContentResolver().query(GmailContract.Labels.getLabelsUri("remoteguard2013@gmail.com"), null, null, null, null);
@@ -401,6 +516,21 @@ db.close();
         rl.removeAllViews();
         setContentView(R.layout.activity_main);
 
+ /*       // реклама
+        //     MobileAds.initialize(getApplicationContext(), "ca-app-pub-9367463267962842~8316039817");  // application Id
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        // AdRequest adRequest = new AdRequest.Builder().build();
+        AdRequest request = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
+                .addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4")  // An example device ID
+                .build();
+
+        //     mAdView.loadAd(adRequest);
+        mAdView.loadAd(request);
+*/
+
   //      progress = (ProgressBar) findViewById(R.id.progressBar);
   //      progress.setVisibility(ProgressBar.INVISIBLE);
 
@@ -430,34 +560,39 @@ db.close();
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-  /*      String columns[] = {"pphone", "name", "mode", "fotosize", "videosize", "fotonumber", "videolength",
+ /*      String columns[] = {"pphone", "name", "mode", "fotosize", "videosize", "fotonumber", "videolength",
                 "delayMin", "delaySec", "serial", "sense", "lapse", "sidePIR", "MMS", "MMSlimit",
                 "timer", "timeronHH", "timeronMin", "timeroffHH", "timeroffMin",
                 "timer2", "timer2onHH", "timer2onMin", "timer2offHH", "timer2offMin",
                 "SMScontrol", "phone2orEmail", "phone3orEmail", "Email"};
      */
-        String columns[] = {"pphone", "name"};
-        //              // читаем строку таблицы с помощью объекта cursor
-        //              Cursor cursor = db.query(table, columns, "_id=1", null, null, null, null);
-        Cursor cursor = db.query("cameras", columns, null, null, null, null, null);
 
-        // определяем кол-во строк (камер):
-        switch (cursor.getCount()) {
+     // определяем кол-во камер:
+        String columns[] = {"pphone", "name"};
+        Cursor cursor1 = db.query("acorn", columns, null, null, null, null, null);
+        Cursor cursor2 = db.query("sifar", columns, null, null, null, null, null);
+        Cursor cursor3 = db.query("other", columns, null, null, null, null, null);
+
+        int s = cursor1.getCount() + cursor2.getCount() + cursor3.getCount();
+
+        switch (s) {
 
             case 0:
                 //   LinearLayout Layout0 = new LinearLayout(this);
                 //     LinearLayout Layout0 = (LinearLayout)findViewById(R.id.layout0);
-          //      LinearLayout.LayoutParams layoutPar = new LinearLayout.LayoutParams();
+                //      LinearLayout.LayoutParams layoutPar = new LinearLayout.LayoutParams();
                 TextView textView1 = new TextView(this);
                 //   textView1.setBackgroundColo(r(0xCFDEDEDE);
                 textView1.setText(R.string.maintxtaddcamera);
                 textView1.setTextColor(0xFF333333);
-         //       textView1.setPadding(0, 50, 0, 0);
+                //       textView1.setPadding(0, 50, 0, 0);
                 textView1.setTextSize(42);
                 textView1.setGravity(Gravity.CENTER);
                 Layout0.addView(textView1); //,RelLayoutParam);
                 //     rl.addView(Layout0, RelLayoutParam);
-                cursor.close();
+                cursor1.close();
+                cursor2.close();
+                cursor3.close();
                 db.close();
                 break;
 
@@ -466,81 +601,79 @@ db.close();
                 //    TableLayout.LayoutParams tblparam = new TableLayout.LayoutParams(100,100);
                 TableRow tr10 = new TableRow(this);
                 TableRow.LayoutParams tbrow0 = new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT); //(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT); // ширина-высота ViewGroup.LayoutParams.WRAP_CONTENT); // ViewGroup.LayoutParams.MATCH_PARENT);
-         //       tbrow0.setMargins(0, 50, 0, 0);
-              //  tbrow0.gravity = Gravity.CENTER_VERTICAL;
-                //      RelativeLayout.LayoutParams RelLayoutParam = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 LinearLayout layout0;
 
-                // далее подставляем свой текст-подпись, в зависимости от камеры:
-                //     TextView text = new TextView(this);
-                // работаем с курсором:
-                if (cursor.moveToFirst()) { // ставим курсор на первую строку
+                // находим какая камера и ставим картинку
+                ImageView image = new ImageView(MainActivity.this);
 
-                    // если таблица-результат не содержит строк, то moveToFirst =  false
-                    // определяем номера столбцов (id) по имени поля в выборке
-                    do {
-                        //    cursor.moveToFirst();
-                        fphone = cursor.getString(cursor.getColumnIndex("pphone"));
-                        fname = cursor.getString(cursor.getColumnIndex("name"));
-                        // создаём layout, в который помещаются картинка и подпись к камере
-                        layout0 = new LinearLayout(this);
-                        layout0.setOrientation(LinearLayout.VERTICAL);
-                        LinearLayout.LayoutParams llparams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-//                       llparams.leftMargin = 0;
-                        llparams.gravity = Gravity.CENTER_HORIZONTAL;
-                        // картинка
-                        ImageView image = new ImageView(MainActivity.this);
-                        image.setImageResource(R.drawable.ltl6210200);
-                        image.setLayoutParams(llparams);
-                        layout0.addView(image, llparams);
-                        // подпись к камере
-                        TextView text = new TextView(MainActivity.this);
-                        text.setBackgroundColor(0xCFDEDEDE); //
-                        text.setMaxLines(2);
-                        text.setMaxWidth(105);
-                        text.setTextColor(0xff000000);
-
-                        if (fname.length() != 0) text.setText(fname + "\n" + fphone);
-                        else fname = "Camera";
-                        text.setText(fname + "\n" + fphone);
-                        // text.setTextColor(0xffffffff); // белый
-                        // text.setId(j);
-                        layout0.addView(text, llparams);
-                        //  делаем LL кликабельным:
-                        layout0.isClickable();
-                        layout0.setOnClickListener(new View.OnClickListener() {
-                            public void onClick(View v) {
-                                shortClick1(v);
-                            }
-                        });
-
-
-                        //  tr10.addView(layout0,1,tbrow0);  // ставим View в позицию 1 в строке (т.е. во вторую позицию)
-
-                    }
-                    while (cursor.moveToNext());
-                    // выносим всё на экран:
-                    //  tbl0.addView(tr10);
-                    //  scroll.addView(layout0);
-                    //                 layout0.setPadding (0,0,0,30); // поднимаем немного вверх paddingBottom
-                    // LinearLayout Layout0 = (LinearLayout)findViewById(R.id.layout0);
-                    Layout0params.gravity = Gravity.CENTER;
-          //          Layout0params.topMargin = 10;
-                    Layout0.addView(layout0, Layout0params);
-                    //       rl.addView(layout0,RelLayoutParam);
-
+                if (cursor1.getCount() > 0) {
+                    image.setImageResource(R.drawable.ltl6210150);
+                    cursor1.moveToFirst();
+                    fphone = cursor1.getString(cursor1.getColumnIndex("pphone"));
+                    fname = cursor1.getString(cursor1.getColumnIndex("name"));
+                    cursor1.close();
                 }
-                cursor.close();
+                if (cursor2.getCount() > 0) {
+                    image.setImageResource(R.drawable.ltl7310150);
+                    cursor2.moveToFirst();
+                    fphone = cursor2.getString(cursor2.getColumnIndex("pphone"));
+                    fname = cursor2.getString(cursor2.getColumnIndex("name"));
+                    cursor2.close();
+                }
+                if (cursor3.getCount() > 0){
+                image.setImageResource(R.drawable.sg550150);
+                cursor3.moveToFirst();
+                fphone = cursor3.getString(cursor3.getColumnIndex("pphone"));
+                fname = cursor3.getString(cursor3.getColumnIndex("name"));
+                cursor3.close();
+                }
+             // создаём layout, в который помещаются картинка и подпись к камере
+                            layout0 = new LinearLayout(this);
+                            layout0.setOrientation(LinearLayout.VERTICAL);
+                            LinearLayout.LayoutParams llparams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//                       llparams.leftMargin = 0;
+                            llparams.gravity = Gravity.CENTER_HORIZONTAL;
+                            // картинка
+                       //     ImageView image = new ImageView(MainActivity.this);
+                       //     image.setImageResource(R.drawable.ltl6210200);
+                            image.setLayoutParams(llparams);
+                            layout0.addView(image, llparams);
+                            // подпись к камере
+                            TextView text = new TextView(MainActivity.this);
+                            text.setBackgroundColor(0xCFDEDEDE); //
+                            text.setMaxLines(2);
+                            text.setMaxWidth(105);
+                            text.setTextColor(0xff000000);
+
+                            if (fname.length() != 0) text.setText(fname + "\n" + fphone);
+                            else fname = "Camera";
+                            text.setText(fname + "\n" + fphone);
+                            // text.setTextColor(0xffffffff); // белый
+                            // text.setId(j);
+                            layout0.addView(text, llparams);
+                            //  делаем LL кликабельным:
+                            layout0.isClickable();
+                            layout0.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    shortClick1(v);
+                                }
+                            });
+
+                        // выносим всё на экран:
+                         Layout0params.gravity = Gravity.CENTER;
+                        //          Layout0params.topMargin = 10;
+                        Layout0.addView(layout0, Layout0params);
+                        //       rl.addView(layout0,RelLayoutParam);
+
                 db.close();
                 break;
 
 
-            case 2:
+   //         case 2:
+     default:
                 int i = 0;
-                int j = 0;
-                // создаём разметку строки таблицы:
-                //    HorizontalScrollView scroll = new HorizontalScrollView(this);
-
+                int j = 0;  // место в строке;
+            // создаём разметку строки таблицы:
                 TableLayout tbl = new TableLayout(this);
                 TableLayout.LayoutParams tblparam = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
            //     tblparam.gravity = Gravity.CENTER_VERTICAL;
@@ -550,16 +683,13 @@ db.close();
                 TableRow.LayoutParams tbrow = new TableRow.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT); //(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT); // ширина-высота ViewGroup.LayoutParams.WRAP_CONTENT); // ViewGroup.LayoutParams.MATCH_PARENT);
   //   tbrow.gravity = Gravity.LEFT;
                tbrow.setMargins(30, 0, 25, 0);
-
-                // далее подставляем свой текст-подпись, в зависимости от камеры:
-                //     TextView text = new TextView(this);
-                LinearLayout layout;
-                // работаем с курсором:
-                if (cursor.moveToFirst()) { // ставим курсор на первую строку
-                    j = 0;
+            // далее подставляем свой текст-подпись, в зависимости от камеры:
+               LinearLayout layout;
+             // проверяем таблицу acorn
+                if (cursor1.moveToFirst()) { // ставим курсор на первую строку
                     do {
-                        fphone = cursor.getString(cursor.getColumnIndex("pphone"));
-                        fname = cursor.getString(cursor.getColumnIndex("name"));
+                        fphone = cursor1.getString(cursor1.getColumnIndex("pphone"));
+                        fname = cursor1.getString(cursor1.getColumnIndex("name"));
 
                         layout = new LinearLayout(this);
                         layout.setId(j); // чтобы потом по id определить какой layout был кликнут
@@ -568,24 +698,24 @@ db.close();
                         list.add(m); // добавляем объект в перечень list
 
                         layout.setOrientation(LinearLayout.VERTICAL);
-                        LinearLayout.LayoutParams llparams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        LinearLayout.LayoutParams ll2params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                         //                     llparams.leftMargin = 0;
-                        llparams.gravity = Gravity.CENTER_HORIZONTAL;
-                        ImageView image = new ImageView(MainActivity.this);
-                        image.setImageResource(R.drawable.ltl6210200);
-                        image.setLayoutParams(llparams);
-                        layout.addView(image, llparams);
-                        TextView text = new TextView(MainActivity.this);
-                        text.setBackgroundColor(0xCFDEDEDE); //
-                        text.setMaxWidth(105);
-                        text.setMaxLines(3);
-                        text.setTextColor(0xff000000);
-                        if (fname.length() != 0) text.setText(fname + "\n" + fphone);
+                        ll2params.gravity = Gravity.CENTER_HORIZONTAL;
+                        ImageView image2 = new ImageView(MainActivity.this);
+                        image2.setImageResource(R.drawable.ltl6210150);
+                        image2.setLayoutParams(ll2params);
+                        layout.addView(image2, ll2params);
+                        TextView text2 = new TextView(MainActivity.this);
+                        text2.setBackgroundColor(0xCFDEDEDE); //
+                        text2.setMaxWidth(105);
+                        text2.setMaxLines(3);
+                        text2.setTextColor(0xff000000);
+                        if (fname.length() != 0) text2.setText(fname + "\n" + fphone);
                         else fname = "Camera";
-                        text.setText(fname + "\n" + fphone);
+                        text2.setText(fname + "\n" + fphone);
                         //  text.setText("Имя: " + fname + "\n" + "Тел: " + fphone);
-                        text.setId(j);
-                        layout.addView(text, llparams);
+                        text2.setId(j);
+                        layout.addView(text2, ll2params);
                         //  делаем LL кликабельным:
                         layout.isClickable();
                         layout.setOnClickListener(new View.OnClickListener() {
@@ -593,28 +723,145 @@ db.close();
                                 shortClick2(v);
                             }
                         });
-
-                        tr1.addView(layout, j, tbrow);
-
-                        j++; // ставим View в позицию j в строке
-
-                    }
-                    while (cursor.moveToNext());
+                // добавляем вид в строку в позицию j
+                    tr1.addView(layout, j, tbrow);
+                    j++;
+                }
+                    while (cursor1.moveToNext());
                     // выносим всё на экран:
                     //      TableLayout.LayoutParams tblpar = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     //      tblpar.gravity = Gravity.BOTTOM;
-                    tbl.addView(tr1,tblparam);
+        //            tbl.addView(tr1,tblparam);
 
                 //    TableLayout.LayoutParams tbparam = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                  //   tbparam.gravity = Gravity.CENTER_VERTICAL;
                  //   tbparam.setMargins(0,50,0,0);
-                    scroll.addView(tbl);
+       //             scroll.addView(tbl);
                  //   LinearLayout.LayoutParams layout0param = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                 //    Layout0.addView(scroll, Layout0params);
                 }
+                cursor1.close();
+         // проверяем таблицу sifar
+                if (cursor2.moveToFirst()) { // ставим курсор на первую строку
+                  //  j = 0;
+                    do {
+                        fphone = cursor2.getString(cursor2.getColumnIndex("pphone"));
+                        fname = cursor2.getString(cursor2.getColumnIndex("name"));
+
+                        layout = new LinearLayout(this);
+                        layout.setId(j); // чтобы потом по id определить какой layout был кликнут
+
+                        m = new LL(j, fname, fphone); // name,fphone,faddr);
+                        list.add(m); // добавляем объект в перечень list
+
+                        layout.setOrientation(LinearLayout.VERTICAL);
+                        LinearLayout.LayoutParams ll3params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        //                     llparams.leftMargin = 0;
+                        ll3params.gravity = Gravity.CENTER_HORIZONTAL;
+                        ImageView image3 = new ImageView(MainActivity.this);
+                        image3.setImageResource(R.drawable.ltl7310150);
+                        image3.setLayoutParams(ll3params);
+                        layout.addView(image3, ll3params);
+                        TextView text3 = new TextView(MainActivity.this);
+                        text3.setBackgroundColor(0xCFDEDEDE); //
+                        text3.setMaxWidth(105);
+                        text3.setMaxLines(3);
+                        text3.setTextColor(0xff000000);
+                        if (fname.length() != 0) text3.setText(fname + "\n" + fphone);
+                        else fname = "Camera";
+                        text3.setText(fname + "\n" + fphone);
+                        //  text.setText("Имя: " + fname + "\n" + "Тел: " + fphone);
+                        text3.setId(j);
+                        layout.addView(text3, ll3params);
+                        //  делаем LL кликабельным:
+                        layout.isClickable();
+                        layout.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                shortClick2(v);
+                            }
+                        });
+                // добавляем вид в строку в позицию j
+                        tr1.addView(layout, j, tbrow);
+                        j++;
+                    }
+                    while (cursor2.moveToNext());
+
+                    // выносим всё на экран:
+                    //      TableLayout.LayoutParams tblpar = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    //      tblpar.gravity = Gravity.BOTTOM;
+               //     tbl.addView(tr1,tblparam);
+
+                    //    TableLayout.LayoutParams tbparam = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    //   tbparam.gravity = Gravity.CENTER_VERTICAL;
+                    //   tbparam.setMargins(0,50,0,0);
+               //     scroll.addView(tbl);
+                    //   LinearLayout.LayoutParams layout0param = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                    //    Layout0.addView(scroll, Layout0params);
+                }
+                cursor2.close();
+            // проверяем таблицу other
+                if (cursor3.moveToFirst()) {
+           //         j = 0;
+                    do {
+                        fphone = cursor3.getString(cursor3.getColumnIndex("pphone"));
+                        fname = cursor3.getString(cursor3.getColumnIndex("name"));
+
+                        layout = new LinearLayout(this);
+                        layout.setId(j); // чтобы потом по id определить какой layout был кликнут
+
+                        m = new LL(j, fname, fphone); // name,fphone,faddr);
+                        list.add(m); // добавляем объект в перечень list
+
+                        layout.setOrientation(LinearLayout.VERTICAL);
+                        LinearLayout.LayoutParams ll4params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        //                     llparams.leftMargin = 0;
+                        ll4params.gravity = Gravity.CENTER_HORIZONTAL;
+                        ImageView image4 = new ImageView(MainActivity.this);
+                        image4.setImageResource(R.drawable.sg550150);
+                        image4.setLayoutParams(ll4params);
+                        layout.addView(image4, ll4params);
+                        TextView text4 = new TextView(MainActivity.this);
+                        text4.setBackgroundColor(0xCFDEDEDE); //
+                        text4.setMaxWidth(105);
+                        text4.setMaxLines(3);
+                        text4.setTextColor(0xff000000);
+                        if (fname.length() != 0) text4.setText(fname + "\n" + fphone);
+                        else fname = "Camera";
+                        text4.setText(fname + "\n" + fphone);
+                        //  text.setText("Имя: " + fname + "\n" + "Тел: " + fphone);
+                        text4.setId(j);
+                        layout.addView(text4, ll4params);
+                        //  делаем LL кликабельным:
+                        layout.isClickable();
+                        layout.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+                                shortClick2(v);
+                            }
+                        });
+                    // ставим вид в позицию j
+                        tr1.addView(layout, j, tbrow);
+                        j++;
+                    }
+                    while (cursor3.moveToNext());
+                 }
+                cursor3.close();
+                // выносим всё на экран:
+                //      TableLayout.LayoutParams tblpar = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                //      tblpar.gravity = Gravity.BOTTOM;
+                //      tbl.removeAllViews();
+                tbl.addView(tr1,tblparam);
+
+                //    TableLayout.LayoutParams tbparam = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                //   tbparam.gravity = Gravity.CENTER_VERTICAL;
+                //   tbparam.setMargins(0,50,0,0);
+                scroll.removeAllViews();
+                scroll.addView(tbl);
+                //   LinearLayout.LayoutParams layout0param = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                //    Layout0.addView(scroll, Layout0params);
+
                 break;
 
-            default:
+/*            default:
         //        i = 0;
         //        j = 0;
                 // создаём разметку строки таблицы:
@@ -626,18 +873,15 @@ db.close();
                 tbrow = new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT); //(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT); // ширина-высота ViewGroup.LayoutParams.WRAP_CONTENT); // ViewGroup.LayoutParams.MATCH_PARENT);
                 tbrow.setMargins(10, 0, 15, 0);
 
-                // далее подставляем свой текст-подпись, в зависимости от камеры:
-                //     TextView text = new TextView(this);
-              //  LinearLayout layout;
-                // работаем с курсором:
-                if (cursor.moveToFirst()) { // ставим курсор на первую строку
+            // проверяем таблицу acorn
+                if (cursor1.moveToFirst()) { // ставим курсор на первую строку
                     j = 0;
                     // если таблица-результат не содержит строк, то moveToFirst =  false
                     // определяем номера столбцов (id) по имени поля в выборке
                     do {
                         //    cursor.moveToFirst();
-                        fphone = cursor.getString(cursor.getColumnIndex("pphone"));
-                        fname = cursor.getString(cursor.getColumnIndex("name"));
+                        fphone = cursor1.getString(cursor1.getColumnIndex("pphone"));
+                        fname = cursor1.getString(cursor1.getColumnIndex("name"));
                         //   faddr = cursor.getString(cursor.getColumnIndex("addr"));
                         // создаём объект-LinearLayout:
                         //         layout = new LL(this, name, fphone,faddr);
@@ -652,24 +896,24 @@ db.close();
                         //       m.setAddr(faddr);
 
                         layout.setOrientation(LinearLayout.VERTICAL);
-                        LinearLayout.LayoutParams llparams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        LinearLayout.LayoutParams ll5params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                         //                     llparams.leftMargin = 0;
-                        llparams.gravity = Gravity.CENTER_HORIZONTAL;
-                        ImageView image = new ImageView(MainActivity.this);
-                        image.setImageResource(R.drawable.ltl6210200);
-                        image.setLayoutParams(llparams);
-                        layout.addView(image, llparams);
-                        TextView text = new TextView(MainActivity.this);
-                        text.setBackgroundColor(0xCFDEDEDE); //
-                        text.setMaxWidth(105);
-                        text.setMaxLines(3);
-                        text.setTextColor(0xff000000);
-                        if (fname.length() != 0) text.setText(fname + "\n" + fphone);
+                        ll5params.gravity = Gravity.CENTER_HORIZONTAL;
+                        ImageView image5 = new ImageView(MainActivity.this);
+                        image5.setImageResource(R.drawable.ltl6210200);
+                        image5.setLayoutParams(ll5params);
+                        layout.addView(image5, ll5params);
+                        TextView text5 = new TextView(MainActivity.this);
+                        text5.setBackgroundColor(0xCFDEDEDE); //
+                        text5.setMaxWidth(105);
+                        text5.setMaxLines(3);
+                        text5.setTextColor(0xff000000);
+                        if (fname.length() != 0) text5.setText(fname + "\n" + fphone);
                         else fname = "Camera";
-                        text.setText(fname + "\n" + fphone);
+                        text5.setText(fname + "\n" + fphone);
                         //  text.setText("Имя: " + fname + "\n" + "Тел: " + fphone);
-                        text.setId(j);
-                        layout.addView(text, llparams);
+                        text5.setId(j);
+                        layout.addView(text5, ll5params);
                         //  делаем LL кликабельным:
                         layout.isClickable();
                         layout.setOnClickListener(new View.OnClickListener() {
@@ -682,7 +926,7 @@ db.close();
                         j++; // ставим View в позицию j в строке
 
                     }
-                    while (cursor.moveToNext());
+                    while (cursor1.moveToNext());
                     // выносим всё на экран:
                     //      TableLayout.LayoutParams tblpar = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                     //      tblpar.gravity = Gravity.BOTTOM;
@@ -690,8 +934,132 @@ db.close();
 
                     scroll.addView(tbl);
                 }
+            // проверяем таблицу sifar
+                if (cursor2.moveToFirst()) { // ставим курсор на первую строку
+                    j = 0;
+                    // если таблица-результат не содержит строк, то moveToFirst =  false
+                    // определяем номера столбцов (id) по имени поля в выборке
+                    do {
+                        //    cursor.moveToFirst();
+                        fphone = cursor2.getString(cursor2.getColumnIndex("pphone"));
+                        fname = cursor2.getString(cursor2.getColumnIndex("name"));
+                        //   faddr = cursor.getString(cursor.getColumnIndex("addr"));
+                        // создаём объект-LinearLayout:
+                        //         layout = new LL(this, name, fphone,faddr);
+                        //         layout.setLL(layout);
+                        layout = new LinearLayout(this);
+                        layout.setId(j); // чтобы потом по id определить какой layout был кликнут
+
+                        m = new LL(j, fname, fphone); // name,fphone,faddr);
+                        list.add(m); // добавляем объект в перечень list
+                        //       m.setName(fname);
+                        //       m.setPhone(fphone);
+                        //       m.setAddr(faddr);
+
+                        layout.setOrientation(LinearLayout.VERTICAL);
+                        LinearLayout.LayoutParams ll6params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        //                     llparams.leftMargin = 0;
+                        ll6params.gravity = Gravity.CENTER_HORIZONTAL;
+                        ImageView image6 = new ImageView(MainActivity.this);
+                        image6.setImageResource(R.drawable.ltl7310_ant);
+                        image6.setLayoutParams(ll6params);
+                        layout.addView(image6, ll6params);
+                        TextView text6 = new TextView(MainActivity.this);
+                        text6.setBackgroundColor(0xCFDEDEDE); //
+                        text6.setMaxWidth(105);
+                        text6.setMaxLines(3);
+                        text6.setTextColor(0xff000000);
+                        if (fname.length() != 0) text6.setText(fname + "\n" + fphone);
+                        else fname = "Camera";
+                        text6.setText(fname + "\n" + fphone);
+                        //  text.setText("Имя: " + fname + "\n" + "Тел: " + fphone);
+                        text6.setId(j);
+                        layout.addView(text6, ll6params);
+                        //  делаем LL кликабельным:
+                        layout.isClickable();
+                        layout.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+
+                                shortClick2(v);
+                            }
+                        });
+                        tr1.addView(layout, j, tbrow);
+                        j++; // ставим View в позицию j в строке
+
+                    }
+                    while (cursor2.moveToNext());
+                    // выносим всё на экран:
+                    //      TableLayout.LayoutParams tblpar = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    //      tblpar.gravity = Gravity.BOTTOM;
+                    tbl.addView(tr1);
+
+                    scroll.addView(tbl);
+                }
+                // проверяем таблицу other
+                if (cursor3.moveToFirst()) { // ставим курсор на первую строку
+                    j = 0;
+                    // если таблица-результат не содержит строк, то moveToFirst =  false
+                    // определяем номера столбцов (id) по имени поля в выборке
+                    do {
+                        //    cursor.moveToFirst();
+                        fphone = cursor3.getString(cursor3.getColumnIndex("pphone"));
+                        fname = cursor3.getString(cursor3.getColumnIndex("name"));
+                        //   faddr = cursor.getString(cursor.getColumnIndex("addr"));
+                        // создаём объект-LinearLayout:
+                        //         layout = new LL(this, name, fphone,faddr);
+                        //         layout.setLL(layout);
+                        layout = new LinearLayout(this);
+                        layout.setId(j); // чтобы потом по id определить какой layout был кликнут
+
+                        m = new LL(j, fname, fphone); // name,fphone,faddr);
+                        list.add(m); // добавляем объект в перечень list
+                        //       m.setName(fname);
+                        //       m.setPhone(fphone);
+                        //       m.setAddr(faddr);
+
+                        layout.setOrientation(LinearLayout.VERTICAL);
+                        LinearLayout.LayoutParams ll7params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                        //                     llparams.leftMargin = 0;
+                        ll7params.gravity = Gravity.CENTER_HORIZONTAL;
+                        ImageView image7 = new ImageView(MainActivity.this);
+                        image7.setImageResource(R.drawable.sg550);
+                        image7.setLayoutParams(ll7params);
+                        layout.addView(image7, ll7params);
+                        TextView text7 = new TextView(MainActivity.this);
+                        text7.setBackgroundColor(0xCFDEDEDE); //
+                        text7.setMaxWidth(105);
+                        text7.setMaxLines(3);
+                        text7.setTextColor(0xff000000);
+                        if (fname.length() != 0) text7.setText(fname + "\n" + fphone);
+                        else fname = "Camera";
+                        text7.setText(fname + "\n" + fphone);
+                        //  text.setText("Имя: " + fname + "\n" + "Тел: " + fphone);
+                        text7.setId(j);
+                        layout.addView(text7, ll7params);
+                        //  делаем LL кликабельным:
+                        layout.isClickable();
+                        layout.setOnClickListener(new View.OnClickListener() {
+                            public void onClick(View v) {
+
+                                shortClick2(v);
+                            }
+                        });
+                        tr1.addView(layout, j, tbrow);
+                        j++; // ставим View в позицию j в строке
+
+                    }
+                    while (cursor3.moveToNext());
+                    // выносим всё на экран:
+                    //      TableLayout.LayoutParams tblpar = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    //      tblpar.gravity = Gravity.BOTTOM;
+                    tbl.addView(tr1);
+
+                    scroll.addView(tbl);
+                }
+
                 break;
 
+*/
         } // else n = 0;
     }
 
@@ -704,13 +1072,25 @@ db.close();
 
     // при коротком нажатии на картинку переходим на экран работы с камерой
     public void shortClick1(View v) {
-
+        String type = null;
 
     // ------------------ читаем настройки для данной камеры: mms и/или smtp -------------------
         String smtp = "", mms = "", smtprefresh = "", mmsrefresh = "";
         String col[] = {"pphone", "name", "smtp", "mms", "smtprefresh", "mmsrefresh"};
         db = dbHelper.getWritableDatabase();
-        Cursor cur = db.query("cameras", col, "pphone=?", new String[]{fphone}, null, null, null);
+    // сначала находим тип камеры
+        Cursor c =  db.query("a"+fphone.substring(1), null, null, null, null, null, null);
+        if (c.moveToFirst()){
+            do{
+               type = c.getString(c.getColumnIndex("camtype"));
+                if (type !=null) break;
+            } while (c.moveToNext());
+        } c.close();
+    Toast.makeText(this, type, Toast.LENGTH_LONG).show();
+
+
+
+        Cursor cur = db.query(type, col, "pphone=?", new String[]{fphone}, null, null, null);
         if (cur.moveToFirst()) {
             do {
                 smtp = cur.getString(cur.getColumnIndex("smtp"));
@@ -776,6 +1156,7 @@ db.close();
 
             intent.putExtra("tname", fname);
             intent.putExtra("phone", fphone);
+            intent.putExtra("camtype",type);
             startActivity(intent);
 
         } else {  progresstext.setVisibility(View.VISIBLE);
@@ -787,6 +1168,7 @@ db.close();
 
 
     public void shortClick2(View v) {
+        String type = null;
 
         for (LL m : list) {
             if (m.getId() == (v.getId())) {
@@ -798,7 +1180,15 @@ db.close();
         String smtp = "", mms = "", smtprefresh = "", mmsrefresh = "";
         String col[] = {"pphone", "name", "smtp", "mms", "smtprefresh", "mmsrefresh"};
         db = dbHelper.getWritableDatabase();
-        Cursor cur = db.query("cameras", col, "pphone=?", new String[]{tphone}, null, null, null);
+    // сначала находим тип камеры
+        Cursor c =  db.query("a"+tphone.substring(1), null, null, null, null, null, null);
+        if (c.moveToFirst()){
+            do{
+                type = c.getString(c.getColumnIndex("camtype"));
+                if (type !=null) break;
+            } while (c.moveToNext());
+        } c.close();
+        Cursor cur = db.query(type, col, "pphone=?", new String[]{tphone}, null, null, null);
         if (cur.moveToFirst()) {
             do {
                 smtp = cur.getString(cur.getColumnIndex("smtp"));

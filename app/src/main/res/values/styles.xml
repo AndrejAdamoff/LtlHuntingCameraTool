@@ -20,6 +20,12 @@
     <style name="PreferencesTheme">
        <item name="android:background">#EFFFFFFF</item>
     </style>
+    <style name="MyStyle" parent="android:Theme.DeviceDefault.Light.Dialog">
+        <item name="android:background">#EFFFFFFF</item>
+        <item name="android:paddingBottom">2sp</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">false</item>
+    </style>
     
 
 

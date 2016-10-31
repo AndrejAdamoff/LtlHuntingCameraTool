@@ -20,6 +20,9 @@ android {
 }
 
 dependencies {
+   // compile 'com.google.firebase:firebase-core:9.6.1' // Firebase
+    compile 'com.google.firebase:firebase-ads:9.6.1'
+
     compile fileTree(include: ['*.jar'], dir: 'libs')
     //    compile files('D:/AndroidStudio/LtlHuntingCameraTool/libs/mail.jar')
     //    compile files('D:/AndroidStudio/LtlHuntingCameraTool/libs/activation-1.1.jar')
@@ -32,3 +35,4 @@ dependencies {
     compile files('D:/AndroidStudio/LtlHuntingCameraTool2.1/libs/activation.jar')
     compile files('D:/AndroidStudio/LtlHuntingCameraTool2.1/libs/mail.jar')
 }
+ apply plugin: 'com.google.gms.google-services' // Firebase

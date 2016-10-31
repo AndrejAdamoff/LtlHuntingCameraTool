@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffe5e5e5"
+    android:gravity="center_horizontal">
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false"
+        android:id="@+id/rgroup_log">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send to phones"
+            android:id="@+id/rblogphone" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send to emails"
+            android:id="@+id/rblogemail"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send to FTP"
+            android:id="@+id/rblogftp"
+            android:checked="false" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false">
+
+            <Button
+                android:id="@+id/setmailbutton2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:layout_alignTop="@+id/setmailbutton1"
+                android:layout_toEndOf="@+id/setmailbutton1"
+                android:layout_alignParentRight="true"
+                android:layout_weight="5"
+                android:textSize="20dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:layout_marginLeft="5dp" />
+
+            <Button
+                android:id="@+id/setmailbutton1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Send SMS"
+                android:layout_below="@+id/editText55"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_weight="5"
+                android:textSize="20dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:layout_marginRight="5dp" />
+        </LinearLayout>
+
+    </RadioGroup>
+
+</RelativeLayout>

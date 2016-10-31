@@ -1,13 +1,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.adamoff.andrej.ltlhuntingcameratool.CameraControl"
+    tools:context="com.adamoff.andrej.ltlhuntingcameratool.SifarControl"
     android:background="#ff000000">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollView3"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="false"
         android:layout_alignParentTop="true"
@@ -17,7 +17,7 @@
         <TableLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/table"
+            android:id="@+id/table3"
             android:divider="?android:attr/dividerHorizontal"
             android:showDividers="beginning">
 
@@ -27,7 +27,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/tbrow1"
+                android:id="@+id/tb3row"
                 android:focusable="false"
                 android:divider="#ff000000"
                 android:background="@drawable/line">
@@ -36,7 +36,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/mode"
-                    android:id="@+id/textView"
+                    android:id="@+id/text3View"
                     android:textSize="18sp"
                     android:layout_column="0"
                     android:layout_weight="5"
@@ -53,7 +53,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="mode"
-                    android:id="@+id/txtmode"
+                    android:id="@+id/txt3mode"
                     android:layout_weight="3"
                     android:onClick="setmode"
                     android:clickable="true"
@@ -72,7 +72,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/fotosize"
-                    android:id="@+id/textView17"
+                    android:id="@+id/text3View17"
                     android:textSize="18sp"
                     android:layout_weight="5"
                     android:textColor="#ff000000"
@@ -86,16 +86,60 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="fotosize"
-                    android:id="@+id/txtfotosize"
+                    android:id="@+id/txt3fotosize"
                     android:layout_weight="3"
                     android:onClick="setfotosize"
                     android:clickable="true"
                     android:textSize="18dp"
                     android:textColor="#ff000000"
-                    android:layout_alignTop="@+id/scrollView2"
-                    android:layout_alignRight="@+id/scrollView2"
-                    android:layout_alignEnd="@+id/scrollView2" />
+                    android:layout_alignTop="@+id/scrollView3"
+                    android:layout_alignRight="@+id/scrollView3"
+                    android:layout_alignEnd="@+id/scrollView3" />
 
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/trzoom"
+                android:background="@drawable/line"
+                android:clickable="true"
+                android:onClick="setzoom">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Zoom"
+                    android:id="@+id/textView7"
+                    android:textSize="18sp"
+                    android:layout_weight="7"
+                    android:singleLine="false"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left"
+                    android:textColor="#ff000000"
+                    android:password="false"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:clickable="false"
+                    android:onClick="setSMSinterval" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView8"
+                    android:clickable="false"
+                    android:onClick="setSMSinterval"
+                    android:textSize="18sp"
+                    android:layout_column="1"
+                    android:layout_weight="4"
+                    android:textColor="#FF000000"
+                    android:password="false"
+                    android:text="Off"
+                    android:singleLine="false"
+                    android:layout_marginRight="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:gravity="center_vertical" />
             </TableRow>
 
             <TableRow
@@ -108,7 +152,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/videosize"
-                    android:id="@+id/textView18"
+                    android:id="@+id/text3View18"
                     android:textSize="18sp"
                     android:layout_weight="5"
                     android:singleLine="true"
@@ -123,29 +167,29 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="videosize"
-                    android:id="@+id/txtvideosize"
+                    android:id="@+id/txt3videosize"
                     android:layout_weight="3"
                     android:onClick="setvideosize"
                     android:clickable="true"
                     android:textSize="18dp"
                     android:textColor="#ff000000"
-                    android:layout_alignTop="@+id/scrollView2"
-                    android:layout_alignRight="@+id/scrollView2"
-                    android:layout_alignEnd="@+id/scrollView2" />
+                    android:layout_alignTop="@+id/scrollView3"
+                    android:layout_alignRight="@+id/scrollView3"
+                    android:layout_alignEnd="@+id/scrollView3" />
 
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tbrow4"
+                android:id="@+id/tbrow43"
                 android:background="@drawable/line" >
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/fotonumber"
-                    android:id="@+id/textView21"
+                    android:id="@+id/text3View21"
                     android:textSize="18sp"
                     android:layout_weight="5"
                     android:singleLine="true"
@@ -160,15 +204,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="fotonumber"
-                    android:id="@+id/txtfotonumber"
+                    android:id="@+id/txt3fotonumber"
                     android:layout_weight="3"
                     android:onClick="setfotonumber"
                     android:clickable="true"
                     android:textSize="18dp"
                     android:textColor="#ff000000"
-                    android:layout_alignTop="@+id/scrollView2"
-                    android:layout_alignRight="@+id/scrollView2"
-                    android:layout_alignEnd="@+id/scrollView2"
+                    android:layout_alignTop="@+id/scrollView3"
+                    android:layout_alignRight="@+id/scrollView3"
+                    android:layout_alignEnd="@+id/scrollView3"
                     android:password="false" />
 
             </TableRow>
@@ -176,14 +220,14 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tbrow5"
+                android:id="@+id/tbrow53"
                 android:background="@drawable/line" >
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/videolength"
-                    android:id="@+id/textView22"
+                    android:id="@+id/text3View22"
                     android:textSize="18sp"
                     android:layout_weight="5"
                     android:singleLine="false"
@@ -197,7 +241,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView23"
+                    android:id="@+id/text3View23"
                     android:clickable="true"
                     android:onClick="setvideolength"
                     android:textSize="18sp"
@@ -218,14 +262,14 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tbrow6"
+                android:id="@+id/tbrow63"
                 android:background="@drawable/line" >
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/delay"
-                    android:id="@+id/textView24"
+                    android:id="@+id/text3View24"
                     android:textSize="18sp"
                     android:layout_weight="5"
                     android:singleLine="false"
@@ -240,7 +284,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView25"
+                    android:id="@+id/text3View25"
                     android:clickable="true"
                     android:onClick="setdelay"
                     android:textSize="18sp"
@@ -259,53 +303,14 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tbrow7"
-                android:background="@drawable/line" >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/serial"
-                    android:id="@+id/textView28"
-                    android:textSize="18sp"
-                    android:layout_weight="9"
-                    android:singleLine="true"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#ff000000"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:layout_gravity="center_vertical"
-                    android:clickable="true"
-                    android:onClick="setSerial2" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView29"
-                    android:layout_weight="5"
-                    android:clickable="true"
-                    android:onClick="setSerial2"
-                    android:focusable="false"
-                    android:text="4 letters/digits"
-                    android:layout_marginRight="10dp"
-                    android:textSize="18dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:textColor="#ff000000" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tbrow8"
+                android:id="@+id/tbrow83"
                 android:background="@drawable/line" >
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/sense"
-                    android:id="@+id/textView31"
+                    android:id="@+id/text3View31"
                     android:textSize="18sp"
                     android:layout_weight="5"
                     android:singleLine="false"
@@ -319,7 +324,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/txtsense"
+                    android:id="@+id/txt3sense"
                     android:clickable="true"
                     android:onClick="setsense"
                     android:textSize="18sp"
@@ -339,14 +344,14 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tbrow9"
+                android:id="@+id/tbrow93"
                 android:background="@drawable/line" >
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/timelapse"
-                    android:id="@+id/textView32"
+                    android:id="@+id/text3View32"
                     android:textSize="18sp"
                     android:layout_weight="12"
                     android:singleLine="false"
@@ -361,7 +366,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textView33"
+                    android:id="@+id/text3View33"
                     android:layout_weight="7"
                     android:clickable="true"
                     android:onClick="setInterval"
@@ -379,97 +384,182 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tbrow10"
+                android:id="@+id/tbrow133"
+                android:background="@drawable/line" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/timer"
+                    android:id="@+id/text3View40"
+                    android:textSize="18sp"
+                    android:layout_weight="9"
+                    android:singleLine="false"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#ff000000"
+                    android:onClick="settimer"
+                    android:nestedScrollingEnabled="false"
+                    android:clickable="true"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text3View39"
+                    android:layout_weight="5"
+                    android:clickable="true"
+                    android:onClick="settimer"
+                    android:focusable="false"
+                    android:text="OFF"
+                    android:textSize="16dp"
+                    android:textIsSelectable="false"
+                    android:singleLine="false"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#ff000000"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tableRow7"
+                android:background="@drawable/line"
+                android:clickable="true"
+                android:onClick="setlog">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Log"
+                    android:id="@+id/textView9"
+                    android:textSize="18sp"
+                    android:layout_weight="7"
+                    android:singleLine="false"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left"
+                    android:textColor="#ff000000"
+                    android:password="false"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:clickable="false"
+                    android:onClick="setSMSinterval" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView10"
+                    android:clickable="false"
+                    android:onClick="setSMSinterval"
+                    android:textSize="18sp"
+                    android:layout_column="1"
+                    android:layout_weight="4"
+                    android:textColor="#FF000000"
+                    android:password="false"
+                    android:text="Off"
+                    android:singleLine="false"
+                    android:layout_marginRight="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:gravity="center_vertical" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tbrowsendlog"
+                android:background="@drawable/line"
+                android:clickable="true"
+                android:onClick="sendlog">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Send log"
+                    android:id="@+id/textView11"
+                    android:textSize="18sp"
+                    android:layout_weight="7"
+                    android:singleLine="false"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left"
+                    android:textColor="#ff000000"
+                    android:password="false"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:clickable="false"
+                    android:onClick="setSMSinterval" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/textView12"
+                    android:clickable="false"
+                    android:onClick="setSMSinterval"
+                    android:textSize="18sp"
+                    android:layout_column="1"
+                    android:layout_weight="4"
+                    android:textColor="#FF000000"
+                    android:password="false"
+                    android:text="Off"
+                    android:singleLine="false"
+                    android:layout_marginRight="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:gravity="center_vertical" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tbrow733"
                 android:background="@drawable/line" >
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/sidePIR"
-                    android:id="@+id/textView35"
+                    android:text="@string/serial"
+                    android:id="@+id/text3View28"
                     android:textSize="18sp"
-                    android:layout_weight="5"
-                    android:singleLine="false"
+                    android:layout_weight="9"
+                    android:singleLine="true"
                     android:layout_marginLeft="10dp"
                     android:textColor="#ff000000"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:onClick="setsidepir"
-                    android:clickable="true" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/txtpir"
+                    android:layout_gravity="center_vertical"
                     android:clickable="true"
-                    android:onClick="setsidepir"
-                    android:textSize="18sp"
-                    android:layout_column="1"
-                    android:layout_weight="3"
-                    android:layout_gravity="left"
-                    android:textColor="#FF000000"
-                    android:paddingLeft="7dp"
-                    android:layout_marginRight="10dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="side PIR"
-                    android:gravity="center_vertical" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tbrow11"
-                android:background="@drawable/line"
-                android:focusableInTouchMode="true">
+                    android:onClick="setSerial2" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/mmstype"
-                    android:id="@+id/textView36"
-                    android:textSize="18sp"
+                    android:id="@+id/text3View29"
                     android:layout_weight="5"
-                    android:singleLine="false"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#ff000000"
                     android:clickable="true"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:onClick="setmmstype" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:id="@+id/txtMMStype"
-                    android:clickable="true"
-                    android:onClick="setmmstype"
-                    android:textSize="18sp"
-                    android:layout_column="1"
-                    android:layout_weight="3"
-                    android:layout_gravity="left"
-                    android:textColor="#FF000000"
-                    android:paddingLeft="7dp"
+                    android:onClick="setSerial2"
+                    android:focusable="false"
+                    android:text="4 letters/digits"
                     android:layout_marginRight="10dp"
+                    android:textSize="18dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="MMS type"
-                    android:gravity="center_vertical" />
+                    android:textColor="#ff000000" />
 
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tbrow12"
+                android:id="@+id/tbrow123"
                 android:background="@drawable/line" >
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/mmslimit"
-                    android:id="@+id/textView37"
+                    android:id="@+id/textView373"
                     android:textSize="18sp"
                     android:layout_weight="5"
                     android:singleLine="true"
@@ -483,7 +573,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/tv38"
+                    android:id="@+id/tv383"
                     android:clickable="true"
                     android:onClick="setmmslimit"
                     android:textSize="18sp"
@@ -501,95 +591,14 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tbrow13"
-                android:background="@drawable/line" >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/timer"
-                    android:id="@+id/textView40"
-                    android:textSize="18sp"
-                    android:layout_weight="9"
-                    android:singleLine="false"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#ff000000"
-                    android:onClick="settimer"
-                    android:nestedScrollingEnabled="false"
-                    android:clickable="true"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:gravity="center_vertical" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView39"
-                    android:layout_weight="5"
-                    android:clickable="true"
-                    android:onClick="settimer"
-                    android:focusable="false"
-                    android:text="OFF"
-                    android:textSize="16dp"
-                    android:textIsSelectable="false"
-                    android:singleLine="false"
-                    android:layout_marginRight="10dp"
-                    android:textColor="#ff000000"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tbrow14"
-                android:background="@drawable/line" >
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:text="@string/timer2"
-                    android:id="@+id/textView46"
-                    android:textSize="18sp"
-                    android:layout_weight="9"
-                    android:singleLine="false"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="#ff000000"
-                    android:clickable="true"
-                    android:onClick="settimer2"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:gravity="center_vertical" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textView47"
-                    android:layout_weight="5"
-                    android:clickable="true"
-                    android:onClick="settimer2"
-                    android:focusable="false"
-                    android:text="OFF"
-                    android:textSize="16dp"
-                    android:textIsSelectable="false"
-                    android:singleLine="false"
-                    android:layout_marginRight="10dp"
-                    android:textColor="#ff000000"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tbrow15"
+                android:id="@+id/tbrow153"
                 android:background="@drawable/line">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/smsinterval"
-                    android:id="@+id/textView48"
+                    android:text="@string/SMScntrl"
+                    android:id="@+id/text3View48"
                     android:textSize="18sp"
                     android:layout_weight="7"
                     android:singleLine="false"
@@ -600,20 +609,20 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
                     android:clickable="true"
-                    android:onClick="setSMSinterval" />
+                    android:onClick="setSMScontrol" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:id="@+id/textView49"
+                    android:id="@+id/text3View49"
                     android:clickable="true"
-                    android:onClick="setSMSinterval"
+                    android:onClick="setSMScontrol"
                     android:textSize="18sp"
                     android:layout_column="1"
                     android:layout_weight="4"
                     android:textColor="#FF000000"
                     android:password="false"
-                    android:text="interval"
+                    android:text="Upon trigger"
                     android:singleLine="false"
                     android:layout_marginRight="10dp"
                     android:paddingTop="10dp"
@@ -624,19 +633,19 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:id="@+id/tbrow16"
+                android:id="@+id/tbrow163"
                 android:background="@drawable/line"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:showDividers="middle|beginning|end|none"
-                android:onClick="setphone2"
+                android:onClick="setphone"
                 android:clickable="true">
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="phone2 or email"
-                    android:id="@+id/txtviewphone2"
+                    android:text="phone1"
+                    android:id="@+id/txt3viewphone1"
                     android:clickable="false"
                     android:textSize="18dp"
                     android:singleLine="false"
@@ -647,20 +656,20 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:id="@+id/tbrow17"
+                android:id="@+id/tbrow173"
                 android:background="@drawable/line"
                 android:baselineAligned="false"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:showDividers="end"
                 android:clickable="true"
-                android:onClick="setphone3">
+                android:onClick="setphone">
 
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="phone3 or email"
-                    android:id="@+id/txtviewphone3"
+                    android:text="phone2"
+                    android:id="@+id/txt3viewphone2"
                     android:clickable="false"
                     android:textSize="18dp"
                     android:singleLine="false"
@@ -671,7 +680,53 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
-                android:id="@+id/tbrow18"
+                android:id="@+id/tbrow183"
+                android:background="@drawable/line"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:showDividers="middle|beginning|end|none"
+                android:onClick="setphone"
+                android:clickable="true" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="phone3"
+                    android:id="@+id/txt3viewphone3"
+                    android:clickable="false"
+                    android:textSize="18dp"
+                    android:singleLine="false"
+                    android:textColor="#ff009b00"
+                    android:paddingLeft="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/tbrow193"
+                android:background="@drawable/line"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:showDividers="middle|beginning|end|none"
+                android:onClick="setphone"
+                android:clickable="true" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="phone4"
+                    android:id="@+id/txt3viewphone4"
+                    android:clickable="false"
+                    android:textSize="18dp"
+                    android:singleLine="false"
+                    android:textColor="#ff009b00"
+                    android:paddingLeft="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/tbrow203"
                 android:background="@drawable/line"
                 android:baselineAligned="false"
                 android:paddingTop="10dp"
@@ -683,12 +738,81 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="email"
-                    android:id="@+id/txtviewmail"
+                    android:text="email1"
+                    android:id="@+id/txt3viewmail1"
                     android:clickable="false"
                     android:textSize="18dp"
                     android:singleLine="false"
-                    android:textColor="#ff009b00"
+                    android:textColor="#ff0000ff"
+                    android:paddingLeft="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/tbrow213"
+                android:background="@drawable/line"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:showDividers="middle|beginning|end|none"
+                android:onClick="setmail"
+                android:clickable="true" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="email2"
+                    android:id="@+id/txt3viewmail2"
+                    android:clickable="false"
+                    android:textSize="18dp"
+                    android:singleLine="false"
+                    android:textColor="#ff0000ff"
+                    android:paddingLeft="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/tbrow223"
+                android:background="@drawable/line"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:showDividers="middle|beginning|end|none"
+                android:onClick="setmail"
+                android:clickable="true" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="email3"
+                    android:id="@+id/txt3viewmail3"
+                    android:clickable="false"
+                    android:textSize="18dp"
+                    android:singleLine="false"
+                    android:textColor="#ff0000ff"
+                    android:paddingLeft="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/tbrow233"
+                android:background="@drawable/line"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:showDividers="middle|beginning|end|none"
+                android:onClick="setmail"
+                android:clickable="true" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="email4"
+                    android:id="@+id/txt3viewmail4"
+                    android:clickable="false"
+                    android:textSize="18dp"
+                    android:singleLine="false"
+                    android:textColor="#ff0000ff"
                     android:paddingLeft="10dp" />
             </TableRow>
 

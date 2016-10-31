@@ -3,50 +3,15 @@
     android:layout_height="match_parent"
     android:background="#ffe5e5e5">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sec"
-        android:id="@+id/textView27"
-        android:textSize="18dp"
-        android:layout_alignStart="@+id/numberPicker2"
-        android:layout_marginLeft="15dp"
-        android:layout_marginStart="23dp"
-        android:layout_alignLeft="@+id/numberPicker2" />
-
-    <NumberPicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/numberPicker2"
-        android:layout_alignTop="@+id/numberPicker1"
-        android:layout_toEndOf="@+id/numberPicker1"
-        android:layout_marginLeft="65dp"
-        android:layout_toRightOf="@+id/numberPicker1" />
-
-    <NumberPicker
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/numberPicker1"
-        android:layout_marginLeft="30dp"
-        android:layout_below="@+id/textView51" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Min"
-        android:id="@+id/textView51"
-        android:layout_alignLeft="@+id/numberPicker1"
-        android:layout_alignStart="@+id/numberPicker1"
-        android:layout_marginLeft="15dp"
-        android:textSize="18dp" />
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/textView51"
-        android:layout_below="@+id/numberPicker1"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:id="@+id/ll41"
+        android:layout_below="@+id/ll42"
+        android:layout_centerHorizontal="true">
 
         <Button
             android:id="@+id/setmailbutton2"
@@ -74,6 +39,68 @@
             android:textSize="20dp"
             android:layout_weight="5"
             android:layout_marginRight="5dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll42"
+        android:layout_below="@+id/ll43"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30dp">
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/numberPicker1"
+            android:layout_below="@+id/textView51"
+            android:gravity="center_horizontal"
+            android:layout_marginRight="30dp" />
+
+        <NumberPicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/numberPicker2"
+            android:layout_alignTop="@+id/numberPicker1"
+            android:layout_toEndOf="@+id/numberPicker1"
+            android:layout_toRightOf="@+id/numberPicker1"
+            android:layout_centerHorizontal="true"
+            android:gravity="center_horizontal" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll43"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Min"
+            android:id="@+id/textView51"
+            android:layout_alignLeft="@+id/numberPicker1"
+            android:layout_alignStart="@+id/numberPicker1"
+            android:textSize="18dp"
+            android:focusableInTouchMode="false"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="35dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sec"
+            android:id="@+id/textView27"
+            android:textSize="18dp"
+            android:layout_alignStart="@+id/numberPicker2"
+            android:layout_marginLeft="35dp"
+            android:layout_marginStart="23dp"
+            android:layout_alignLeft="@+id/numberPicker2"
+            android:layout_centerHorizontal="true" />
 
     </LinearLayout>
 

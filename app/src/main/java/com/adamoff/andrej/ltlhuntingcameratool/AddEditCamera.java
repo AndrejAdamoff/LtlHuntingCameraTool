@@ -13,11 +13,17 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.PowerManager;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
 import com.example.t.ltlhuntingcameratool.R;
 
@@ -32,7 +38,9 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
  //   SharedPreferences settings;
     SharedPreferences sharedPref;
     Boolean flag = false;
-    String who, recreate = "", phoneold="", aphoneold="";
+    String who, recreate = "", phoneold="", aphoneold="", type;
+  //  ImageView icon1;
+  //  TextView sum1;
  //   AlarmManager alarmManager;
     PowerManager pm;
     PowerManager.WakeLock wl;
@@ -42,7 +50,20 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
    //     String recreate="";
         Boolean bpush = false;
-            if (key.equals("phone")) {Preference preference = findPreference("phone"); preference.setSummary(sharedPreferences.getString("phone", "")); recreate = "enabled";}
+        if (key.equals("type")) {
+            ListPreference listPreference = (ListPreference) findPreference("type");
+            recreate = "enabled";
+            type = listPreference.getValue();
+            ImageView icon = (ImageView)findViewById(R.id.imageView2);
+            TextView sum = (TextView)findViewById(R.id.summary);
+
+         //   listPreference.setSummary(value);
+            if (type.equals("acorn")) { icon.setImageResource(R.drawable.ltl6210_150); sum.setText("Ltl Acorn");}
+            if (type.equals("sifar")) {icon.setImageResource(R.drawable.ltl7310_150); sum.setText("SiFar");}
+            if (type.equals("other")) {icon.setImageResource(R.drawable.sg550150); sum.setText("Generic");}
+        }
+
+        if (key.equals("phone")) {Preference preference = findPreference("phone"); preference.setSummary(sharedPreferences.getString("phone", "")); recreate = "enabled";}
             if (key.equals("name")) {Preference preference = getPreferenceScreen().findPreference("name"); preference.setSummary(sharedPreferences.getString("name", ""));}
             if (key.equals("smtpTo")) {Preference preference = getPreferenceScreen().findPreference("smtpTo"); preference.setSummary(sharedPreferences.getString("smtpTo", ""));recreate = "enabled";}
             if (key.equals("smtpToPwd")) {Preference preference = getPreferenceScreen().findPreference("smtpToPwd"); preference.setSummary(sharedPreferences.getString("smtpToPwd", ""));recreate = "enabled";}
@@ -68,7 +89,8 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
                     ContentValues cv0 = new ContentValues();
                     cv0.put ("push", "disabled");
                     db.update ("smtp", cv0, null, null);
-                    db.update("cameras", cv0, "pphone =?", new String[]{sp.getString("phone","")});
+                    ListPreference listPreference = (ListPreference) findPreference("type");
+                    db.update(listPreference.getValue(), cv0, "pphone =?", new String[]{sp.getString("phone","")});
                     db.close();
 
                     // снимаем галочку AlwaysOn:
@@ -114,6 +136,8 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
         super.onCreate(savedInstanceState);
 //           setContentView(R.layout.activity_setting);
 
+    //    RadioButton rb = (RadioButton)findViewById(R.id.radioButton);
+
     setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR); // запрещаем поворот экрана. Действует в пределах активити.
 
         // sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -150,6 +174,9 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
 
             addPreferencesFromResource(R.xml.preferences);
 
+       //     icon = (ImageView)findViewById(R.id.imageView2);
+       //     sum = (TextView)findViewById(R.id.summary);
+
             Preference preference = getPreferenceScreen().findPreference("smtpTo");
             preference.setSummary(smtpTo);
             preference = getPreferenceScreen().findPreference("smtpToPwd");
@@ -165,10 +192,23 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
 
             // -------------------------- читаем данные из db ----------------------------------------
             db = MainActivity.dbHelper.getWritableDatabase();
-            String[] columns = {"smtp", "mms", "sms", "smtprefresh", "push", "mmsrefresh", "smtpFromMail"};
-            Cursor curs = db.query("cameras", columns, "pphone=?", new String[]{pphone}, null, null, null);
-            if (curs.moveToFirst()) {
+
+        // сначала определяем тип камеры, чтобы выбрать нужную таблицу
+            String[] column = {"camtype"};
+            Cursor cur1 = db.query(aphoneold, column, null, null, null, null, null);
+            if (cur1.moveToFirst()) {
                 do {
+                type = cur1.getString(cur1.getColumnIndex("camtype"));
+                if (type !=null) break;
+                }  while (cur1.moveToNext());
+
+            }
+            cur1.close();
+
+            String[] columns = {"smtp", "mms", "sms", "smtprefresh", "push", "mmsrefresh", "smtpFromMail"};
+            Cursor curs = db.query(type, columns, "pphone=?", new String[]{pphone}, null, null, null);
+            if (curs.moveToFirst()) {
+               do {
                     smtp = curs.getString(curs.getColumnIndex("smtp"));
                     mms = curs.getString(curs.getColumnIndex("mms"));
                     sms = curs.getString(curs.getColumnIndex("sms"));
@@ -177,8 +217,9 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
                     mmsrefresh = curs.getString(curs.getColumnIndex("mmsrefresh"));
                     smtpFrom = curs.getString(curs.getColumnIndex("smtpFromMail"));
                 } while (curs.moveToNext());
-            }
+             }
             curs.close();
+
             String[] columns2 = {"smtpToMail", "smtpToPassword", "push"};
             Cursor curs2 = db.query("smtp", columns2, null, null, null, null, null);
             if (curs2.moveToFirst()){
@@ -191,6 +232,7 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
             db.close();
 
             // -------- в преференс записываем данные из db ---------------------------------------------
+
             SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             SharedPreferences.Editor editor1 = settings.edit();
             editor1.putString("phone", pphone);
@@ -215,7 +257,31 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
             //editor1.apply();
             editor1.commit();
 
-            addPreferencesFromResource(R.xml.preferences);
+            View view = View.inflate(getApplicationContext(), R.layout.camtype, null);
+            TextView sum1 = (TextView)view.findViewById(R.id.summary);
+            ImageView icon1 = (ImageView)view.findViewById(R.id.imageView2);
+            if (type.equals("acorn")) {
+                icon1.setImageResource(R.drawable.ltl6210_150);
+                sum1.setText("Ltl Acorn");}
+            if (type.equals("sifar")) {
+                icon1.setImageResource(R.drawable.ltl7310_150);
+                sum1.setText("SiFar");}
+            if (type.equals("other")) {icon1.setImageResource(R.drawable.sg550150); sum1.setText("Generic");}
+
+
+          addPreferencesFromResource(R.xml.preferences);
+//          setContentView(R.layout.camtype);
+            //  SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            //      settings.StringSet("type", type);
+            ListPreference lp = (ListPreference)findPreference("type");
+            // System.out.println("777 type "+ lp.getValue());
+            //         SharedPreferences.Editor edit = lp.getEditor();
+            //        sefindIndexOfValue()getValue();
+               lp.setValue(type);
+
+
+       //     addPreferencesFromResource(R.xml.preferences);
+
 
             Preference preference = getPreferenceScreen().findPreference("phone");
             preference.setSummary(pphone);
@@ -228,10 +294,18 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
             preference = getPreferenceScreen().findPreference("smtpToPwd");
             preference.setSummary(smtpToPwd);
 
-     //       pphone = settings.getString("phone", "");
+  /*          ListPreference listPreference = (ListPreference)getPreferenceScreen().findPreference("type");
+            type = listPreference.getValue();
+             sum = (TextView)findViewById(R.id.summary);
+             icon = (ImageView)findViewById(R.id.imageView2);
+            //   listPreference.setSummary(value);
+            if (type.equals("acorn")) {icon.setImageResource(R.drawable.ltl6210_150); sum.setText("Ltl Acorn");}
+            if (type.equals("sifar")) {icon.setImageResource(R.drawable.ltl7310_150); sum.setText("SiFar");}
+            if (type.equals("other")) {icon.setImageResource(R.drawable.sg550); sum.setText("Generic");}
+*/
+            //       pphone = settings.getString("phone", "");
      //       Toast.makeText(this, "MMS onCreate: "+mms, Toast.LENGTH_LONG).show();
         }
-
     }
 
         @Override
@@ -303,8 +377,6 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
             if (bmmsrefresh) mmsrefresh = "enabled";
             else mmsrefresh = "disabled";
 
-
-
             //     Toast.makeText(this, "Puse ppphone: " + pphone, Toast.LENGTH_LONG).show();
 
         if (!recreate.equals("enabled")) { // когда не нужно пересоздавать камеру
@@ -326,7 +398,9 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
             else cv.put("smtprefresh", "disabled");
             if (bmmsrefresh) cv.put("mmsrefresh", "enabled");
             else cv.put("mmsrefresh", "disabled");
-            db.update("cameras",cv, "pphone=?", new String[]{pphone});
+
+            ListPreference listPreference = (ListPreference) findPreference("type");
+            db.update(listPreference.getValue(),cv, "pphone=?", new String[]{pphone});
        //     Toast.makeText(this, "Pphone onWrite: "+pphone, Toast.LENGTH_LONG).show();
             db.close();
 
@@ -337,21 +411,18 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
             if (who.equals("main")) intent.putExtra("action", "add");
             intent.putExtra("phone", pphone);
    //   Toast.makeText(this, "Pphone add onWrite: "+pphone, Toast.LENGTH_LONG).show();
-                   intent .putExtra("tname", name)
+              intent.putExtra("type",type)
+                    .putExtra("tname", name)
                     .putExtra("smtp", smtp)
                     .putExtra("mms", mms)
                     .putExtra("sms", sms)
                     .putExtra("mmsrefresh", mmsrefresh);
-       //     if (smtp.equals("enabled")) {
-                intent.putExtra("smtpToMail", smtpTo)
-                        .putExtra("smtpToPwd", smtpToPwd)
-                        .putExtra("smtpFromMail", smtpFrom)
-                        .putExtra("push", push)
-                        .putExtra("smtprefresh", smtprefresh);
+              intent.putExtra("smtpToMail", smtpTo)
+                    .putExtra("smtpToPwd", smtpToPwd)
+                    .putExtra("smtpFromMail", smtpFrom)
+                    .putExtra("push", push)
+                    .putExtra("smtprefresh", smtprefresh);
             startActivity(intent);
-
-     // ---------- рестартуем IMAP listener, чтобы он взял новые параметры --------------------------
-     //     startService(new Intent(AddEditCamera.this, IMAPListener.class).putExtra("action", "restart"));
         }
      }
 
@@ -384,7 +455,7 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
                 ContentValues cv0 = new ContentValues();
                 cv0.put ("push", "enabled");
                 db.update ("smtp", cv0, null, null);
-                db.update("cameras", cv0, "pphone =?", new String[]{sp.getString("phone","")});
+                db.update(type, cv0, "pphone =?", new String[]{sp.getString("phone","")});
                 db.close();
 
            //         Toast.makeText(AddEditCamera.this, "Push activated", Toast.LENGTH_LONG).show();

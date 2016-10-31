@@ -43,21 +43,35 @@ public class HuntingCameraService extends Service {
             dbHelper = new MainActivity.DBHelper(this); // так передаётся контекст из mainactivity в myservice, иначе db не открывается
             db = dbHelper.getReadableDatabase();
 
-            String[] columns = {"name", "pphone"};
-            Cursor cur = db.query("cameras", columns, null, null, null, null, null);
-            if (cur.moveToFirst()) {
-                do {
 
-                    String ph = cur.getString(cur.getColumnIndex("pphone"));
+            String[] columns = {"name"}; //, "pphone"};
+            Cursor cur = db.query("acorn", columns, "pphone=?", new String[]{phone}, null, null, null);
+            if (cur.moveToFirst()) {
+        //        do {
+
+       //             String ph = cur.getString(cur.getColumnIndex("pphone"));
 // заменить vtbphone на phone
-                    if (phone.equals(ph)) {
+         //           if (phone.equals(ph)) {
                         nam = cur.getString(cur.getColumnIndex("name"));
 //                    String adr = cur.getString(cur.getColumnIndex("addr"));
                         g = 1;
-                        break;
-                    } // номер нашли, выходим
+        //                break;
+       //             } // номер нашли, выходим
+       //         }
+       //         while (cur.moveToNext());
+            } else {
+                Cursor cur2 = db.query("sifar", columns, "pphone=?", new String[]{phone}, null, null, null);
+                if (cur2.moveToFirst()) {
+                      nam = cur2.getString(cur2.getColumnIndex("name"));
+                      g = 1;
+                } else {
+                    Cursor cur3 = db.query("other", columns, "pphone=?", new String[]{phone}, null, null, null);
+                    if (cur3.moveToFirst()) {
+                        nam = cur3.getString(cur3.getColumnIndex("name"));
+                        g = 1;
+                    } cur3.close();
                 }
-                while (cur.moveToNext());
+                cur2.close();
             }
             cur.close();
             db.close();

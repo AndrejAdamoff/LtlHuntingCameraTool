@@ -106,7 +106,11 @@ public class SMSsender extends Service {
 
         SmsManager sms = SmsManager.getDefault();
      //   sms.sendTextMessage(phoneNumber,null, message, sentPI, deliveredPI);
-        sms.sendTextMessage(phoneNumber,null, message, sentPI, null);
+
+    try    {sms.sendTextMessage(phoneNumber,null, message, sentPI, null); }
+    catch (Exception e){
+        Toast.makeText(getApplicationContext(), "Can not send SMS", Toast.LENGTH_LONG).show();
+    }
         ContentValues values = new ContentValues();
         values.put("address", phoneNumber); // phone number to send
         values.put("date", System.currentTimeMillis()+"");

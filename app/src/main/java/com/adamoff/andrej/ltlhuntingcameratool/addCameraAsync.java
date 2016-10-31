@@ -61,7 +61,7 @@ public class addCameraAsync extends Activity {
 
     String TAG = "tag123";
 
-    String recreate, pphone, name, aphone, aphoneold, pphoneold, smtpToMail, smtpToPwd, smtpToPassword, smtpFromMail, action, smtp, push, mms, sms, smtprefresh, mmsrefresh;
+    String recreate, type, pphone, name, aphone, aphoneold, pphoneold, smtpToMail, smtpToPwd, smtpToPassword, smtpFromMail, action, smtp, push, mms, sms, smtprefresh, mmsrefresh;
     PendingIntent pi;
     int m;
     LinkedList<MessageBean> listMessages;
@@ -88,6 +88,7 @@ String To1, ToPWD1;
 
         // получаем данные из интента:
         intent = getIntent();
+        type = intent.getStringExtra("type");
         action = intent.getStringExtra("action");
         if (action.equals("add") || action.equals("edit")) {
             pphone = intent.getStringExtra("phone");
@@ -172,14 +173,37 @@ String To1, ToPWD1;
                // удаляем таблицу камеры
                String SQLstatement = "DROP TABLE IF EXISTS " + aphoneold;
                db.execSQL(SQLstatement);
-               // удаление строки из cameras:
+
+               // пытаемся удалить камеру из всех таблиц:
+
+      //         if(type.equals("acorn")){
+               // удаление строки из таблицы acorn:
                try {
-                   db.delete("cameras", "pphone=?", new String[]{String.valueOf(pphoneold)});
+                   db.delete("acorn", "pphone=?", new String[]{String.valueOf(pphoneold)});
                } catch (Exception e) {
                }
-               ;
-               db.close();
+         //      ;
+         //      db.close();
+               //}
 
+        //       if(type.equals("sifar")){
+                   // удаление строки из таблицы sifar:
+                   try {
+                       db.delete("sifar", "pphone=?", new String[]{String.valueOf(pphoneold)});
+                   } catch (Exception e) {
+                   }
+                   ;
+        //           db.close();
+        //       }
+        //       if(type.equals("other")){
+                   // удаление строки из таблицы other:
+                   try {
+                       db.delete("other", "pphone=?", new String[]{String.valueOf(pphoneold)});
+                   } catch (Exception e) {
+                   }
+                   ;
+                   db.close();
+           //}
                // вычищаем камеру из файла нотификаций:
 
                HashMap<String, Boolean> notif;   // = new HashMap<String, Boolean>();
@@ -203,7 +227,7 @@ String To1, ToPWD1;
 
            if (action[0].equals("add") || action[0].equals("edit")) {
 
-               // обновляем таблицу SMTP:
+           // обновляем таблицу SMTP:
                //   MainActivity.DBHelper dbHelper = new MainActivity.DBHelper(getBaseContext()); // без этого нет контекста, когда приложение закрыто
                db = MainActivity.dbHelper.getWritableDatabase();
                ContentValues cv1 = new ContentValues();
@@ -212,22 +236,15 @@ String To1, ToPWD1;
                cv1.put("push", push);
                db.update("smtp", cv1, null, null);
 
-               // ---------- рестартуем IMAP listener, чтобы он взял новые параметры --------------------------
+           // ---------- рестартуем IMAP listener, чтобы он взял новые параметры --------------------------
                startService(new Intent(addCameraAsync.this, IMAPListener.class).putExtra("action", "restart"));
-
-               //         db.close();
-
-               // записываем данные в БД:
-               //    получаем свой экземпляр БД:
-               //         db = MainActivity.dbHelper.getWritableDatabase();
 
                // создаём отдельную таблицу для новой камеры:
                // а name - это имя таблицы = имя камеры
                // создаём SQL statement для создания таблицы:
                String SQLStatement = "create table " + aphone + " ("
-                       + "_id integer primary key autoincrement," + "path text," + "name text," + "time text," + "mmsid text," + "id text" + ");";
-               // создаём таблицу с именем aphone для камеры в БД:
-               //    db.execSQL(SQLStatement);
+                       + "_id integer primary key autoincrement," + "camtype text," + "path text," + "name text," + "time text," + "mmsid text," + "id text" + ");";
+           // создаём таблицу с именем aphone для камеры в БД:
                try {
                    db.execSQL(SQLStatement);
                } catch (Exception e) {
@@ -237,116 +254,222 @@ String To1, ToPWD1;
                }
                if (isCancelled()) return null;
                if (g == 0) {
-
-                   ContentValues cv = new ContentValues();
-                   cv.put("name", name);
-                   cv.put("pphone", pphone);
+                   if (type.equals("acorn")) {
+                   // прописываем тип камеры
+                       ContentValues cv0 = new ContentValues();
+                       cv0.put("camtype", "acorn");
+                       cv0.put("name", name);
+                       db.insert(aphone, null, cv0);
+System.out.println("888 type insert "+aphone);
+                       ContentValues cv = new ContentValues();
+                       cv.put("name", name);
+                       cv.put("pphone", pphone);
                    // ставим дефолтные параметры камеры, изменяемые через SMS:
-                   cv.put("mode", "camera"); // camera
-                   cv.put("fotosize", "5MP"); // 5MP
-                   cv.put("videosize", "halfHD"); // halfHD
-                   cv.put("fotonumber", "1"); // 1 foto
-                   cv.put("videolength", "5"); // 5 сек
-                   cv.put("delayMin", "1");
-                   cv.put("delaySec", "0"); // 1 min
-                   cv.put("serial", "4 letters/digits"); // выкл
-                   cv.put("sense", "Normal"); // Normal
-                   cv.put("lapse", "Off"); //  выкл
-                   cv.put("lapseHH", "0"); //  выкл
-                   cv.put("lapseMM", "0"); //  выкл
-                   cv.put("lapseSS", "0"); //  выкл
-                   cv.put("sidePIR", "On"); //  вкл
-                   cv.put("MMStype", "VGA"); // VGA
-                   cv.put("MMSlimit", "0"); // no limit
+                       cv.put("mode", "camera"); // camera
+                       cv.put("fotosize", "5MP"); // 5MP
+                       cv.put("videosize", "halfHD"); // halfHD
+                       cv.put("fotonumber", "1"); // 1 foto
+                       cv.put("videolength", "5"); // 5 сек
+                       cv.put("delayMin", "1");
+                       cv.put("delaySec", "0"); // 1 min
+                       cv.put("serial", ""); // выкл
+                       cv.put("sense", "Normal"); // Normal
+                       cv.put("lapse", "Off"); //  выкл
+                       cv.put("lapseHH", "0"); //  выкл
+                       cv.put("lapseMM", "0"); //  выкл
+                       cv.put("lapseSS", "0"); //  выкл
+                       cv.put("sidePIR", "On"); //  вкл
+                       cv.put("MMStype", "VGA"); // VGA
+                       cv.put("MMSlimit", "0"); // no limit
 
-                   cv.put("timer", "Off"); // выкл
-                   cv.put("timeronHH", "0");
-                   cv.put("timeronMin", "0");
-                   cv.put("timeroffHH", "0");
-                   cv.put("timeroffMin", "0");
+                       cv.put("timer", "Off"); // выкл
+                       cv.put("timeronHH", "0");
+                       cv.put("timeronMin", "0");
+                       cv.put("timeroffHH", "0");
+                       cv.put("timeroffMin", "0");
 
-                   cv.put("timer2", "Off"); // выкл
-                   cv.put("timer2onHH", "0");
-                   cv.put("timer2onMin", "0");
-                   cv.put("timer2offHH", "0");
-                   cv.put("timer2offMin", "0");
+                       cv.put("timer2", "Off"); // выкл
+                       cv.put("timer2onHH", "0");
+                       cv.put("timer2onMin", "0");
+                       cv.put("timer2offHH", "0");
+                       cv.put("timer2offMin", "0");
 
-                   cv.put("SMScontrol", "0"); // каждые 10 мин
-                   cv.put("phone2orEmail", "");
-                   cv.put("phone3orEmail", "");
-                   cv.put("Email", "");
-                   cv.put("smtpToMail", smtpToMail);
-                   cv.put("smtpFromMail", smtpFromMail);
-                   cv.put("smtpToPassword", smtpToPwd);
-                   cv.put("smtp", smtp);
-                   cv.put("sms", sms);
-                   cv.put("push", push);
-                   cv.put("mms", mms);
-                   cv.put("smtprefresh", smtprefresh);
-                   cv.put("mmsrefresh", mmsrefresh);
+                       cv.put("SMScontrol", "0"); // каждые 10 мин
+                       cv.put("phone2orEmail", "");
+                       cv.put("phone3orEmail", "");
+                       cv.put("Email", "");
+                       cv.put("smtpToMail", smtpToMail);
+                       cv.put("smtpFromMail", smtpFromMail);
+                       cv.put("smtpToPassword", smtpToPwd);
+                       cv.put("smtp", smtp);
+                       cv.put("sms", sms);
+                       cv.put("push", push);
+                       cv.put("mms", mms);
+                       cv.put("smtprefresh", smtprefresh);
+                       cv.put("mmsrefresh", mmsrefresh);
 
-                   // прописываем камеру в таблице "cameras":
-                   db.insert("cameras", null, cv); // где rowID - это номер полученной строки
-                   //     db.close();
+                       // прописываем камеру в таблице "acorn":
+                       db.insert("acorn", null, cv); // где rowID - это номер полученной строки
+                       // заносим в таблицу инф-ю об MMS:
+                       if (mms.equals("enabled")) fillDbWithMMS(pphone, name);
+                       // загружаем smtp фото:
+                       if (smtp.equals("enabled")) {
+                           if (mms.equals("enabled"))
+                               publishProgress(); // нужно поменять прогресс-бар
+                           fillDbWithSMTP(smtpToMail, smtpToPwd, smtpFromMail);
+                       }
+                       if (db.isOpen()) db.close();
+                   }
 
-                   //    if (recreate.equals("enable")) { // исключаем длительные операции, если они не нужны
-                   // заносим в таблицу инф-ю об MMS:
-                   if (mms.equals("enabled")) fillDbWithMMS(pphone, name);
-                   // загружаем smtp фото:
-                   if (smtp.equals("enabled")) {
-                       if (mms.equals("enabled")) publishProgress(); // нужно поменять прогресс-бар
-                       fillDbWithSMTP(smtpToMail, smtpToPwd, smtpFromMail);
+                   if (type.equals("sifar")) {
+                   // прописываем тип камеры
+                       ContentValues cv0 = new ContentValues();
+                       cv0.put("camtype", "sifar");
+                       cv0.put("name", name);
+                       db.insert(aphone, null, cv0);
+
+                       ContentValues cv = new ContentValues();
+                       cv.put("name", name);
+                       cv.put("pphone", pphone);
+                       // ставим дефолтные параметры камеры, изменяемые через SMS:
+                       cv.put("mode", "camera"); // camera
+                       cv.put("fotosize", "12MP"); // 12MP
+                       cv.put("videosize", "720"); // 720p
+                       cv.put("fotonumber", "2"); // 2 foto
+                       cv.put("videolength", "10"); // 10 сек
+                       cv.put("delay","off");  //выкл
+                       cv.put("delayH", "0");
+                       cv.put("delayMin", "0");
+                       cv.put("delaySec", "0"); // 1 min
+                       cv.put("serial", ""); // выкл
+                       cv.put("sense", "high"); // Высокая
+                       cv.put("lapse", "off"); //  выкл
+                       cv.put("lapseHH", "0"); //  выкл
+                       cv.put("lapseMM", "0"); //  выкл
+                       cv.put("lapseSS", "0"); //  выкл
+                       cv.put("MMSlimit", "0"); // no limit
+                       cv.put("timer", "off"); // выкл
+                       cv.put("timeronHH", "0");
+                       cv.put("timeronMin", "0");
+                       cv.put("timeroffHH", "0");
+                       cv.put("timeroffMin", "0");
+                       cv.put("SMScontrol", "upontrigger"); //
+                       cv.put("phone1", "");
+                       cv.put("phone2", "");
+                       cv.put("phone3", "");
+                       cv.put("phone4", "");
+                       cv.put("email1", "");
+                       cv.put("email2", "");
+                       cv.put("email3", "");
+                       cv.put("email4", "");
+                       cv.put("zoom", "1");
+                       cv.put("log", "off");
+                       cv.put("sendlog", "phones"); // send to phone
+
+                       cv.put("smtpToMail", smtpToMail);
+                       cv.put("smtpFromMail", smtpFromMail);
+                       cv.put("smtpToPassword", smtpToPwd);
+                       cv.put("smtp", smtp);
+                       cv.put("sms", sms);
+                       cv.put("push", push);
+                       cv.put("mms", mms);
+                       cv.put("smtprefresh", smtprefresh);
+                       cv.put("mmsrefresh", mmsrefresh);
+
+                       // прописываем камеру в таблице "sifar":
+                       db.insert("sifar", null, cv); // где rowID - это номер полученной строки
+                       // заносим в таблицу инф-ю об MMS:
+                       if (mms.equals("enabled")) fillDbWithMMS(pphone, name);
+                       // загружаем smtp фото:
+                       if (smtp.equals("enabled")) {
+                           if (mms.equals("enabled"))
+                               publishProgress(); // нужно поменять прогресс-бар
+                           fillDbWithSMTP(smtpToMail, smtpToPwd, smtpFromMail);
+                       }
+                       if (db.isOpen()) db.close();
+                   }
+                   if (type.equals("other")) {
+                   // прописываем тип камеры
+                       ContentValues cv0 = new ContentValues();
+                       cv0.put("camtype", "other");
+                       cv0.put("name", name);
+                       db.insert(aphone, null, cv0);
+
+                       ContentValues cv = new ContentValues();
+                       cv.put("name", name);
+                       cv.put("pphone", pphone);
+// дефолтные параметры камеры
+                       cv.put("getphoto", "");
+                       cv.put("command1", "");
+                       cv.put("command2", "");
+                       cv.put("command3", "");
+                       cv.put("command4", "");
+                       cv.put("command5", "");
+                       cv.put("command6", "");
+                       cv.put("command7", "");
+                       cv.put("command8", "");
+                       cv.put("command9", "");
+                       cv.put("command10", "");
+
+                       cv.put("value1", "");
+                       cv.put("value2", "");
+                       cv.put("value3", "");
+                       cv.put("value4", "");
+                       cv.put("value5", "");
+                       cv.put("value6", "");
+                       cv.put("value7", "");
+                       cv.put("value8", "");
+                       cv.put("value9", "");
+                       cv.put("value10", "");
+
+                       cv.put("sms1", "");
+                       cv.put("sms2", "");
+                       cv.put("sms3", "");
+                       cv.put("sms4", "");
+                       cv.put("sms5", "");
+                       cv.put("sms6", "");
+                       cv.put("sms7", "");
+                       cv.put("sms8", "");
+                       cv.put("sms9", "");
+                       cv.put("sms10", "");
+
+                       cv.put("phone1", "");
+                       cv.put("phone2", "");
+                       cv.put("phone3", "");
+                       cv.put("phone4", "");
+                       cv.put("smsbgnphone", "");
+                       cv.put("smsendphone", "");
+                       cv.put("mail1", "");
+                       cv.put("mail2", "");
+                       cv.put("mail3", "");
+                       cv.put("mail4", "");
+                       cv.put("smsbgnmail", "");
+                       cv.put("smsendmail", "");
+
+                       cv.put("smtpToMail", smtpToMail);
+                       cv.put("smtpFromMail", smtpFromMail);
+                       cv.put("smtpToPassword", smtpToPwd);
+                       cv.put("smtp", smtp);
+                       cv.put("sms", sms);
+                       cv.put("push", push);
+                       cv.put("mms", mms);
+                       cv.put("smtprefresh", smtprefresh);
+                       cv.put("mmsrefresh", mmsrefresh);
+
+
+                   // прописываем камеру в таблице "other":
+                       db.insert("other", null, cv); // где rowID - это номер полученной строки
+                       // заносим в таблицу инф-ю об MMS:
+                       if (mms.equals("enabled")) fillDbWithMMS(pphone, name);
+                       // загружаем smtp фото:
+                       if (smtp.equals("enabled")) {
+                           if (mms.equals("enabled"))
+                               publishProgress(); // нужно поменять прогресс-бар
+                           fillDbWithSMTP(smtpToMail, smtpToPwd, smtpFromMail);
+                       }
+                       if (db.isOpen()) db.close();
                    }
                }
-               if (db.isOpen()) db.close();
-
-           /*    if (action[0].equals("add")) {
-                   if (smtp.equals("enabled") && push.equals("enabled")){
-              getApplicationContext().startService(new Intent(addCameraAsync.this, StartContentObserverService.class)
-                       .putExtra("action", "start")
-                       .putExtra("who", "main")
-                       .putExtra("account", smtpToMail));
-
-                //     Intent intent2 = new Intent(getApplicationContext(), StartContentObserverService.class).putExtra("action","start").putExtra("who","main").putExtra("account", smtpToMail);
-                       Intent intent2 = new Intent(getApplicationContext(), StartContentObserverService.class).putExtra("action","stop"); // перезапускаем сервис с обзервером
-                       PendingIntent pi = PendingIntent.getService(addCameraAsync.this, 0, intent2, 0);
-                       AlarmManager alarmManager = (AlarmManager) getSystemService(Service.ALARM_SERVICE);
-                       alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, AlarmManager.INTERVAL_HALF_HOUR, AlarmManager.INTERVAL_HALF_HOUR, pi);
-
-          // ---------------------- проверка, есть ли network connection ---------------------------
-          // ------- если нет, то ничего не запускаем, ждём когда сработает NetworkReceiverState ---------
-                       final ConnectivityManager connectivityManager = (ConnectivityManager) addCameraAsync.this.getSystemService(Context.CONNECTIVITY_SERVICE);
-                       final NetworkInfo ni = connectivityManager.getActiveNetworkInfo();
-
-                       if (ni != null && ni.getState() == NetworkInfo.State.CONNECTED) {
-                           // --------------- включаем IMAPListener ----------------------------------
-                           Intent intent = new Intent(addCameraAsync.this, IMAPListener.class).putExtra("action", "startidle").putExtra("smtpToMail", smtpToMail).putExtra("smtpToPwd",smtpToPassword);
-                           startService(intent);
-                           Intent intent2 = new Intent(addCameraAsync.this, IMAPListener.class).putExtra("action", "restart");
-                           PendingIntent pi = PendingIntent.getService(addCameraAsync.this, 0, intent2, 0);
-                           AlarmManager alarmManager = (AlarmManager) getSystemService(Service.ALARM_SERVICE);
-                           alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, AlarmManager.INTERVAL_HALF_HOUR, AlarmManager.INTERVAL_HALF_HOUR, pi);
-                       }
-                   }
-                   if (!push.equals("enabled")) {
-                       startService(new Intent(addCameraAsync.this, IMAPListener.class).putExtra("action", "stopidle"));
-
-                      getApplicationContext().startService(new Intent(addCameraAsync.this, StartContentObserverService.class)
-                               .putExtra("action", "stop")
-                    //           .putExtra("who", "main")
-                    //           .putExtra("account", smtpToMail)
-                       );
-                       Intent intent3 = new Intent(getApplicationContext(), StartContentObserverService.class).putExtra("action","stop");
-                       PendingIntent pi2 = PendingIntent.getService(addCameraAsync.this, 0, intent3, 0);
-                       AlarmManager alarmManager = (AlarmManager) getSystemService(Service.ALARM_SERVICE);
-                       alarmManager.cancel(pi2);
-
-                       //stopService(new Intent(updatedbWithSmtp.this,IMAPListener.class));
-
-
-                   }
-                 }
-               */
            }
 
            if (action[0].equals("update")) {
@@ -762,7 +885,7 @@ String To1, ToPWD1;
            //
            // поэтому нужно для каждого id проверить addr на совпадение с заданным номером.
 
-
+System.out.println("8888 Number "+number);
            // получаем значения имеющихся id, для чего читаем столбец id таблицы pdu:
            String[] projection = {"_id", "date"};
            try {
@@ -829,16 +952,18 @@ String To1, ToPWD1;
                                    String[] column = {"_data", "cl", "_id"}; // , "date"};
                                    Uri uri = Uri.parse("content://mms/part");
                                    // читаем все? столбцы для данного Id
-                                   Cursor curdata = getContentResolver().query(uri, column, selectionPart, null, null);
-                               //    if (curdata.moveToFirst()) {
+                           //        Cursor curdata = getContentResolver().query(uri, column, selectionPart, null, null);
+                                   Cursor curdata = getContentResolver().query(uri, null, selectionPart, null, null);
+                                   //    if (curdata.moveToFirst()) {
                                        curdata.moveToFirst();
                                        do {
                                      try   {   String dat = curdata.getString(curdata.getColumnIndex("_data"));
-                                               String cl = curdata.getString(curdata.getColumnIndex("cl"));
+                                          //     String cl = curdata.getString(curdata.getColumnIndex("cl"));
                                                String _id = curdata.getString(curdata.getColumnIndex("_id"));
        //   System.out.println("Found _data: "+dat);
                                            //   String date = "0"; //curdata.getString(curdata.getColumnIndex("date"));        // получаем время приёма MMS
-                                           if (dat != null & cl !=null) { // пропускаем пустые поля таблицы
+                                     //      if (dat != null & cl !=null) { // пропускаем пустые поля таблицы
+                                               if (dat != null) {
                                   System.out.println("Found _data: " + dat);
                                                // пишем в поля БД камер:
                                                // New value for one column

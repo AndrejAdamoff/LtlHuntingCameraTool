@@ -2,33 +2,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/setmailbutton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Send SMS"
-        android:layout_alignLeft="@+id/LL2"
-        android:layout_alignStart="@+id/LL2"
-        android:layout_alignRight="@+id/LL2"
-        android:layout_alignEnd="@+id/LL2"
-        android:layout_alignBottom="@+id/setmailbutton2"
-        android:layout_marginRight="5dp" />
-
-    <Button
-        android:id="@+id/setmailbutton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cancel"
-        android:layout_below="@+id/LL1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/LL2"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="5dp"
-        android:layout_alignLeft="@+id/LL1"
-        android:layout_alignRight="@+id/LL1"
-        android:layout_alignEnd="@+id/LL1" />
-
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,136 +11,181 @@
         android:layout_marginTop="10dp" />
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:id="@+id/ll62"
         android:layout_below="@+id/switch2"
-        android:id="@+id/LL1"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="3dp">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp">
 
-        <RelativeLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/switch2"
+            android:id="@+id/LL1"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="5dp">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ON:"
+                    android:id="@+id/textView43"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hours"
+                    android:id="@+id/textView41"
+                    android:layout_below="@+id/textView43"
+                    android:layout_marginTop="20dp"
+                    android:textSize="18dp"
+                    android:layout_marginLeft="18dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Min"
+                    android:id="@+id/textView45"
+                    android:textSize="20dp"
+                    android:layout_alignBaseline="@+id/textView41"
+                    android:layout_alignBottom="@+id/textView41"
+                    android:layout_toEndOf="@+id/textView43"
+                    android:layout_alignLeft="@+id/numberPicker12"
+                    android:layout_marginLeft="20dp" />
+
+                <NumberPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/numberPicker11"
+                    android:layout_below="@+id/textView41"
+                    android:layout_marginLeft="2dp" />
+
+                <NumberPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/numberPicker12"
+                    android:layout_toRightOf="@+id/numberPicker11"
+                    android:layout_below="@+id/textView41"
+                    android:layout_marginRight="2dp"
+                    android:focusable="false" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_below="@+id/switch2"
+            android:id="@+id/LL2"
+            android:layout_alignBottom="@+id/LL1"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="3dp"
-            android:background="@drawable/rounded">
+            android:layout_toRightOf="@+id/LL1">
 
-            <TextView
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ON:"
-                android:id="@+id/textView43"
-                android:layout_centerHorizontal="true"
-                android:textSize="20dp" />
+                android:background="@drawable/rounded">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hours"
-                android:id="@+id/textView41"
-                android:layout_below="@+id/textView43"
-                android:layout_marginTop="20dp"
-                android:textSize="18dp"
-                android:layout_marginLeft="18dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OFF:"
+                    android:id="@+id/textView44"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="20dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Min"
-                android:id="@+id/textView45"
-                android:textSize="20dp"
-                android:layout_alignBaseline="@+id/textView41"
-                android:layout_alignBottom="@+id/textView41"
-                android:layout_toEndOf="@+id/textView43"
-                android:layout_alignLeft="@+id/numberPicker12"
-                android:layout_marginLeft="20dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hours"
+                    android:id="@+id/textView42"
+                    android:layout_below="@+id/textView44"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="18dp"
+                    android:textSize="18dp" />
 
-            <NumberPicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/numberPicker11"
-                android:layout_below="@+id/textView41"
-                android:layout_marginLeft="2dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Min"
+                    android:id="@+id/textView38"
+                    android:textSize="18dp"
+                    android:layout_above="@+id/numberPicker14"
+                    android:layout_toEndOf="@+id/textView44"
+                    android:layout_alignLeft="@+id/numberPicker14"
+                    android:layout_marginLeft="20dp" />
 
-            <NumberPicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/numberPicker12"
-                android:layout_toRightOf="@+id/numberPicker11"
-                android:layout_below="@+id/textView41"
-                android:layout_marginRight="2dp"
-                android:focusable="false" />
+                <NumberPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/numberPicker13"
+                    android:layout_below="@+id/textView42"
+                    android:layout_marginLeft="2dp" />
 
-        </RelativeLayout>
+                <NumberPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/numberPicker14"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toRightOf="@+id/numberPicker13"
+                    android:layout_toEndOf="@+id/numberPicker14" />
 
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/switch2"
-        android:id="@+id/LL2"
-        android:layout_alignBottom="@+id/LL1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginLeft="3dp"
-        android:layout_toRightOf="@+id/LL1">
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll61"
+        android:layout_below="@+id/ll62">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/setmailbutton2"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/rounded"
-            android:layout_marginTop="10dp">
+            android:text="Cancel"
+            android:layout_below="@+id/LL1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/LL2"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_alignLeft="@+id/LL1"
+            android:layout_alignRight="@+id/LL1"
+            android:layout_alignEnd="@+id/LL1"
+            android:layout_weight="1" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="OFF:"
-                android:id="@+id/textView44"
-                android:layout_centerHorizontal="true"
-                android:textSize="20dp" />
+        <Button
+            android:id="@+id/setmailbutton1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Send SMS"
+            android:layout_alignLeft="@+id/LL2"
+            android:layout_alignStart="@+id/LL2"
+            android:layout_alignRight="@+id/LL2"
+            android:layout_alignEnd="@+id/LL2"
+            android:layout_alignBottom="@+id/setmailbutton2"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hours"
-                android:id="@+id/textView42"
-                android:layout_below="@+id/textView44"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="18dp"
-                android:textSize="18dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Min"
-                android:id="@+id/textView38"
-                android:textSize="18dp"
-                android:layout_above="@+id/numberPicker14"
-                android:layout_toEndOf="@+id/textView44"
-                android:layout_alignLeft="@+id/numberPicker14"
-                android:layout_marginLeft="20dp" />
-
-            <NumberPicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/numberPicker13"
-                android:layout_below="@+id/textView42"
-                android:layout_marginLeft="2dp" />
-
-            <NumberPicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/numberPicker14"
-                android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/numberPicker13"
-                android:layout_toEndOf="@+id/numberPicker14" />
-
-        </RelativeLayout>
     </LinearLayout>
 
 </RelativeLayout>

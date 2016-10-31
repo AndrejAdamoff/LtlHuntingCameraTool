@@ -1,0 +1,691 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.adamoff.andrej.ltlhuntingcameratool.SifarControl"
+    android:background="#ff000000">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView3"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="true"
+        android:layout_margin="3dp"
+        android:fillViewport="false">
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/table3"
+            android:divider="?android:attr/dividerHorizontal"
+            android:showDividers="beginning">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/Otbrmode"
+                android:focusable="false"
+                android:divider="#ff000000"
+                android:background="@drawable/line">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mode"
+                    android:id="@+id/text3View"
+                    android:textSize="18sp"
+                    android:layout_column="0"
+                    android:layout_weight="5"
+                    android:gravity="left"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#ff000000"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:onClick="setmode"
+                    android:longClickable="false"
+                    android:clickable="true" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="mode"
+                    android:id="@+id/txt3mode"
+                    android:layout_weight="3"
+                    android:onClick="setmode"
+                    android:clickable="true"
+                    android:textSize="18dp"
+                    android:textColor="#ff000000" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Otbrfotosize"
+                android:background="@drawable/line">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fotosize"
+                    android:id="@+id/text3View17"
+                    android:textSize="18sp"
+                    android:layout_weight="5"
+                    android:textColor="#ff000000"
+                    android:layout_marginLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:onClick="setfotosize"
+                    android:clickable="true" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="fotosize"
+                    android:id="@+id/txt3fotosize"
+                    android:layout_weight="3"
+                    android:onClick="setfotosize"
+                    android:clickable="true"
+                    android:textSize="18dp"
+                    android:textColor="#ff000000"
+                    android:layout_alignTop="@+id/scrollView3"
+                    android:layout_alignRight="@+id/scrollView3"
+                    android:layout_alignEnd="@+id/scrollView3" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Otbrvideosize"
+                android:background="@drawable/line" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/videosize"
+                    android:id="@+id/text3View18"
+                    android:textSize="18sp"
+                    android:layout_weight="5"
+                    android:singleLine="true"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#ff000000"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:onClick="setvideosize"
+                    android:clickable="true" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="videosize"
+                    android:id="@+id/txt3videosize"
+                    android:layout_weight="3"
+                    android:onClick="setvideosize"
+                    android:clickable="true"
+                    android:textSize="18dp"
+                    android:textColor="#ff000000"
+                    android:layout_alignTop="@+id/scrollView3"
+                    android:layout_alignRight="@+id/scrollView3"
+                    android:layout_alignEnd="@+id/scrollView3" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Otbrfotonumber"
+                android:background="@drawable/line" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fotonumber"
+                    android:id="@+id/text3View21"
+                    android:textSize="18sp"
+                    android:layout_weight="5"
+                    android:singleLine="true"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#ff000000"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:clickable="true"
+                    android:onClick="setfotonumber" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="fotonumber"
+                    android:id="@+id/txt3fotonumber"
+                    android:layout_weight="3"
+                    android:onClick="setfotonumber"
+                    android:clickable="true"
+                    android:textSize="18dp"
+                    android:textColor="#ff000000"
+                    android:layout_alignTop="@+id/scrollView3"
+                    android:layout_alignRight="@+id/scrollView3"
+                    android:layout_alignEnd="@+id/scrollView3"
+                    android:password="false" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Otbrvideolength"
+                android:background="@drawable/line" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/videolength"
+                    android:id="@+id/text3View22"
+                    android:textSize="18sp"
+                    android:layout_weight="5"
+                    android:singleLine="false"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#ff000000"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:onClick="setvideolength"
+                    android:clickable="true" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/text3View23"
+                    android:clickable="true"
+                    android:onClick="setvideolength"
+                    android:textSize="18sp"
+                    android:layout_column="1"
+                    android:layout_weight="3"
+                    android:layout_gravity="left|center_vertical"
+                    android:textColor="#FF000000"
+                    android:paddingLeft="7dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="videolength"
+                    android:singleLine="true"
+                    android:gravity="center_vertical" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Otbrdelay"
+                android:background="@drawable/line" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/delay"
+                    android:id="@+id/text3View24"
+                    android:textSize="18sp"
+                    android:layout_weight="5"
+                    android:singleLine="false"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#ff000000"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:onClick="setdelay"
+                    android:phoneNumber="false"
+                    android:clickable="true" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/text3View25"
+                    android:clickable="true"
+                    android:onClick="setdelay"
+                    android:textSize="18sp"
+                    android:layout_column="1"
+                    android:layout_weight="3"
+                    android:layout_gravity="left"
+                    android:textColor="#FF000000"
+                    android:paddingLeft="7dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="set delay"
+                    android:gravity="center_vertical" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Otbrsense"
+                android:background="@drawable/line" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sense"
+                    android:id="@+id/text3View31"
+                    android:textSize="18sp"
+                    android:layout_weight="5"
+                    android:singleLine="false"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#ff000000"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:clickable="true"
+                    android:onClick="setsense" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/txt3sense"
+                    android:clickable="true"
+                    android:onClick="setsense"
+                    android:textSize="18sp"
+                    android:layout_column="1"
+                    android:layout_weight="3"
+                    android:layout_gravity="left"
+                    android:textColor="#FF000000"
+                    android:paddingLeft="7dp"
+                    android:layout_marginRight="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:text="sense"
+                    android:gravity="center_vertical" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Otbrlapse"
+                android:background="@drawable/line" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/timelapse"
+                    android:id="@+id/text3View32"
+                    android:textSize="18sp"
+                    android:layout_weight="12"
+                    android:singleLine="false"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#ff000000"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:clickable="true"
+                    android:onClick="setInterval"
+                    android:phoneNumber="false" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text3View33"
+                    android:layout_weight="7"
+                    android:clickable="true"
+                    android:onClick="setInterval"
+                    android:focusable="false"
+                    android:text="Off"
+                    android:layout_marginRight="10dp"
+                    android:textSize="16dp"
+                    android:paddingLeft="5dp"
+                    android:textColor="#ff000000"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_gravity="center_vertical" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Otbrtimer"
+                android:background="@drawable/line" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:text="@string/timer"
+                    android:id="@+id/text3View40"
+                    android:textSize="18sp"
+                    android:layout_weight="9"
+                    android:singleLine="false"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#ff000000"
+                    android:onClick="settimer"
+                    android:nestedScrollingEnabled="false"
+                    android:clickable="true"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:gravity="center_vertical" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text3View39"
+                    android:layout_weight="5"
+                    android:clickable="true"
+                    android:onClick="settimer"
+                    android:focusable="false"
+                    android:text="OFF"
+                    android:textSize="16dp"
+                    android:textIsSelectable="false"
+                    android:singleLine="false"
+                    android:layout_marginRight="10dp"
+                    android:textColor="#ff000000"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Otbrcamname"
+                android:background="@drawable/line" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/serial"
+                    android:id="@+id/text3View28"
+                    android:textSize="18sp"
+                    android:layout_weight="9"
+                    android:singleLine="true"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#ff000000"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:layout_gravity="center_vertical"
+                    android:clickable="true"
+                    android:onClick="setSerial2" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/text3View29"
+                    android:layout_weight="5"
+                    android:clickable="true"
+                    android:onClick="setSerial2"
+                    android:focusable="false"
+                    android:text="4 letters/digits"
+                    android:layout_marginRight="10dp"
+                    android:textSize="18dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="#ff000000" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Otbrmmslimit"
+                android:background="@drawable/line" >
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mmslimit"
+                    android:id="@+id/textView373"
+                    android:textSize="18sp"
+                    android:layout_weight="5"
+                    android:singleLine="true"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#ff000000"
+                    android:clickable="true"
+                    android:onClick="setmmslimit"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv383"
+                    android:clickable="true"
+                    android:onClick="setmmslimit"
+                    android:textSize="18sp"
+                    android:layout_column="1"
+                    android:layout_weight="3"
+                    android:layout_gravity="left"
+                    android:textColor="#ff000000"
+                    android:paddingLeft="7dp"
+                    android:layout_marginRight="10dp"
+                    android:text="MMS limit"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/Otbrsmscontrol"
+                android:background="@drawable/line">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/SMScntrl"
+                    android:id="@+id/text3View48"
+                    android:textSize="18sp"
+                    android:layout_weight="7"
+                    android:singleLine="false"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="left"
+                    android:textColor="#ff000000"
+                    android:password="false"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:clickable="true"
+                    android:onClick="setSMScontrol" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:id="@+id/text3View49"
+                    android:clickable="true"
+                    android:onClick="setSMScontrol"
+                    android:textSize="18sp"
+                    android:layout_column="1"
+                    android:layout_weight="4"
+                    android:textColor="#FF000000"
+                    android:password="false"
+                    android:text="Upon trigger"
+                    android:singleLine="false"
+                    android:layout_marginRight="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:gravity="center_vertical" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/Otbrphone1"
+                android:background="@drawable/line"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:showDividers="middle|beginning|end|none"
+                android:onClick="setphone"
+                android:clickable="true">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="phone1"
+                    android:id="@+id/txt3viewphone1"
+                    android:clickable="false"
+                    android:textSize="18dp"
+                    android:singleLine="false"
+                    android:textColor="#ff009b00"
+                    android:paddingLeft="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/Otbrphone2"
+                android:background="@drawable/line"
+                android:baselineAligned="false"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:showDividers="end"
+                android:clickable="true"
+                android:onClick="setphone">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="phone2"
+                    android:id="@+id/txt3viewphone2"
+                    android:clickable="false"
+                    android:textSize="18dp"
+                    android:singleLine="false"
+                    android:textColor="#ff009b00"
+                    android:paddingLeft="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/Otbrphone3"
+                android:background="@drawable/line"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:showDividers="middle|beginning|end|none"
+                android:onClick="setphone"
+                android:clickable="true" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="phone3"
+                    android:id="@+id/txt3viewphone3"
+                    android:clickable="false"
+                    android:textSize="18dp"
+                    android:singleLine="false"
+                    android:textColor="#ff009b00"
+                    android:paddingLeft="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/Otbrphone4"
+                android:background="@drawable/line"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:showDividers="middle|beginning|end|none"
+                android:onClick="setphone"
+                android:clickable="true" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="phone4"
+                    android:id="@+id/txt3viewphone4"
+                    android:clickable="false"
+                    android:textSize="18dp"
+                    android:singleLine="false"
+                    android:textColor="#ff009b00"
+                    android:paddingLeft="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/Otbrmail1"
+                android:background="@drawable/line"
+                android:baselineAligned="false"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:showDividers="end"
+                android:clickable="true"
+                android:onClick="setmail">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="email1"
+                    android:id="@+id/txt3viewmail1"
+                    android:clickable="false"
+                    android:textSize="18dp"
+                    android:singleLine="false"
+                    android:textColor="#ff0000ff"
+                    android:paddingLeft="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/Otbrmail2"
+                android:background="@drawable/line"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:showDividers="middle|beginning|end|none"
+                android:onClick="setmail"
+                android:clickable="true" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="email2"
+                    android:id="@+id/txt3viewmail2"
+                    android:clickable="false"
+                    android:textSize="18dp"
+                    android:singleLine="false"
+                    android:textColor="#ff0000ff"
+                    android:paddingLeft="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/Otbrmail3"
+                android:background="@drawable/line"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:showDividers="middle|beginning|end|none"
+                android:onClick="setmail"
+                android:clickable="true" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="email3"
+                    android:id="@+id/txt3viewmail3"
+                    android:clickable="false"
+                    android:textSize="18dp"
+                    android:singleLine="false"
+                    android:textColor="#ff0000ff"
+                    android:paddingLeft="10dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/Otbrmail4"
+                android:background="@drawable/line"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:showDividers="middle|beginning|end|none"
+                android:onClick="setmail"
+                android:clickable="true" >
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="email4"
+                    android:id="@+id/txt3viewmail4"
+                    android:clickable="false"
+                    android:textSize="18dp"
+                    android:singleLine="false"
+                    android:textColor="#ff0000ff"
+                    android:paddingLeft="10dp" />
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
+
+</RelativeLayout>
+

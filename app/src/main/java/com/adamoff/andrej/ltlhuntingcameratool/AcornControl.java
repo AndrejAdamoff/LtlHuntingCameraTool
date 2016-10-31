@@ -32,7 +32,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
-public class CameraControl extends ActionBarActivity {
+public class AcornControl extends ActionBarActivity {
 
     SQLiteDatabase db;
     ContentValues cv, cvf;
@@ -90,7 +90,7 @@ public class CameraControl extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_camera_control);
+        setContentView(R.layout.activity_acorn_control);
         Intent intent = getIntent();
         pphone = intent.getStringExtra("phone");
         aphone = "a" + (pphone.substring(1)); // удаляем +, ставим а
@@ -124,7 +124,7 @@ public class CameraControl extends ActionBarActivity {
 
         String args [] = {pphone};
         // читаем строку таблицы с помощью объекта cursor
-        Cursor cursor = db.query("cameras", columns, "pphone=?", args, null, null, null);
+        Cursor cursor = db.query("acorn", columns, "pphone=?", args, null, null, null);
         cursor.moveToFirst();
         mode = cursor.getString(cursor.getColumnIndex("mode"));
     //    modepos = cursor.getColumnIndex("mode");
@@ -190,7 +190,7 @@ public class CameraControl extends ActionBarActivity {
 
         // диалог с выбором параметра и отправкой SMS
 
-        dMode = new Dialog(CameraControl.this);
+        dMode = new Dialog(AcornControl.this);
         dMode.setContentView(R.layout.setmode);
      //   dMode.getWindow().setLayout(280, 290);
 
@@ -206,7 +206,7 @@ public class CameraControl extends ActionBarActivity {
 
         // диалог с выбором параметра и отправкой SMS
 
-        dFotosize = new Dialog(CameraControl.this);
+        dFotosize = new Dialog(AcornControl.this);
         dFotosize.setContentView(R.layout.setfotosize);
       //  dFotosize.getWindow().setLayout(280, 290);
         lp.copyFrom(dFotosize.getWindow().getAttributes());
@@ -220,7 +220,7 @@ public class CameraControl extends ActionBarActivity {
 
         // диалог с выбором параметра Videosize и отправкой SMS
 
-        dVideosize = new Dialog(CameraControl.this);
+        dVideosize = new Dialog(AcornControl.this);
         dVideosize.setContentView(R.layout.setvideosize);
      //   dVideosize.getWindow().setLayout(280, 290);
         lp.copyFrom(dVideosize.getWindow().getAttributes());
@@ -232,7 +232,7 @@ public class CameraControl extends ActionBarActivity {
         txtvideosize = (TextView)findViewById(R.id.txtvideosize);
         txtvideosize.setText(videosize);
 
-        dfotonumber = new Dialog(CameraControl.this);
+        dfotonumber = new Dialog(AcornControl.this);
         dfotonumber.setContentView(R.layout.setfotonumber);
      //   dfotonumber.getWindow().setLayout(280, 288);
         lp.copyFrom(dfotonumber.getWindow().getAttributes());
@@ -247,7 +247,7 @@ public class CameraControl extends ActionBarActivity {
     // создаём диалог с numberpicker для установки длительности видео:
         tv = (TextView) findViewById(R.id.textView23);
         tv.setText(videolength);
-        dVL = new Dialog(CameraControl.this);
+        dVL = new Dialog(AcornControl.this);
         dVL.setContentView(R.layout.setvideolength);
      //   dVL.getWindow().setLayout(270, 335);
         lp.copyFrom(dVL.getWindow().getAttributes());
@@ -270,7 +270,7 @@ public class CameraControl extends ActionBarActivity {
     // диалог с numberpicker для установки задержки повторного срабатывания MM:SS
         dl = (TextView) findViewById(R.id.textView25);
         dl.setText(delayMin+"m:"+delaySec+"s");
-        dDEL = new Dialog(CameraControl.this);
+        dDEL = new Dialog(AcornControl.this);
         dDEL.setContentView(R.layout.setdelay);
    //     dDEL.getWindow().setLayout(280, 372);
         lp.copyFrom(dDEL.getWindow().getAttributes());
@@ -301,7 +301,7 @@ public class CameraControl extends ActionBarActivity {
      // далее см. setdelay()
 
         // установка имени (serial numbers) камеры:
-        dserial = new Dialog(CameraControl.this);
+        dserial = new Dialog(AcornControl.this);
         dserial.setContentView(R.layout.setserial);
       //  dserial.getWindow().setLayout(280, 280);
         lp.copyFrom(dserial.getWindow().getAttributes());
@@ -311,10 +311,11 @@ public class CameraControl extends ActionBarActivity {
         dserial.getWindow().setAttributes(lp);
         dserial.setTitle("Set camera name");
         tview29 = (TextView)findViewById(R.id.textView29);
-        tview29.setText(serial);
+        if (serial.equals("")) tview29.setText("4 digits/letters");
+           else tview29.setText(serial);
         // далее см. setSerial2()
 
-        dsense = new Dialog(CameraControl.this);
+        dsense = new Dialog(AcornControl.this);
         dsense.setContentView(R.layout.setsense);
     //    dsense.getWindow().setLayout(280, 330);
         lp.copyFrom(dsense.getWindow().getAttributes());
@@ -330,7 +331,7 @@ public class CameraControl extends ActionBarActivity {
         tv33 = (TextView)findViewById(R.id.textView33);
         if (lapse.equals("Off")){tv33.setText("Off");}
         else {tv33.setText(lapseHH+"h: "+lapseMM+"m: "+lapseSS+"s: ");}
-        dINT = new Dialog(CameraControl.this);
+        dINT = new Dialog(AcornControl.this);
         dINT.setContentView(R.layout.setinterval);
      //   dINT.getWindow().setLayout(280, 405);
         lp.copyFrom(dINT.getWindow().getAttributes());
@@ -361,7 +362,7 @@ public class CameraControl extends ActionBarActivity {
         // далее см. setInterval()
 
 // Боковые датчики:
-        dpir = new Dialog(CameraControl.this);
+        dpir = new Dialog(AcornControl.this);
         dpir.setContentView(R.layout.setpir);
     //    dpir.getWindow().setLayout(280, 245);
         lp.copyFrom(dpir.getWindow().getAttributes());
@@ -375,7 +376,7 @@ public class CameraControl extends ActionBarActivity {
 
 
 // MMS:
-        dmms = new Dialog(CameraControl.this);
+        dmms = new Dialog(AcornControl.this);
         dmms.setContentView(R.layout.setmmstype);
     //    dmms.getWindow().setLayout(280, 280);
         lp.copyFrom(dmms.getWindow().getAttributes());
@@ -389,7 +390,7 @@ public class CameraControl extends ActionBarActivity {
 
 // Лимит фото в сутки:
 
-        dlimit = new Dialog(CameraControl.this);
+        dlimit = new Dialog(AcornControl.this);
         dlimit.setContentView(R.layout.setlimitmms);
    //     dlimit.getWindow().setLayout(280, 380);
         lp.copyFrom(dlimit.getWindow().getAttributes());
@@ -406,7 +407,7 @@ public class CameraControl extends ActionBarActivity {
         tv39 = (TextView)findViewById(R.id.textView39);
         if (timer.equals("On")) {tv39.setText("ON: "+timeronHH+"h"+":"+timeronMin+"m"+"\n"+"OFF: "+timeroffHH+"h"+":"+timeroffMin+"m");}
         else {tv39.setText("Off");}
-        dtimer = new Dialog(CameraControl.this);
+        dtimer = new Dialog(AcornControl.this);
         dtimer.setContentView(R.layout.settimer);
    //     dtimer.getWindow().setLayout(298, 447);
         lp.copyFrom(dtimer.getWindow().getAttributes());
@@ -479,8 +480,8 @@ public class CameraControl extends ActionBarActivity {
         tv47 = (TextView)findViewById(R.id.textView47);
         if (timer2.equals("On")) {tv47.setText("ON: "+timer2onHH+"h"+":"+timer2onMin+"m"+"\n"+"OFF: "+timer2offHH+"h"+":"+timer2offMin+"m");}
         else {tv47.setText("Off");}
-        dtimer2 = new Dialog(CameraControl.this);
-        dtimer2.setContentView(R.layout.settimer2);
+        dtimer2 = new Dialog(AcornControl.this);
+        dtimer2.setContentView(R.layout.settimer);
     //    dtimer2.getWindow().setLayout(298, 447);
         lp.copyFrom(dtimer2.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
@@ -527,7 +528,7 @@ public class CameraControl extends ActionBarActivity {
 // SMS interval:
         tv49 = (TextView)findViewById(R.id.textView49);
         tv49.setText(SMScontrol);
-        dsmsint = new Dialog(CameraControl.this);
+        dsmsint = new Dialog(AcornControl.this);
         dsmsint.setContentView(R.layout.smsnterval);
     //    dsmsint.getWindow().setLayout(280, 385);
         lp.copyFrom(dsmsint.getWindow().getAttributes());
@@ -545,7 +546,7 @@ public class CameraControl extends ActionBarActivity {
         ssmsint.setChecked(true);
         npsmsint.setValue(0);
 
-        dsmsoff = new Dialog(CameraControl.this);
+        dsmsoff = new Dialog(AcornControl.this);
         dsmsoff.setContentView(R.layout.smsoff);
      //   dsmsoff.getWindow().setLayout(300, 268);
         lp.copyFrom(dsmsoff.getWindow().getAttributes());
@@ -557,7 +558,7 @@ public class CameraControl extends ActionBarActivity {
 
 
    // phone2 or email:
-        dphone2 = new Dialog(CameraControl.this);
+        dphone2 = new Dialog(AcornControl.this);
         dphone2.setContentView(R.layout.setaddphone2oremail);
    //     dphone2.getWindow().setLayout(300, 228);
         lp.copyFrom(dphone2.getWindow().getAttributes());
@@ -572,7 +573,7 @@ public class CameraControl extends ActionBarActivity {
         else {txtviewphone2.setText(phone2orEmail);}
 
    // phone3 or email:
-        dphone3 = new Dialog(CameraControl.this);
+        dphone3 = new Dialog(AcornControl.this);
         dphone3.setContentView(R.layout.setaddphone3oremail);
     //    dphone3.getWindow().setLayout(300, 228);
         lp.copyFrom(dphone3.getWindow().getAttributes());
@@ -587,7 +588,7 @@ public class CameraControl extends ActionBarActivity {
         else {txtviewphone3.setText(phone3orEmail);}
 
    // email:
-      demail = new Dialog(CameraControl.this);
+      demail = new Dialog(AcornControl.this);
      //  AlertDialog.Builder demail = new AlertDialog.Builder(CameraControl2.this);
     //   RelativeLayout view = (RelativeLayout) getLayoutInflater().inflate(R.layout.setmail, null);
         // устанавливаем ее, как содержимое тела диалога
@@ -650,7 +651,7 @@ public class CameraControl extends ActionBarActivity {
                 db = dbHelper.getWritableDatabase();
                 String args[] = new String[]{pphone};
                 cv.put("mode", mode);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
   //              cv.clear();
                 db.close();
 
@@ -702,7 +703,7 @@ public class CameraControl extends ActionBarActivity {
                 db = dbHelper.getWritableDatabase();
                 String args[] = new String[]{pphone};
                 cv.put("fotosize", fotosize);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
     //            cv.clear();
                 db.close();
             }
@@ -752,7 +753,7 @@ public class CameraControl extends ActionBarActivity {
                 db = dbHelper.getWritableDatabase();
                 String args[] = new String[]{pphone};
                 cv.put("videosize", videosize);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
       //          cv.clear();
                 db.close();
             }
@@ -802,7 +803,7 @@ public class CameraControl extends ActionBarActivity {
                 db = dbHelper.getWritableDatabase();
                 String args[] = new String[]{pphone};
                 cv.put("fotonumber", fotonumber);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
         //        cv.clear();
                 db.close();
 
@@ -840,7 +841,7 @@ public class CameraControl extends ActionBarActivity {
                 db = dbHelper.getWritableDatabase();
                 String args[] = new String[]{pphone};
                 cv.put("videolength", videolength);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
           //      cv.clear();
                 db.close();
             }
@@ -890,7 +891,7 @@ public class CameraControl extends ActionBarActivity {
                 String args[] = new String[]{pphone};
                 cv.put("delayMin", delayMin);
                 cv.put("delaySec", delaySec);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
             //    cv.clear();
                 db.close();
 
@@ -910,11 +911,12 @@ public class CameraControl extends ActionBarActivity {
        //  d.setContentView(R.layout.dialog);
         Button b1 = (Button) dserial.findViewById(R.id.setmailbutton1);
         Button b2 = (Button) dserial.findViewById(R.id.setmailbutton2);
-
-        edtxt = (EditText) dserial.findViewById(R.id.editText55);
-        edtxt.setEnabled(false);
-      //  edtxt.clearFocus();
         sserial  = (Switch)dserial.findViewById(R.id.switch1);
+        edtxt = (EditText) dserial.findViewById(R.id.editText55);
+        if (serial.equals("")) {edtxt.setEnabled(false);sserial.setChecked(false);}
+        else {edtxt.setEnabled(true); edtxt.setText(serial); sserial.setChecked(true);}
+      //  edtxt.clearFocus();
+
         sserial.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -931,14 +933,14 @@ public class CameraControl extends ActionBarActivity {
                 serial = edtxt.getText().toString();
                 tview29.setText(serial);
                 SMS = "ltl07*1"+serial+"#aa"; }
-                else {serial = "4 letters/digits"; tview29.setText(serial); SMS = "07*0#";}
+                else {serial = ""; tview29.setText("4 letters/digits"); SMS = "07*0#";}
 
                 dserial.dismiss();
                 sendSMS(pphone, SMS);
                 db = dbHelper.getWritableDatabase();
                 String args[] = new String[]{pphone};
                 cv.put("serial", serial);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
                 db.close();
 
             }
@@ -992,7 +994,7 @@ public class CameraControl extends ActionBarActivity {
                 db = dbHelper.getWritableDatabase();
                 String args[] = new String[]{pphone};
                 cv.put("sense", sense);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
                 db.close();
                 sendSMS (pphone, SMS);
 
@@ -1038,7 +1040,7 @@ public class CameraControl extends ActionBarActivity {
                 db = dbHelper.getWritableDatabase();
                 String args[] = new String[]{pphone};
                 cv.put("sidePIR", sidePIR);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
                 db.close();
                 sendSMS (pphone, SMS);
             }
@@ -1128,7 +1130,7 @@ public class CameraControl extends ActionBarActivity {
                 cv.put("lapseHH", lapseHH);
                 cv.put("lapseMM", lapseMM);
                 cv.put("lapseSS", lapseSS);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
                 db.close();
                 sendSMS(pphone,SMS);
             }
@@ -1178,7 +1180,7 @@ public class CameraControl extends ActionBarActivity {
                 db = dbHelper.getWritableDatabase();
                 String args[] = new String[]{pphone};
                 cv.put("MMS", MMStype);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
                 db.close();
                 sendSMS (pphone, SMS);
             }
@@ -1220,7 +1222,7 @@ public class CameraControl extends ActionBarActivity {
                 db = dbHelper.getWritableDatabase();
                 String args[] = new String[]{pphone};
                 cv.put("MMSlimit", MMSlimit);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
                 db.close();
                 sendSMS(pphone,SMS);
             }
@@ -1329,7 +1331,7 @@ public class CameraControl extends ActionBarActivity {
                 cv.put("timeronMin", timeronMin);
                 cv.put("timeroffHH", timeroffHH);
                 cv.put("timeroffMin", timeroffMin);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
                 db.close();
                 sendSMS(pphone,SMS);
             }
@@ -1435,7 +1437,7 @@ public class CameraControl extends ActionBarActivity {
                 cv.put("timer2onMin", timer2onMin);
                 cv.put("timer2offHH", timer2offHH);
                 cv.put("timer2offMin", timer2offMin);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
                 db.close();
                 sendSMS(pphone,SMS);
             }
@@ -1504,7 +1506,7 @@ public class CameraControl extends ActionBarActivity {
                                           db = dbHelper.getWritableDatabase();
                                           String args[] = new String[]{pphone};
                                           cv.put("SMScontrol", SMScontrol);
-                                          db.update("cameras", cv, "pphone=?", args);
+                                          db.update("acorn", cv, "pphone=?", args);
                                           db.close();
                                           dsmsint.dismiss();
 
@@ -1537,7 +1539,7 @@ public class CameraControl extends ActionBarActivity {
                db = dbHelper.getWritableDatabase();
                String args[] = new String[]{pphone};
                cv.put("phone2orEmail", phone2orEmail);
-               db.update("cameras", cv, "pphone=?", args);
+               db.update("acorn", cv, "pphone=?", args);
                db.close();
                sendSMS(pphone,SMS);
            }
@@ -1564,7 +1566,7 @@ public class CameraControl extends ActionBarActivity {
                 db = dbHelper.getWritableDatabase();
                 String args[] = new String[]{pphone};
                 cv.put("phone3orEmail", phone3orEmail);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
                 db.close();
                 dphone3.dismiss();
                 sendSMS(pphone,SMS);
@@ -1596,7 +1598,7 @@ public class CameraControl extends ActionBarActivity {
                 db = dbHelper.getWritableDatabase();
                 String args[] = new String[]{pphone};
                 cv.put("Email", Email);
-                db.update("cameras", cv, "pphone=?", args);
+                db.update("acorn", cv, "pphone=?", args);
                 db.close();
                 sendSMS(pphone,SMS);
             }
@@ -1676,12 +1678,12 @@ public class CameraControl extends ActionBarActivity {
                 String SQLstatement = "DROP TABLE IF EXISTS " + aphone;
                 db.execSQL(SQLstatement);
                 // удаление строки из cameras:
-                db.delete("cameras", "pphone=?", new String[]{String.valueOf (pphone)});
+                db.delete("acorn", "pphone=?", new String[]{String.valueOf (pphone)});
 
                 // если это последняя камера, имеющая включённый push, то останавливаем IMAP listener
-                Cursor cursor1 = db.query("cameras", new String[]{"push"}, "push=?", new String[]{"enabled"}, null, null, null);
+                Cursor cursor1 = db.query("acorn", new String[]{"push"}, "push=?", new String[]{"enabled"}, null, null, null);
                 if (cursor1.getCount()==0) {
-                    startService(new Intent(CameraControl.this, IMAPListener.class).putExtra("action", "stopidle"));
+                    startService(new Intent(AcornControl.this, IMAPListener.class).putExtra("action", "stopidle"));
                     ContentValues cv11 = new ContentValues();
                     cv11.put("push", "disabled");
                     db.update("smtp", cv11, null, null);
@@ -1721,7 +1723,7 @@ public class CameraControl extends ActionBarActivity {
                     // обзервер не запущен
                 }
 
-                startActivity(new Intent(CameraControl.this, MainActivity.class));
+                startActivity(new Intent(AcornControl.this, MainActivity.class));
                 finish();
 
             }
