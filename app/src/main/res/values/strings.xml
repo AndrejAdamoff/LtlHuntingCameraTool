@@ -21,8 +21,8 @@
  />                                                            <string name="exit">Exit?</string>
  />                                                            <string name="noSMSyet">No SMS</string>
  />                                                            <string name="noMMSyet">No MMS</string>
- />                                                            <string name="getfoto">Ltl Acorn \n get foto</string>
- />                                                            <string name="SMScontrol">Ltl Acorn SMS control</string>
+ />                                                            <string name="getfoto">Get foto</string>
+ />                                                            <string name="SMScontrol">SMS control</string>
  />                                                            <string name="cameraedit">Edit \n camera</string>
  />                                                            <string name="fotoreceived">photo received:</string>
  />                                                            <string name="smsreceived">SMS received: </string>
@@ -50,7 +50,7 @@
     <string name="sure">Yes, sure!</string>
     <string name="read">Read</string>
     <string name="about">About application</string>
-    <string name="version">Version 2.1 by Andy Adamoff \nSupport: \nandrej.adamoff@gmail.com</string>
+    <string name="version">Version 3.0 by Andy Adamoff \nSupport: \nandrej.adamoff@gmail.com</string>
     <string name="downloadMMS">Searching new \nMMS photo...</string>
     <string name="downloadSMTP">Downloading new \nphoto from email ...</string>
     <string name="received">Received</string>
@@ -77,48 +77,95 @@
     <string name="mmsrefresh">Refresh MMS gallery</string>
     <string name="mmsrefreshsummary">Search new MMS in the phone when camera photo gallery opens</string>
     <string name="smtppush">Gmail instant photo autodownload</string>
-    <string name="smtppushsummary">The feature has been tested with Gmail only. Requires "Data connection" is always on.</string>
-    <string name="pushwarning">For usage of Gmail photos autodownload feature please check following: \n1. Gmail IMAP access is enabled \n2. Google specific "Access for less secure apps" is turned on \n3. "Data connection" at your phone is always on</string>
-    <string name="mmssummary">Enable if camera sens MMS photo. \nDisable if the app can not start at your phone</string>
-    <string name="smssummary">Enable if camera sends SMS. \nDisable if the app can not start at your phone</string>
+    <string name="smtppushsummary">The feature has been tested with Gmail only. Requires Internet connection always on.</string>
+    <string name="pushwarning">For usage of Gmail photos autodownload feature please check the following: \n1. Gmail IMAP access is enabled \n2. Google specific "Access for less secure apps" is turned on \n3. "Data connection" or WiFI at your phone is always on</string>
+    <string name="mmssummary">Enable if camera sends MMS photo</string>
+    <string name="smssummary">Enable if camera sends SMS</string>
     <string name="mmswarning">Stop photo searching?</string>
-    <string name="wronglogin">Error connecting Email. Please check login or whether Data Connection is enabled in your phone.</string>
+    <string name="wronglogin">Error connecting Email. Please check login and Internet connection.</string>
     <string name="title_activity_help">Help</string>
     <string name="imap_ticker">Email autodownload is disabled</string>
     <string name="imap_title">Connection to email imap folder is lost</string>
     <string name="imap_text">due to network problems. Check your balance and disable/enable Data Connection</string>
     <string name="notif_ticker">New hunting camera photo</string>
     <string name="notif_title">new email photo(s) from:</string>
-    <string name="smtp_toast">Unable download photos from email. Check email login or whether data connection enabled</string>
+    <string name="smtp_toast">Unable download photos from email. \nCheck email login or Internet connection.</string>
     <string name="smtp_toast1">Downloaded</string>
     <string name="smtp_toast2">new photo(s) from email box</string>
-    <string name="smtprefreshsummary">Search new fotos in Email box </string>
+    <string name="smtprefreshsummary">Search new fotos in Email box when photo gallery opens.</string>
     <string name="learn_imap">Learn here how to enable IMAP for Gmail</string>
     <string name="learn_lesssecure">Learn here how to turn on "access for less secure apps" for Gmail</string>
     <string name="addcamera">Add camera</string>
     <string name="online">Always online</string>
-    <string name="onlinesummary">Does not allow phone to sleep to be 24 hours connected to email box. Causes increased battery drain.</string>
-    <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="onlinesummary">This does not allow the phone to sleep to be 24 hours connected to email box. But it causes increased battery drain.</string>
+    <string name="banner_ad_unit_id" translatable="false">ca-app-pub-9367463267962842/9792773013</string>
     <string name="camtype">Camera type</string>
 
-    <string-array name="a_camtype">
+    <string-array name="a_camtype" translatable="false">
         <item>Ltl Acorn </item>
         <item>SiFar </item>
         <item>Other </item>
     </string-array>
-    <string-array name="b_camtype">
+    <string-array name="b_camtype" translatable="false">
         <item>acorn</item>
         <item>sifar</item>
         <item>other</item>
     </string-array>
 
     <string name="camtype_sum">Choose camera type</string>
-    <string name="title_activity_sifar_control">SifarControl</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_other_control">OtherControl</string>
+    <string name="title_activity_sifar_control">Sifar camera SMS control</string>
+    <string name="title_activity_other_control">camera SMS control</string>
     <string name="smscntrl">SMS control</string>
     <string name="other_editcommand">Edit commands</string>
     <string name="btngetphoto">Set button "Get Photo"</string>
+    <string name="cancel">Cancel</string>
+    <string name="sendsms">Send SMS</string>
+    <string name="com1">enter command 1</string>
+    <string name="com2">enter command 2</string>
+    <string name="com3">enter command 3</string>
+    <string name="com4">enter command 4</string>
+    <string name="com5">enter command 5</string>
+    <string name="com6">enter command 6</string>
+    <string name="com7">enter command 7</string>
+    <string name="com8">enter command 8</string>
+    <string name="com9">enter command 9</string>
+    <string name="com10">enter command 10</string>
+    <string name="val1">value 1</string>
+    <string name="val2">value 2</string>
+    <string name="val3">value 3</string>
+    <string name="val4">value 4</string>
+    <string name="val5">value 5</string>
+    <string name="val6">value 6</string>
+    <string name="val7">value 7</string>
+    <string name="val8">value 8</string>
+    <string name="val9">value 9</string>
+    <string name="val10">value 10</string>
+    <string name="ph1">Phone 1: </string>
+    <string name="ph2">Phone 2:</string>
+    <string name="ph3">Phone 3:</string>
+    <string name="ph4">Phone 4:</string>
+    <string name="comnotconf">Command is not configured.  \nLong click the command to configure it</string>
+    <string name="sendingsms">SMS sending...</string>
+    <string name="btngetfotonotconf">Button Get Photo is not configured.  \nLong click the button to configure it</string>
+    <string name="downloaded">Downloaded</string>
+    <string name="newphoto">new photo(s) from email box</string>
+    <string name="entercomname">enter here command name</string>
+    <string name="entervalue">enter here value for the command</string>
+    <string name="entersms">enter here sms for the command</string>
+    <string name="phone">phone</string>
+    <string name="bfphone">before phone</string>
+    <string name="aftphone">after phone</string>
+    <string name="bfmail">before email</string>
+    <string name="aftemail">after email</string>
+    <string name="setmail">enter here email address</string>
+    <string name="sendphone">enter here phone to send</string>
+    <string name="setbtnphoto">enter here sms for the command "get photo"</string>
+    <string name="titlesetcom">Set command</string>
+    <string name="titlesetphone">Set command "Phone for receiving photos"</string>
+    <string name="titlesendphone">Set phone number where photos sent</string>
+    <string name="titlesendemail">Set email address where photos sent</string>
+    <string name="titlesetemail">Set command "Email for receiving photos"</string>
+    <string name="titlesendcom">Send SMS</string>
+    <string name="www">www.huntingcamera.eu</string>
 
 </resources>

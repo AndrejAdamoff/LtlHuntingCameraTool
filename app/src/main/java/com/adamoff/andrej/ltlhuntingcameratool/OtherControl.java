@@ -225,7 +225,7 @@ public class OtherControl extends ActionBarActivity {
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         //  d.show();
         dcommand.getWindow().setAttributes(lp);
-        dcommand.setTitle("Set command");
+        dcommand.setTitle(getString(R.string.titlesetcom));
         txtcom1 = (TextView)findViewById(R.id.Otvcom1); txtcom1.setText(command1);
         txtcom2 = (TextView)findViewById(R.id.Otvcom2); txtcom2.setText(command2);
         txtcom3 = (TextView)findViewById(R.id.Otvcom3); txtcom3.setText(command3);
@@ -257,16 +257,16 @@ public class OtherControl extends ActionBarActivity {
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         //  d.show();
         dphone.getWindow().setAttributes(lp);
-        dphone.setTitle("Set phone command");
+        dphone.setTitle(getString(R.string.titlesetphone));
 
         txtviewphone1 = (TextView)findViewById(R.id.Otvphone1);
         txtviewphone2 = (TextView)findViewById(R.id.Otvphone2);
         txtviewphone3 = (TextView)findViewById(R.id.Otvphone3);
         txtviewphone4 = (TextView)findViewById(R.id.Otvphone4);
-        txtviewphone1.setText("Phone 1: " + phone1);
-        txtviewphone2.setText("Phone 2: " + phone2);
-        txtviewphone3.setText("Phone 3: " + phone3);
-        txtviewphone4.setText("Phone 4: " + phone4);
+        txtviewphone1.setText(getString(R.string.ph1)+" " + phone1);
+        txtviewphone2.setText(getString(R.string.ph2)+" " + phone2);
+        txtviewphone3.setText(getString(R.string.ph3)+" " + phone3);
+        txtviewphone4.setText(getString(R.string.ph4)+" " + phone4);
 // диалог send phone:
         dsendphone = new Dialog(this, R.style.MyStyle);
         dsendphone.setContentView(R.layout.other_sendphone);
@@ -274,7 +274,7 @@ public class OtherControl extends ActionBarActivity {
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         dsendphone.getWindow().setAttributes(lp);
-        dsendphone.setTitle("Send phone command");
+
 
         // диалог email:
         demail = new Dialog(OtherControl.this, R.style.MyStyle);
@@ -284,7 +284,7 @@ public class OtherControl extends ActionBarActivity {
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         //  d.show();
         demail.getWindow().setAttributes(lp);
-        demail.setTitle("Set email command");
+        demail.setTitle(getString(R.string.titlesetemail));
 
         txtviewmail1 = (TextView)findViewById(R.id.Otvmail1);
         txtviewmail2 = (TextView)findViewById(R.id.Otvmail2);
@@ -301,7 +301,6 @@ public class OtherControl extends ActionBarActivity {
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         dsendmail.getWindow().setAttributes(lp);
-        dsendmail.setTitle("Send mail command");
 
        // диалог send sms
         dsms = new Dialog(OtherControl.this, R.style.MyStyle);
@@ -311,8 +310,8 @@ public class OtherControl extends ActionBarActivity {
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         //  d.show();
         dsms.getWindow().setAttributes(lp);
-        dsms.setTitle("Send command");
-    }
+        dsms.setTitle(getString(R.string.titlesendcom));
+       }
 
     public void setcommand(final View v){
 
@@ -455,27 +454,33 @@ public class OtherControl extends ActionBarActivity {
         switch (v.getId()){
 
             case R.id.Orow_1:
-                tvcommand.setText(command1);
-                tvvalue.setText(value1);
-                tvsms.setText(sms1);
-                break;
-            case R.id.Orow_2: tvcommand.setText(command2);  tvvalue.setText(value2);  tvsms.setText(sms2); break;
-            case R.id.Orow_3: tvcommand.setText(command3);  tvvalue.setText(value3);  tvsms.setText(sms3); break;
-            case R.id.Orow_4: tvcommand.setText(command4);  tvvalue.setText(value4);  tvsms.setText(sms4); break;
-            case R.id.Orow_5: tvcommand.setText(command5);  tvvalue.setText(value5);  tvsms.setText(sms5); break;
-            case R.id.Orow_6: tvcommand.setText(command6);  tvvalue.setText(value6);  tvsms.setText(sms6); break;
-            case R.id.Orow_7: tvcommand.setText(command7);  tvvalue.setText(value7);  tvsms.setText(sms7); break;
-            case R.id.Orow_8: tvcommand.setText(command8);  tvvalue.setText(value8);  tvsms.setText(sms8); break;
-            case R.id.Orow_9: tvcommand.setText(command9);  tvvalue.setText(value9);  tvsms.setText(sms9); break;
-            case R.id.Orow_10: tvcommand.setText(command10);  tvvalue.setText(value10);  tvsms.setText(sms10); break;
-
+                if (sms1.equals("")){Toast.makeText(OtherControl.this, R.string.comnotconf, Toast.LENGTH_LONG).show();
+                } else { tvcommand.setText(command1); tvvalue.setText(value1); tvsms.setText(sms1); dsms.show();}      break;
+            case R.id.Orow_2: if (sms2.equals("")){Toast.makeText(OtherControl.this, R.string.comnotconf, Toast.LENGTH_LONG).show();
+            } else {tvcommand.setText(command2);  tvvalue.setText(value2);  tvsms.setText(sms2);dsms.show();} break;
+            case R.id.Orow_3: if (sms3.equals("")){Toast.makeText(OtherControl.this, R.string.comnotconf, Toast.LENGTH_LONG).show();
+            } else { tvcommand.setText(command3);  tvvalue.setText(value3);  tvsms.setText(sms3);dsms.show();} break;
+            case R.id.Orow_4: if (sms4.equals("")){Toast.makeText(OtherControl.this, R.string.comnotconf, Toast.LENGTH_LONG).show();
+            } else {tvcommand.setText(command4);  tvvalue.setText(value4);  tvsms.setText(sms4);dsms.show();} break;
+            case R.id.Orow_5: if (sms5.equals("")){Toast.makeText(OtherControl.this, R.string.comnotconf, Toast.LENGTH_LONG).show();
+            } else {tvcommand.setText(command5);  tvvalue.setText(value5);  tvsms.setText(sms5);dsms.show();} break;
+            case R.id.Orow_6: if (sms6.equals("")){Toast.makeText(OtherControl.this, R.string.comnotconf, Toast.LENGTH_LONG).show();
+            } else { tvcommand.setText(command6);  tvvalue.setText(value6);  tvsms.setText(sms6);dsms.show();} break;
+            case R.id.Orow_7: if (sms7.equals("")){Toast.makeText(OtherControl.this, R.string.comnotconf, Toast.LENGTH_LONG).show();
+            } else {tvcommand.setText(command7);  tvvalue.setText(value7);  tvsms.setText(sms7);dsms.show();} break;
+            case R.id.Orow_8: if (sms8.equals("")){Toast.makeText(OtherControl.this, R.string.comnotconf, Toast.LENGTH_LONG).show();
+            } else { tvcommand.setText(command8);  tvvalue.setText(value8);  tvsms.setText(sms8);dsms.show();} break;
+            case R.id.Orow_9: if (sms9.equals("")){Toast.makeText(OtherControl.this, R.string.comnotconf, Toast.LENGTH_LONG).show();
+            } else {tvcommand.setText(command9);  tvvalue.setText(value9);  tvsms.setText(sms9);dsms.show();} break;
+            case R.id.Orow_10: if (sms10.equals("")){Toast.makeText(OtherControl.this, R.string.comnotconf, Toast.LENGTH_LONG).show();
+            } else {tvcommand.setText(command10);  tvvalue.setText(value10);  tvsms.setText(sms10);dsms.show();} break;
         }
 
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String SMS = tvsms.getText().toString();
-                if (SMS.equals("")) Toast.makeText(OtherControl.this, "Command is not configured", Toast.LENGTH_LONG).show();
+                if (SMS.equals("")) Toast.makeText(OtherControl.this, R.string.comnotconf, Toast.LENGTH_LONG).show();
                    else sendSMS(pphone,SMS);
                 dsms.dismiss();
             }
@@ -487,7 +492,6 @@ public class OtherControl extends ActionBarActivity {
             }
         });
 
-        dsms.show();
     }
 
     public void sendphone(View v){
@@ -495,6 +499,10 @@ public class OtherControl extends ActionBarActivity {
         Button b1 = (Button)dsendphone.findViewById(R.id.setmailbutton1);
         Button b2 = (Button)dsendphone.findViewById(R.id.setmailbutton2);
         edphone = (EditText)dsendphone.findViewById(R.id.sendphone);
+        TextView tv = (TextView)dsendphone.findViewById(android.R.id.title);
+     //   tv.setTextSize(20);
+        tv.setLines(2);
+        dsendphone.setTitle(getString(R.string.titlesendphone));
 
         switch (v.getId()){
 
@@ -540,6 +548,10 @@ public class OtherControl extends ActionBarActivity {
         Button b1 = (Button)dsendmail.findViewById(R.id.setmailbutton1);
         Button b2 = (Button)dsendmail.findViewById(R.id.setmailbutton2);
         edmail = (EditText)dsendmail.findViewById(R.id.sendmail);
+        TextView tv1 = (TextView)dsendmail.findViewById(android.R.id.title);
+      //  tv1.setTextSize(20);
+        tv1.setLines(2);
+        dsendmail.setTitle(getString(R.string.titlesendemail));
 
         switch (v.getId()){
 
@@ -588,7 +600,7 @@ public class OtherControl extends ActionBarActivity {
         intent.putExtra("number",pphone);
         intent.putExtra("text",SMS);
         startService(intent);
-        Toast toast = Toast.makeText(getApplicationContext(), "SMS sending..."+SMS, Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(getApplicationContext(), R.string.sendingsms + SMS, Toast.LENGTH_SHORT);
         toast.show();
 
     }
@@ -658,30 +670,5 @@ public class OtherControl extends ActionBarActivity {
         super.onBackPressed();
         //   startActivity(new Intent(this, cameraView.class));
         //   finish();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_other_control, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        switch (id) {
-            case R.id.editcommands: {
-    //            startActivity(new Intent(this, AddEditCamera.class).putExtra("who", "view").putExtra("name",table).putExtra("pphone", pphone));
-    //            finish();
-                return true;
-            }
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

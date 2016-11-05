@@ -286,7 +286,6 @@
                     android:clickable="true"
                     android:onClick="setSerial2"
                     android:focusable="false"
-                    android:text="4 letters/digits"
                     android:layout_marginRight="10dp"
                     android:textSize="18dp"
                     android:paddingTop="10dp"

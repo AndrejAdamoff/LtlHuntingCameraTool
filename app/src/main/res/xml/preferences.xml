@@ -66,7 +66,7 @@
         android:title="@string/smtpToPwd"
         android:summary=""
         android:defaultValue=""
-        android:dialogTitle="smtpToPwd"
+        android:dialogTitle="@string/smtpToPwd"
         android:dependency="smtp"/>
 
     <CheckBoxPreference

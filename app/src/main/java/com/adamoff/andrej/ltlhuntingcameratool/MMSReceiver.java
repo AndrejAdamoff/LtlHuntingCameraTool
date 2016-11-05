@@ -20,7 +20,7 @@ public class MMSReceiver extends BroadcastReceiver {
             String type = intent.getType();
 
             if (action.equals("android.provider.Telephony.WAP_PUSH_RECEIVED") && type.equals("application/vnd.wap.mms-message")) {
-
+System.out.println("8888 MMS: MMSReceiver");
                 Bundle bundle = intent.getExtras();
 
                 //   Log.d(DEBUG_TAG, "bundle " + bundle);
@@ -47,12 +47,12 @@ public class MMSReceiver extends BroadcastReceiver {
 
                          //   Log.d(DEBUG_TAG, "Mobile Number: " + incomingNumber);
                             // запуск сервиса, который запускает диалоговое окно
+ System.out.println("8888 MMS: incomingnumber "+incomingNumber);
                             Intent sintent = new Intent(context, HuntingCameraService.class);
                             sintent.putExtra("phone", incomingNumber);
                             sintent.putExtra("type", "MMS");
                             //
                            context.startService(sintent);
-
                         }
                     }
                 }

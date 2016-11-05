@@ -113,10 +113,11 @@ public class IMAPListener extends Service {
 
             if (tnoop == null) {
                 tnoop = new Thread(noop);
-                tnoop.setDaemon(true);
+//                tnoop.setDaemon(true);
                 System.out.println("7777 new thread tnoop is created");
-            } else {if (!t.isInterrupted()) t.interrupt();
-                System.out.println("7777 thread t is interrupted");
+            } else { tnoop = null;  tnoop = new Thread(noop);
+                // if (!t.isInterrupted()) t.interrupt();
+                System.out.println("7777 thread t is interrupted. Action = noop");
             }
               tnoop.start();
         }
@@ -131,6 +132,7 @@ public class IMAPListener extends Service {
  /*           SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             boolean online = sp.getBoolean("alwaysonline", false);
             if (online) {
+            if (online) {
                 pm = (PowerManager)getSystemService(Context.POWER_SERVICE);
                 PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "wakelock");
                 wl.acquire();
@@ -139,7 +141,7 @@ public class IMAPListener extends Service {
             // пересоздаём потоки:
             if(t == null){
                 t = new Thread(r);
-                t.setDaemon(true);
+//               t.setDaemon(true);
                 System.out.println("7777 new thread t is created");
             } else { if (!t.isInterrupted()) {t.interrupt(); t = null;
                 System.out.println("7777 old thread t is interrupted and deleted");}
@@ -147,7 +149,7 @@ public class IMAPListener extends Service {
                 System.out.println("7777 restart thread t already was interrupted before");
                 // пересоздаём поток:
                 t = new Thread(r);
-                t.setDaemon(true);
+//                t.setDaemon(true);
                 System.out.println("7777 new thread t is created");
             }
 
@@ -256,7 +258,7 @@ public class IMAPListener extends Service {
             // пересоздаём потоки:
             if(t == null){
                 t = new Thread(r);
-                t.setDaemon(true);
+ //               t.setDaemon(true);
                 System.out.println("7777 new thread t is created");
             } else { // вычищаем старый потк и создаём новый:
                 if (!t.isInterrupted()) {t.interrupt(); t = null;
@@ -265,7 +267,7 @@ public class IMAPListener extends Service {
                 System.out.println("7777 restart thread t already was interrupted before");
                 // пересоздаём поток:
                 t = new Thread(r);
-                t.setDaemon(true);
+//                t.setDaemon(true);
                 System.out.println("7777 new thread t is created");
             }
 
@@ -319,20 +321,32 @@ public class IMAPListener extends Service {
 
  //       Toast.makeText(getApplicationContext(), "IMAP startedboot", Toast.LENGTH_LONG).show();
 
-                if(t == null){
-                    t = new Thread(r);
-                    t.setDaemon(true);
-                    System.out.println("7777 new thread t is created");
-                } else { t.interrupt();
-                    System.out.println("7777 thread t is interrupted");}
+ /*     Intent intent2 = new Intent(IMAPListener.this, IMAPListener.class).putExtra("action", "noop");
+      PendingIntent pi = PendingIntent.getService(IMAPListener.this, 0, intent2, 0);
+      AlarmManager alarmManager = (AlarmManager) getSystemService(Service.ALARM_SERVICE);
+      alarmManager.cancel(pi);
+      pi.cancel();
+*/
+           //     if(t == null){
+                    if (t!=null)  t = null;
 
-                if (tnoop ==null) {
+                    t = new Thread(r);
+   //                 t.setDaemon(true);
+                    System.out.println("7777 new thread t is created");
+     //           } else {
+                    //t.interrupt();faction =
+      //                  t = new Thread(r);
+                    System.out.println("7777 thread t is interrupted"); //}
+
+       //         if (tnoop ==null) {
+       //             if (tnoop.isInterrupted()) {
+                if (tnoop!=null) tnoop=null;
                     tnoop = new Thread(noop);
-                    tnoop.setDaemon(true);
+ //                   tnoop.setDaemon(true);
                     System.out.println("7777 new thread tnoop is created");
-                } else {
-                    tnoop.interrupt();
-                    System.out.println("7777 thread tnoop is interrupted");}
+      //          } else {
+     //               tnoop.interrupt();
+                    System.out.println("7777 thread tnoop is interrupted"); //}
 
                 im = new imap();
                 //     im.execute(smtpToMail, smtpToPwd);
@@ -346,14 +360,15 @@ public class IMAPListener extends Service {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             boolean online = sp.getBoolean("alwaysOn", false);
             if (online) {
-                if (!wl.isHeld()) {wl.acquire();
-  //                  Toast.makeText(getApplicationContext(), "WakeLock activated startidle", Toast.LENGTH_LONG).show();
- //                   System.out.println("7777 WakeLock activated startidle");
+                if (!wl.isHeld()) {
+                    wl.acquire();
+                    //                  Toast.makeText(getApplicationContext(), "WakeLock activated startidle", Toast.LENGTH_LONG).show();
+                    //                   System.out.println("7777 WakeLock activated startidle");
                 }
-            }
-            else {if (wl.isHeld()) wl.release();
- //               Toast.makeText(getApplicationContext(), "WakeLock deactivated startidle", Toast.LENGTH_LONG).show();
- //               System.out.println("7777 WakeLock deactivated startidle");
+            } else {
+                if (wl.isHeld()) wl.release();
+                //               Toast.makeText(getApplicationContext(), "WakeLock deactivated startidle", Toast.LENGTH_LONG).show();
+                //               System.out.println("7777 WakeLock deactivated startidle");
             }
 
             smtpToMail = intent.getStringExtra("smtpToMail");
@@ -361,7 +376,7 @@ public class IMAPListener extends Service {
 
             System.out.println("7777 IMAP startidle");
 
-  //         Toast.makeText(getApplicationContext(), "IMAP startidle", Toast.LENGTH_LONG).show();
+            //         Toast.makeText(getApplicationContext(), "IMAP startidle", Toast.LENGTH_LONG).show();
 
 /*            try{alarmManager.cancel(pi1);} catch (Exception e) {e.printStackTrace();}
 
@@ -373,13 +388,16 @@ public class IMAPListener extends Service {
             alarmManager.cancel(pi1);
             System.out.println("AlarmManager1 cancelled");
 */
-            im = new imap();
+
+// if (im == null) {
+    im = new imap();
             //   im.execute(smtpToMail, smtpToPwd);
             System.out.println("7777 Starting im...");
             //      if (im.getStatus() != AsyncTask.Status.RUNNING)
-            im.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, smtpToMail, smtpToPwd); // выполняется в своем экзекьютере, т.к. async IMAP и async updatedbMMS не могут выполняться в параллельно
 
-        }
+                im.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, smtpToMail, smtpToPwd); // выполняется в своем экзекьютере, т.к. async IMAP и async updatedbMMS не могут выполняться в параллельно
+  //      } else  System.out.println("7777 im is not started as already exists");
+       }
     } catch (Exception e) {e.printStackTrace(); stopSelf();}
 
     //    return super.onStartCommand(intent, flags, startId);
@@ -414,10 +432,10 @@ public class IMAPListener extends Service {
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
-
+//System.out.println("7777 publish progress");
             // ----------- нотификации ---------------------------------
             if (spphone.size() > 0) {
-
+//System.out.println("7777 spphone Ok");
                 // пробуем открыть файл:
                 try {
                     hm = new HashMap<String, Integer>();
@@ -575,6 +593,7 @@ public class IMAPListener extends Service {
                     if (cur.moveToFirst()) {
                         do {
                             table = cur.getString(cur.getColumnIndex("name"));
+                            if (table!=null) break;
                         } while (cur.moveToNext());
                     }
                     cur.close();
@@ -666,7 +685,7 @@ public class IMAPListener extends Service {
 
         @Override
         protected Void doInBackground(String... params) {
-            System.out.println("7777 doInBackground...");
+            System.out.println("7777 IM doInBackground...");
 
             //         Properties props = System.getProperties();
    //         Session session = Session.getDefaultInstance(props, null);
@@ -688,7 +707,7 @@ public class IMAPListener extends Service {
          //           folder.open(IMAPFolder.READ_WRITE);
 
             } catch (MessagingException me){
-                System.out.println("7777 folder exection 1..."); // возникает когда баланс 0
+                System.out.println("7777 No connecion to Internet, stopping IM"); // возникает когда баланс 0
                 im.cancel(false);
                 if (wl.isHeld())  f = true; // нотифицируем о потере связи только, если wakelock вкл.
           //      m++;
@@ -888,6 +907,8 @@ public class IMAPListener extends Service {
 
     protected void updateSMTP () {
 
+    System.out.println("7777 update SMTP");
+
         listMessages = new LinkedList<>();
 
         String from, aphone;
@@ -907,6 +928,7 @@ public class IMAPListener extends Service {
 
         }    //   catch (MessagingException e) {
         catch (Exception e) {
+System.out.println("7777 mail exception");
             e.printStackTrace();
             im.cancel(false);
         }
@@ -932,7 +954,7 @@ public class IMAPListener extends Service {
             } catch (Exception e){
                 fr = from;  // "from" address without brackets < >
                 e.printStackTrace();}
-
+ System.out.println("7777 a new message from: "+fr);
             //        Cursor cur = db.query("cameras",new String[]{"name","pphone"}, "smtpFromMail=?",new String[]{from},null,null,null);
             MainActivity.DBHelper dbHelper = new MainActivity.DBHelper(this); // так передаётся контекст из mainactivity в myservice, иначе db не открывается
             db = dbHelper.getWritableDatabase();
@@ -968,6 +990,7 @@ public class IMAPListener extends Service {
             } else {
                 Cursor cur1 = db.query("sifar", new String[]{"name", "pphone", "smtpFromMail"}, "smtpFromMail=?", new String[]{fr}, null, null, null);
                 if (cur1.moveToFirst()) {
+      System.out.println("7777 sifar");
                     sname.add(cur1.getString(cur1.getColumnIndex("name")));
                     //    t.add(cur.getString(cur.getColumnIndex("name")));
                     spphone.add(cur1.getString(cur1.getColumnIndex("pphone")));
@@ -987,7 +1010,7 @@ public class IMAPListener extends Service {
                     }
 
                 } else {
-                    Cursor cur2 = db.query("sifar", new String[]{"name", "pphone", "smtpFromMail"}, "smtpFromMail=?", new String[]{fr}, null, null, null);
+                    Cursor cur2 = db.query("other", new String[]{"name", "pphone", "smtpFromMail"}, "smtpFromMail=?", new String[]{fr}, null, null, null);
                     if (cur2.moveToFirst()) {
                         sname.add(cur2.getString(cur2.getColumnIndex("name")));
                         //    t.add(cur.getString(cur.getColumnIndex("name")));

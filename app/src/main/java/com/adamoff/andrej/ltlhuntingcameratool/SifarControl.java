@@ -353,7 +353,7 @@ public class SifarControl extends ActionBarActivity {
 
     // "Интервал автосъёмки:"
         tv33 = (TextView)findViewById(R.id.text3View33);
-        if (lapse.equals("Off")){tv33.setText("Off");}
+        if (lapse.equals("off")){tv33.setText("Off");}
         else {tv33.setText(lapseHH+"h: "+lapseMM+"m: "+lapseSS+"s: ");}
         dINT = new Dialog(SifarControl.this);
         dINT.setContentView(R.layout.setinterval);
@@ -378,11 +378,6 @@ public class SifarControl extends ActionBarActivity {
         npInt3.setMinValue(0);
         npInt3.setWrapSelectorWheel(false);
 
-        // дефолтное значение свитча - выкл.
-        sInt.setChecked(false);
-        npInt1.setEnabled(false);
-        npInt2.setEnabled(false);
-        npInt3.setEnabled(false);
         // далее см. setInterval()
 
     // Лимит фото в сутки:
@@ -471,7 +466,7 @@ public class SifarControl extends ActionBarActivity {
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
         //  d.show();
         dphone.getWindow().setAttributes(lp);
-        dphone.setTitle("Set phone1");
+        dphone.setTitle("Set phone");
         txtviewphone1 = (TextView)findViewById(R.id.txt3viewphone1);
         txtviewphone2 = (TextView)findViewById(R.id.txt3viewphone2);
         txtviewphone3 = (TextView)findViewById(R.id.txt3viewphone3);
@@ -950,9 +945,20 @@ public class SifarControl extends ActionBarActivity {
 
         Button b1 = (Button) dINT.findViewById(R.id.setmailbutton1);
         Button b2 = (Button) dINT.findViewById(R.id.setmailbutton2);
-        // String HH;
-        // String Min;
-        //  String Sec;
+
+         // дефолтное значение свитча - выкл.
+         if (lapse.equals("off")) {
+             sInt.setChecked(false);
+             npInt1.setEnabled(false); npInt1.setValue(Integer.valueOf(lapseHH));
+             npInt2.setEnabled(false); npInt2.setValue(Integer.valueOf(lapseMM));
+             npInt3.setEnabled(false); npInt3.setValue(Integer.valueOf(lapseSS));
+         }
+         else {
+             sInt.setChecked(true);
+             npInt1.setEnabled(true); npInt1.setValue(Integer.valueOf(lapseHH));
+             npInt2.setEnabled(true); npInt2.setValue(Integer.valueOf(lapseMM));
+             npInt3.setEnabled(true); npInt3.setValue(Integer.valueOf(lapseSS));
+         }
 
         npInt1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -1366,20 +1372,22 @@ public class SifarControl extends ActionBarActivity {
         Button b1 = (Button) dphone.findViewById(R.id.setmailbutton1);
         Button b2 = (Button) dphone.findViewById(R.id.setmailbutton2);
         edtxtphone2 = (EditText)dphone.findViewById(R.id.editText4);
+        edtxtphone2.setHint("enter phone");
+
 
   final int f;
         switch (v.getId()) {
             case R.id.tbrow163:
-                f = 1;
+                f = 1; if (!phone1.equals(""))edtxtphone2.setText(phone1); else edtxtphone2.setHint("enter phone1");
                 break;
             case R.id.tbrow173:
-                f = 2;
+                f = 2; if (!phone2.equals(""))edtxtphone2.setText(phone2); else edtxtphone2.setHint("enter phone2");
                 break;
             case R.id.tbrow183:
-                f = 3;
+                f = 3; if (!phone3.equals(""))edtxtphone2.setText(phone3); else edtxtphone2.setHint("enter phone3");
                 break;
             case R.id.tbrow193:
-                f = 4;
+                f = 4; if (!phone4.equals(""))edtxtphone2.setText(phone4); else edtxtphone2.setHint("enter phone4");
                 break;
             default: f=0; break;
         }
@@ -1420,16 +1428,16 @@ public class SifarControl extends ActionBarActivity {
        final int f;
        switch (v.getId()) {
            case R.id.tbrow203:
-               f = 1;
+               f = 1; if (!email1.equals(""))edtxtemail.setText(email1); else edtxtemail.setHint("enter email1");
                break;
            case R.id.tbrow213:
-               f = 2;
+               f = 2; if (!email2.equals(""))edtxtemail.setText(email2); else edtxtemail.setHint("enter email2");
                break;
            case R.id.tbrow223:
-               f = 3;
+               f = 3; if (!email3.equals(""))edtxtemail.setText(email3); else edtxtemail.setHint("enter email3");
                break;
            case R.id.tbrow233:
-               f = 4;
+               f = 4; if (!email4.equals(""))edtxtemail.setText(email4); else edtxtemail.setHint("enter email4");
                break;
            default:
                f = 0;

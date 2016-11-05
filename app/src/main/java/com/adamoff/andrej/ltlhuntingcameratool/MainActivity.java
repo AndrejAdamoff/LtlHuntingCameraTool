@@ -1,5 +1,6 @@
 package com.adamoff.andrej.ltlhuntingcameratool;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
@@ -12,6 +13,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
@@ -641,7 +643,7 @@ db.close();
                             // подпись к камере
                             TextView text = new TextView(MainActivity.this);
                             text.setBackgroundColor(0xCFDEDEDE); //
-                            text.setMaxLines(2);
+                            text.setMaxLines(3);
                             text.setMaxWidth(105);
                             text.setTextColor(0xff000000);
 
@@ -668,8 +670,176 @@ db.close();
                 db.close();
                 break;
 
+           case 2:
+               int j2=0; int i2=0;
+               LinearLayout layout2; // = new LinearLayout(this);
+               LinearLayout LL2 = new LinearLayout(this);
+               LinearLayout.LayoutParams ll2par = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+               ll2par.setMargins(25,0,50,0);
+               LL2.setOrientation(LinearLayout.HORIZONTAL);
+// проверяем таблицу acorn
+               if (cursor1.moveToFirst()) { // ставим курсор на первую строку
+                   do {
+                       fphone = cursor1.getString(cursor1.getColumnIndex("pphone"));
+                       fname = cursor1.getString(cursor1.getColumnIndex("name"));
 
-   //         case 2:
+                       layout2 = new LinearLayout(this);
+                       layout2.setOrientation(LinearLayout.VERTICAL);
+                       layout2.setId(j2); // чтобы потом по id определить какой layout был кликнут
+
+                       m = new LL(j2, fname, fphone); // name,fphone,faddr);
+                       list.add(m); // добавляем объект в перечень list
+
+             //          layout.setOrientation(LinearLayout.VERTICAL);
+                       LinearLayout.LayoutParams ll2params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                       //                     llparams.leftMargin = 0;
+                       ll2params.gravity = Gravity.CENTER_HORIZONTAL;
+                       ImageView image2 = new ImageView(MainActivity.this);
+                       image2.setImageResource(R.drawable.ltl6210150);
+                       image2.setLayoutParams(ll2params);
+                       layout2.addView(image2, ll2params);
+                       TextView text2 = new TextView(MainActivity.this);
+                       text2.setBackgroundColor(0xCFDEDEDE); //
+                       text2.setMaxWidth(105);
+                       text2.setMaxLines(3);
+                       text2.setTextColor(0xff000000);
+                       if (fname.length() != 0) text2.setText(fname + "\n" + fphone);
+                       else fname = "Camera";
+                       text2.setText(fname + "\n" + fphone);
+                       //  text.setText("Имя: " + fname + "\n" + "Тел: " + fphone);
+                       text2.setId(j2);
+                       layout2.addView(text2, ll2params);
+                       //  делаем LL кликабельным:
+                       layout2.isClickable();
+                       layout2.setOnClickListener(new View.OnClickListener() {
+                           public void onClick(View v) {
+                               shortClick2(v);
+                           }
+                       });
+                       // добавляем вид в строку в позицию j
+               //        tr1.addView(layout, j, tbrow);
+                       LL2.addView(layout2,j2,ll2par);
+                       j2++;
+                   }
+                   while (cursor1.moveToNext());
+                   // выносим всё на экран:
+                   //      TableLayout.LayoutParams tblpar = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                   //      tblpar.gravity = Gravity.BOTTOM;
+                   //            tbl.addView(tr1,tblparam);
+
+                   //    TableLayout.LayoutParams tbparam = new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                   //   tbparam.gravity = Gravity.CENTER_VERTICAL;
+                   //   tbparam.setMargins(0,50,0,0);
+                   //             scroll.addView(tbl);
+                   //   LinearLayout.LayoutParams layout0param = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                   //    Layout0.addView(scroll, Layout0params);
+               }
+               cursor1.close();
+
+// проверяем таблицу sifar
+               if (cursor2.moveToFirst()) { // ставим курсор на первую строку
+                   do {
+                       fphone = cursor2.getString(cursor2.getColumnIndex("pphone"));
+                       fname = cursor2.getString(cursor2.getColumnIndex("name"));
+
+                       layout2 = new LinearLayout(this);
+                       layout2.setOrientation(LinearLayout.VERTICAL);
+                       layout2.setId(j2); // чтобы потом по id определить какой layout был кликнут
+
+                       m = new LL(j2, fname, fphone); // name,fphone,faddr);
+                       list.add(m); // добавляем объект в перечень list
+
+                       //          layout.setOrientation(LinearLayout.VERTICAL);
+                       LinearLayout.LayoutParams ll2params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                       //                     llparams.leftMargin = 0;
+                       ll2params.gravity = Gravity.CENTER_HORIZONTAL;
+                       ImageView image2 = new ImageView(MainActivity.this);
+                       image2.setImageResource(R.drawable.ltl7310150);
+                       image2.setLayoutParams(ll2params);
+                       layout2.addView(image2, ll2params);
+                       TextView text2 = new TextView(MainActivity.this);
+                       text2.setBackgroundColor(0xCFDEDEDE); //
+                       text2.setMaxWidth(105);
+                       text2.setMaxLines(3);
+                       text2.setTextColor(0xff000000);
+                       if (fname.length() != 0) text2.setText(fname + "\n" + fphone);
+                       else fname = "Camera";
+                       text2.setText(fname + "\n" + fphone);
+                       //  text.setText("Имя: " + fname + "\n" + "Тел: " + fphone);
+                       text2.setId(j2);
+                       layout2.addView(text2, ll2params);
+                       //  делаем LL кликабельным:
+                       layout2.isClickable();
+                       layout2.setOnClickListener(new View.OnClickListener() {
+                           public void onClick(View v) {
+                               shortClick2(v);
+                           }
+                       });
+                       // добавляем вид в строку в позицию j
+                       //        tr1.addView(layout, j, tbrow);
+                       LL2.addView(layout2,j2,ll2par);
+                       j2++;
+                   }
+                   while (cursor2.moveToNext());
+
+               }
+               cursor2.close();
+// проверяем таблицу other
+               if (cursor3.moveToFirst()) { // ставим курсор на первую строку
+                   do {
+                       fphone = cursor3.getString(cursor3.getColumnIndex("pphone"));
+                       fname = cursor3.getString(cursor3.getColumnIndex("name"));
+
+                       layout2 = new LinearLayout(this);
+                       layout2.setOrientation(LinearLayout.VERTICAL);
+                       layout2.setId(j2); // чтобы потом по id определить какой layout был кликнут
+
+                       m = new LL(j2, fname, fphone); // name,fphone,faddr);
+                       list.add(m); // добавляем объект в перечень list
+
+                       //          layout.setOrientation(LinearLayout.VERTICAL);
+                       LinearLayout.LayoutParams ll2params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                       //                     llparams.leftMargin = 0;
+                       ll2params.gravity = Gravity.CENTER_HORIZONTAL;
+                       ImageView image2 = new ImageView(MainActivity.this);
+                       image2.setImageResource(R.drawable.ltl6210150);
+                       image2.setLayoutParams(ll2params);
+                       layout2.addView(image2, ll2params);
+                       TextView text2 = new TextView(MainActivity.this);
+                       text2.setBackgroundColor(0xCFDEDEDE); //
+                       text2.setMaxWidth(105);
+                       text2.setMaxLines(3);
+                       text2.setTextColor(0xff000000);
+                       if (fname.length() != 0) text2.setText(fname + "\n" + fphone);
+                       else fname = "Camera";
+                       text2.setText(fname + "\n" + fphone);
+                       //  text.setText("Имя: " + fname + "\n" + "Тел: " + fphone);
+                       text2.setId(j2);
+                       layout2.addView(text2, ll2params);
+                       //  делаем LL кликабельным:
+                       layout2.isClickable();
+                       layout2.setOnClickListener(new View.OnClickListener() {
+                           public void onClick(View v) {
+                               shortClick2(v);
+                           }
+                       });
+                       // добавляем вид в строку в позицию j
+                       //        tr1.addView(layout, j, tbrow);
+                       LL2.addView(layout2,j2,ll2par);
+                       j2++;
+                   }
+                   while (cursor3.moveToNext());
+               }
+               cursor3.close();
+
+               // выносим всё на экран:
+               Layout0params.gravity = Gravity.CENTER;
+               //          Layout0params.topMargin = 10;
+               Layout0.addView(LL2, Layout0params);
+               //       rl.addView(layout0,RelLayoutParam);
+
+           break;
+
      default:
                 int i = 0;
                 int j = 0;  // место в строке;
@@ -1086,9 +1256,7 @@ db.close();
                 if (type !=null) break;
             } while (c.moveToNext());
         } c.close();
-    Toast.makeText(this, type, Toast.LENGTH_LONG).show();
-
-
+//    Toast.makeText(this, type, Toast.LENGTH_LONG).show();
 
         Cursor cur = db.query(type, col, "pphone=?", new String[]{fphone}, null, null, null);
         if (cur.moveToFirst()) {
@@ -1427,6 +1595,12 @@ db.close();
     protected void onStop() {
         super.onStop();
         progresstext.setVisibility(View.INVISIBLE);
+    }
+
+   public void wwwsite(View v){
+        String address =getString(R.string.www);
+        Intent browser = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"+address));
+        startActivity(browser);
     }
 }
 

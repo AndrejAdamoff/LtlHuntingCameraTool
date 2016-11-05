@@ -50,7 +50,7 @@
     <string name="sure">Да, уверен!</string>
     <string name="read">Посмотреть</string>
     <string name="about">О программе</string>
-    <string name="version">Версия 2.1 \nРазработка Andrej Adamoff \nПоддержка: \nandrej.adamoff@gmail.com</string>
+    <string name="version">Версия 3.0 \nРазработка Andrej Adamoff \nПоддержка: \nandrej.adamoff@gmail.com</string>
     <string name="received">Получено</string>
     <string name="from">от</string>
     <string name="downloadMMS">Поиск новых \nMMS фото...</string>
@@ -77,19 +77,19 @@
     <string name="mmsrefresh">Обновлять фотогалерею MMS</string>
     <string name="mmsrefreshsummary">Искать новые MMS в телефоне при открытии фотогалереи</string>
     <string name="smtppush">Автозагрузка фото с Gmail</string>
-    <string name="smtppushsummary">Функция протестирована только с Gmail. Требуется постоянно включена Передача данных.</string>
-    <string name="pushwarning">Для использования функции автозагрузки фото с Gmail необходимо выполнение следующих условий: \n1. Активирован IMAP для Gmail \n2. Включен доступ для непроверенных приложений для Gmail \n3. Постоянно включена передача данных на вашем телефоне</string>
-    <string name="mmssummary">Включите, если камера отправляет MMS фото. \nОтключите, если приложение не запускается вашем телефоне</string>
-    <string name="smssummary">Включите, если камера отправляет SMS. \nОтключите, если приложение не запускается на вашем телефоне</string>
+    <string name="smtppushsummary">Функция протестирована только с Gmail. Должно быть постоянно включено Интернет соединение.</string>
+    <string name="pushwarning">Для использования функции автозагрузки фото с Gmail необходимо выполнение следующих условий: \n1. Активирован IMAP для Gmail \n2. Включен доступ для непроверенных приложений для Gmail \n3. Постоянно включена передача данных или WiFi на вашем телефоне</string>
+    <string name="mmssummary">Включите, если камера отправляет MMS фото.</string>
+    <string name="smssummary">Включите, если камера отправляет SMS.</string>
     <string name="mmswarning">Прекратить поиск фото?</string>
-    <string name="wronglogin">Ошибка подключения к Email. Проверьте логин/пароль или включите Передачу Данных на вашем телефоне.</string>
+    <string name="wronglogin">Ошибка подключения к Email. Проверьте логин/пароль и подключение к Интернет.</string>
     <string name="title_activity_help">Подсказка</string>
     <string name="imap_ticker">Автозагрузка email деактивирована</string>
     <string name="imap_text">из-за проблем в сети. Проверьте ваш баланс и отключите/включите Передачу Данных.</string>
     <string name="imap_title">Потеряно подключение к email imap</string>
     <string name="notif_ticker">Новое фото от камеры</string>
     <string name="notif_title">новые фото от:</string>
-    <string name="smtp_toast">Невозможно загрузить фото с email. Проверьте email логин, включение Передачи данных или баланс.</string>
+    <string name="smtp_toast">Невозможно загрузить фото с email. \nПроверьте email логин или подключение к Интернет.</string>
     <string name="smtp_toast1">Загружено</string>
     <string name="smtp_toast2">новых фото с email</string>
     <string name="smtprefreshsummary">Искать новые Email фото</string>
@@ -109,9 +109,62 @@
     <string name="smscntrl">SMS управление</string>
     <string name="other_editcommand">Редактировать команды</string>
     <string name="btngetphoto">Редактировать кнопку "Получить фото"</string>
-
+    <string name="title_activity_sifar_control">SMS управление Sifar</string>
+    <string name="title_activity_other_control">SMS управление</string>
+    <string name="cancel">Отмена</string>
+    <string name="sendsms">Отправить</string>
+    <string name="com1">команда 1</string>
+    <string name="com10">команда 10</string>
+    <string name="com2">команда 2</string>
+    <string name="com3">команда 3</string>
+    <string name="com4">команда 4</string>
+    <string name="com5">команда 5</string>
+    <string name="com6">команда 6</string>
+    <string name="com7">команда 7</string>
+    <string name="com8">команда 8</string>
+    <string name="com9">команда 9</string>
+    <string name="val1">значение 1</string>
+    <string name="val10">значение 10</string>
+    <string name="val2">значение 2</string>
+    <string name="val3">значение 3</string>
+    <string name="val4">значение 4</string>
+    <string name="val5">значение 5</string>
+    <string name="val6">значение 6</string>
+    <string name="val7">значение 7</string>
+    <string name="val8">значение 8</string>
+    <string name="val9">значение 9</string>
+    <string name="ph1">Телефон 1:</string>
+    <string name="ph2">Телефон 2:</string>
+    <string name="ph3">Телефон 3:</string>
+    <string name="ph4">Телефон 4:</string>
+    <string name="comnotconf">Команда не задана. \nДолгое нажатие включает редактирование команды.</string>
+    <string name="sendingsms">Отправка SMS...</string>
+    <string name="btngetfotonotconf">Кнопка не задана. \nДолгое нажатие включает редактирование кнопки.</string>
+    <string name="downloaded">Загружено</string>
+    <string name="newphoto">новых email фото </string>
+    <string name="entercomname">имя команды</string>
+    <string name="entervalue">значение команды</string>
+    <string name="entersms">sms для этой команды</string>
+    <string name="phone">телефон</string>
+    <string name="bfphone">перед телефоном</string>
+    <string name="aftphone">после телефона</string>
+    <string name="bfmail">перед email</string>
+    <string name="aftemail">после email</string>
+    <string name="setmail">введите адрес email</string>
+    <string name="sendphone">введите номер телефона </string>
+    <string name="setbtnphoto">введите sms для команды получения фото</string>
+    <string name="titlesetcom">Установка команды</string>
+    <string name="titlesetphone">Установка команды "Телефон для получения фото"</string>
+    <string name="titlesendphone">Телефон, на который отправляются фото</string>
+    <string name="titlesendemail">Адрес email, на который отправляются фото</string>
+    <string name="titlesetemail">Установка команды "Email для получения фото"</string>
+    <string name="titlesendcom">Отправка SMS</string>
+    <string name="www">www.huntingcamera.ru</string>
     <![CDATA[
+
+
     />
+
 
 
 

@@ -353,7 +353,7 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
             sharedPref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             pphone = sharedPref.getString("phone", "");
         //    Toast.makeText(this, "On Stop pphone: "+pphone, Toast.LENGTH_LONG).show();
-            name = sharedPref.getString("name", "");
+            name = sharedPref.getString("name", "Camera");
             smtpFrom = sharedPref.getString("smtpFrom", "");
             smtpTo = sharedPref.getString("smtpTo", "");
             smtpToPwd = sharedPref.getString("smtpToPwd", "");
@@ -423,6 +423,7 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
                     .putExtra("push", push)
                     .putExtra("smtprefresh", smtprefresh);
             startActivity(intent);
+ //         System.out.println("999 name: "+ name);
         }
      }
 
@@ -455,7 +456,7 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
                 ContentValues cv0 = new ContentValues();
                 cv0.put ("push", "enabled");
                 db.update ("smtp", cv0, null, null);
-                db.update(type, cv0, "pphone =?", new String[]{sp.getString("phone","")});
+               try { db.update(type, cv0, "pphone =?", new String[]{sp.getString("phone","")});} catch (Exception e) {e.printStackTrace();}
                 db.close();
 
            //         Toast.makeText(AddEditCamera.this, "Push activated", Toast.LENGTH_LONG).show();

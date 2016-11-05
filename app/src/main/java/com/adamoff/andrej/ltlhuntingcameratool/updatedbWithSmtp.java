@@ -156,7 +156,7 @@ public class updatedbWithSmtp extends Activity {
             super.onPostExecute(v);
 
             if (flag.equals("enabled"))
-                Toast.makeText(updatedbWithSmtp.this, getString (R.string.smtp_toast1)+" " + m + " " + getString(R.string.smtp_toast2), Toast.LENGTH_LONG).show();
+                Toast.makeText(updatedbWithSmtp.this, getString(R.string.downloaded) +" " + m + " " + getString(R.string.newphoto), Toast.LENGTH_LONG).show();
 
             // --------------- включаем IMAPListener ----------------------------------
             if (push.equals("enabled")) {
@@ -185,19 +185,7 @@ public class updatedbWithSmtp extends Activity {
             super.onCancelled();
         Toast.makeText(updatedbWithSmtp.this, R.string.smtp_toast, Toast.LENGTH_LONG).show();
  //       Toast.makeText(updatedbWithSmtp.this, from0, Toast.LENGTH_LONG).show();
- /*           long when = System.currentTimeMillis(); // системное время
-            NotificationCompat.Builder notification = new NotificationCompat.Builder(getApplicationContext()); // Создаем экземпляр уведомления, и передаем ему наши параметры
-            notification.setTicker("Can not connect to email box")
-                    .setSmallIcon(R.drawable.ltl65104040)// Иконка для уведомления)
-                    .setWhen(when);
-            //Настраиваем звук для уведомления и его закрытие после нажатия по нему пользователем:
-            notification.setDefaults(Notification.DEFAULT_SOUND);
-            notification.setAutoCancel(true);
-            notification.setContentTitle("Unable download photos from email");
-            notification.setContentText("Check email login or whether data connection enabled or your balance");
-            NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE); // Создаем экземпляр менеджера уведомлений
-            mNotificationManager.notify(999,notification.build()); // запуск уведомления
-*/
+
             if(b) Toast.makeText(updatedbWithSmtp.this, "Can not close folder", Toast.LENGTH_LONG).show();
 
             // --------------- включаем IMAPListener ----------------------------------
@@ -222,6 +210,7 @@ public class updatedbWithSmtp extends Activity {
         @Override
         protected Void doInBackground(String... params) {
 
+            System.out.println("6666 doInBackground" );
      //       if (params[2].equals("nopush")) downloadSMTP();
      //       else {
 //--------------------загружаем фото с email, если требуется----------------------------------------
@@ -241,7 +230,7 @@ String type ="";
 
             }
             cur1.close();
-
+System.out.println("6666 type: "+type);
             String columns[] = {"pphone", "smtpToMail", "smtpToPassword", "smtpFromMail", "smtp"};
             Cursor cursor = db.query(type, columns, "pphone=?", new String[]{String.valueOf(params[1])}, null, null, null);
             if (cursor.moveToFirst()) {
@@ -254,6 +243,8 @@ String type ="";
                 } while (cursor.moveToNext());
             }
             cursor.close();
+
+  System.out.println("6666 smtpFromMail: "+smtpFromMail);
      /*       Cursor cursor2 = db.query("smtp", new String[]{"smtpToMail", "smtpToPassword", "push"}, null, null, null, null, null);
             if (cursor2.moveToFirst()) {
                 do {

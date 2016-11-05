@@ -49,7 +49,7 @@ android:background="#ff000000">
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:nestedScrollingEnabled="false"
-                android:hint="enter command1" />
+                android:hint="@string/com1" />
 
             <TextView
                 android:layout_width="0dp"
@@ -59,7 +59,7 @@ android:background="#ff000000">
                 android:layout_weight="3"
                 android:textSize="18dp"
                 android:textColor="#ff000000"
-                android:hint="enter value1" />
+                android:hint="@string/val1" />
 
         </TableRow>
 
@@ -84,7 +84,7 @@ android:background="#ff000000">
                 android:layout_marginLeft="10dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:hint="enter command2"
+                android:hint="@string/com2"
                  />
 
             <TextView
@@ -98,7 +98,7 @@ android:background="#ff000000">
                 android:layout_alignTop="@+id/scrollView3"
                 android:layout_alignRight="@+id/scrollView3"
                 android:layout_alignEnd="@+id/scrollView3"
-                android:hint="enter value2"/>
+                android:hint="@string/val2"/>
 
         </TableRow>
 
@@ -124,7 +124,7 @@ android:background="#ff000000">
                 android:textColor="#ff000000"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:hint="enter command3" />
+                android:hint="@string/com3" />
 
             <TextView
                 android:layout_width="0dp"
@@ -137,7 +137,7 @@ android:background="#ff000000">
                 android:layout_alignTop="@+id/scrollView3"
                 android:layout_alignRight="@+id/scrollView3"
                 android:layout_alignEnd="@+id/scrollView3"
-                android:hint="enter value3"/>
+                android:hint="@string/val3"/>
 
         </TableRow>
 
@@ -163,7 +163,7 @@ android:background="#ff000000">
                 android:textColor="#ff000000"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:hint="enter command4"
+                android:hint="@string/com4"
                  />
 
             <TextView
@@ -178,7 +178,7 @@ android:background="#ff000000">
                 android:layout_alignRight="@+id/scrollView3"
                 android:layout_alignEnd="@+id/scrollView3"
                 android:password="false"
-                android:hint="enter value4"/>
+                android:hint="@string/val4"/>
 
         </TableRow>
 
@@ -204,7 +204,7 @@ android:background="#ff000000">
                 android:textColor="#ff000000"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:hint="enter command5"
+                android:hint="@string/com5"
                 />
 
             <TextView
@@ -223,7 +223,7 @@ android:background="#ff000000">
                 android:text="value 5"
                 android:singleLine="true"
                 android:gravity="center_vertical"
-                android:hint="enter value5"/>
+                android:hint="@string/val5"/>
 
         </TableRow>
 
@@ -249,7 +249,7 @@ android:background="#ff000000">
                 android:textColor="#ff000000"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:hint="enter command6"
+                android:hint="@string/com6"
                 />
 
             <TextView
@@ -267,7 +267,7 @@ android:background="#ff000000">
                 android:paddingBottom="10dp"
                 android:text="value 6"
                 android:gravity="center_vertical"
-                android:hint="enter value6"/>
+                android:hint="@string/val6"/>
         </TableRow>
 
         <TableRow
@@ -292,7 +292,7 @@ android:background="#ff000000">
                 android:textColor="#ff000000"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:hint="enter command7"
+                android:hint="@string/com7"
                 />
 
             <TextView
@@ -310,7 +310,7 @@ android:background="#ff000000">
                 android:paddingBottom="10dp"
                 android:text="value 7"
                 android:gravity="center_vertical"
-                android:hint="enter value7"/>
+                android:hint="@string/val7"/>
 
         </TableRow>
 
@@ -337,7 +337,7 @@ android:background="#ff000000">
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:phoneNumber="false"
-                android:hint="enter command8"/>
+                android:hint="@string/com8"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -353,7 +353,7 @@ android:background="#ff000000">
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:layout_gravity="center_vertical"
-                android:hint="enter value8"/>
+                android:hint="@string/val8"/>
         </TableRow>
 
         <TableRow
@@ -380,7 +380,7 @@ android:background="#ff000000">
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:gravity="center_vertical"
-                android:hint="enter command9"/>
+                android:hint="@string/com9"/>
 
             <TextView
                 android:layout_width="0dp"
@@ -396,7 +396,7 @@ android:background="#ff000000">
                 android:textColor="#ff000000"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:hint="enter value9"/>
+                android:hint="@string/val9"/>
         </TableRow>
 
         <TableRow
@@ -422,7 +422,7 @@ android:background="#ff000000">
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:layout_gravity="center_vertical"
-                android:hint="enter command10"
+                android:hint="@string/com10"
                 />
 
             <TextView
@@ -437,7 +437,7 @@ android:background="#ff000000">
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:textColor="#ff000000"
-                android:hint="enter value10"/>
+                android:hint="@string/val10"/>
 
         </TableRow>
 

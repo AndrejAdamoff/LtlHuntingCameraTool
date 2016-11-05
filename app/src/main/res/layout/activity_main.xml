@@ -59,4 +59,16 @@
         android:padding="5dp"
         android:clickable="false" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/www"
+        android:id="@+id/textView2"
+        android:layout_alignParentBottom="true"
+        android:clickable="true"
+        android:onClick="wwwsite"
+        android:nestedScrollingEnabled="false"
+        android:background="#ffe8e8e8"
+        android:gravity="center_horizontal" />
+
 </RelativeLayout>

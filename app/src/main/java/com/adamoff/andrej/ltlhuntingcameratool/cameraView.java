@@ -15,11 +15,15 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.telecom.TelecomManager;
+import android.telephony.TelephonyManager;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -88,29 +92,41 @@ public class cameraView extends Activity {
     String sms1; // текст последней SMS
 
     Dialog dsetbtn;
+    Boolean ads;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_camera_view);
+        ConnectivityManager connectivityManager = (ConnectivityManager)cameraView.this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo ni = connectivityManager.getActiveNetworkInfo();
+       if (ni!=null){
+//System.out.println("9999 subtype: "+ ni.getSubtype());
+//        System.out.println("9999 EDGE: "+ TelephonyManager.NETWORK_TYPE_EDGE);
+//        System.out.println("9999 GPRS: "+ TelephonyManager.NETWORK_TYPE_GPRS);
+        if (ni.getSubtype() == TelephonyManager.NETWORK_TYPE_EDGE || ni.getSubtype() == TelephonyManager.NETWORK_TYPE_GPRS)
+        {ads = false; setContentView(R.layout.activity_camera_view_wo_ads);}
+                   else {ads = true; setContentView(R.layout.activity_camera_view);}
+       }
+       else { ads = false; setContentView(R.layout.activity_camera_view_wo_ads);}
+
         viewPager = (ViewPager) findViewById(R.id.view_pager);
         //    txtv20 = (TextView) findViewById(R.id.textView20);     // SMS
         //    textView19 = (TextView) findViewById(R.id.textView19); // заголовок
 
         orientation = this.getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+        if (orientation == Configuration.ORIENTATION_PORTRAIT && ads) {
 
             // реклама
-            //     MobileAds.initialize(getApplicationContext(), "ca-app-pub-9367463267962842~8316039817");  // application Id
-            MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+              MobileAds.initialize(getApplicationContext(), "ca-app-pub-9367463267962842/9792773013");  // application Id
+         //   MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713"); // test
 
             AdView mAdView = (AdView) findViewById(R.id.adView);
             // AdRequest adRequest = new AdRequest.Builder().build();
             AdRequest request = new AdRequest.Builder()
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
-                    .addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4")  // An example device ID
+             //       .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)        // All emulators
+             //       .addTestDevice("AC98C820A50B4AD8A2106EDE96FB87D4")  // An example device ID
                     .build();
 
             //     mAdView.loadAd(adRequest);
@@ -300,8 +316,8 @@ public class cameraView extends Activity {
     public void getfoto(View view) {
         Intent intent = new Intent(this,SMSsender.class);
         intent.putExtra("number",pphone);
-        if (camtype.equals("acorn")) {intent.putExtra("text","ltl60*1#aa");Toast.makeText(getApplicationContext(), "Sending SMS ltl60*1#aa", Toast.LENGTH_SHORT).show();startService(intent);}
-        if (camtype.equals("sifar")) {intent.putExtra("text","12*#");Toast.makeText(getApplicationContext(), "Sending SMS 12*#", Toast.LENGTH_SHORT).show();startService(intent);}
+        if (camtype.equals("acorn")) {intent.putExtra("text","ltl60*1#aa");Toast.makeText(getApplicationContext(), getString(R.string.sendingsms) + "ltl60*1#aa", Toast.LENGTH_SHORT).show();startService(intent);}
+        if (camtype.equals("sifar")) {intent.putExtra("text","12*#");Toast.makeText(getApplicationContext(), getString(R.string.sendingsms) + "12*#", Toast.LENGTH_SHORT).show();startService(intent);}
         if (camtype.equals("other")) {
             db = dbHelper.getWritableDatabase();
 
@@ -309,8 +325,8 @@ public class cameraView extends Activity {
             Cursor cursor = db.query("other", columns, "pphone=?", new String[]{pphone}, null, null, null);
             cursor.moveToFirst();
             String getphoto = cursor.getString(cursor.getColumnIndex("getphoto"));
-            if (getphoto.equals("") || getphoto == null) Toast.makeText(this, "Button Get Photo is not configured", Toast.LENGTH_LONG).show();
-              else {intent.putExtra("text", getphoto);Toast.makeText(getApplicationContext(), "Sending SMS "+ getphoto, Toast.LENGTH_SHORT).show(); startService(intent);
+            if (getphoto.equals("") || getphoto == null) Toast.makeText(this, R.string.btngetfotonotconf, Toast.LENGTH_LONG).show();
+              else {intent.putExtra("text", getphoto);Toast.makeText(getApplicationContext(), getString(R.string.sendingsms) + getphoto, Toast.LENGTH_SHORT).show(); startService(intent);
             }
             cursor.close();
             db.close();
@@ -454,10 +470,12 @@ public class cameraView extends Activity {
                         if (camtype !=null) break;
                     } while (cur1.moveToNext());
                 } cur1.close();
+    System.out.println("1234 del camtype: "+camtype);
             // удаляем таблицу камеры
                 String SQLstatement = "DROP TABLE IF EXISTS " + aphone;
                 db.execSQL(SQLstatement);
             // удаление строки из таблицы:
+    System.out.println("1234 del camtype: "+pphone);
                 db.delete(camtype, "pphone=?", new String[]{String.valueOf (pphone)});
 
              // если это последняя камера, имеющая включённый push, то останавливаем IMAP listener

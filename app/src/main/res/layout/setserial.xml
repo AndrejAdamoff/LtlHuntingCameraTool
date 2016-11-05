@@ -23,7 +23,8 @@
         android:maxLength="4"
         android:layout_marginTop="23dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp" />
+        android:layout_marginRight="5dp"
+        android:hint="4 digits/letters" />
 
     <LinearLayout
         android:orientation="horizontal"

@@ -1,0 +1,135 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+
+    android:layout_height="match_parent"
+    tools:context="com.adamoff.andrej.ltlhuntingcameratool.cameraView"
+    android:transitionGroup="false"
+    android:id="@+id/rlp">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout"
+        android:layout_alignParentTop="true">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/ltl6510512512"
+            android:background="#ff000000"
+            android:baselineAlignBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/textView19"
+            android:textSize="18sp"
+            android:text="Camera Info"
+            android:maxLines="2"
+            android:layout_gravity="right"
+            android:textColor="#ffffffff"
+            android:autoText="false"
+            android:paddingLeft="10dp"
+            android:background="#ff000000"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/imageView" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relativeLayout2"
+        android:layout_above="@+id/lll"
+        android:layout_below="@+id/relativeLayout">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/noSMSyet"
+            android:id="@+id/textView20"
+            android:onClick="displaySMS"
+            android:nestedScrollingEnabled="false"
+            android:clickable="true"
+            android:textSize="18dp"
+            android:background="@drawable/line"
+            android:maxLines="3"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="3dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textColor="#ff000000" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffffff"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:layout_below="@+id/textView20" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lll"
+        android:layout_alignParentEnd="true"
+        android:background="#fff0f0f0"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="false">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:text="@string/getfoto"
+            android:id="@+id/button4"
+            android:onClick="getfoto"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/button"
+            android:padding="3dp"
+            android:textSize="16dp"
+            android:layout_toStartOf="@+id/button5"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="5"
+            android:layout_marginRight="3dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:longClickable="true" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:text="@string/SMScontrol"
+            android:id="@+id/button5"
+            android:onClick="onClickCntrl"
+            android:background="@drawable/button"
+            android:padding="3dp"
+            android:textSize="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="5dp"
+            android:layout_weight="5"
+            android:layout_marginLeft="3dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp" />
+    </LinearLayout>
+
+</RelativeLayout>

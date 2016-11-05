@@ -11,7 +11,7 @@
         android:enabled="true"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:hint="here enter command name" />
+        android:hint="@string/entercomname" />
 
     <EditText
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
         android:id="@+id/editvalue"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:hint="here enter command value" />
+        android:hint="@string/entervalue" />
 
     <EditText
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:hint="here enter SMS for the command" />
+        android:hint="@string/entersms" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
             android:id="@+id/setmailbutton2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:layout_alignTop="@+id/setmailbutton1"
             android:layout_toEndOf="@+id/setmailbutton1"
             android:layout_alignParentRight="true"

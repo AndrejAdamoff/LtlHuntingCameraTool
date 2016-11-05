@@ -933,7 +933,7 @@ public class AcornControl extends ActionBarActivity {
                 serial = edtxt.getText().toString();
                 tview29.setText(serial);
                 SMS = "ltl07*1"+serial+"#aa"; }
-                else {serial = ""; tview29.setText("4 letters/digits"); SMS = "07*0#";}
+                else {serial = ""; tview29.setText(serial); SMS = "07*0#";}
 
                 dserial.dismiss();
                 sendSMS(pphone, SMS);

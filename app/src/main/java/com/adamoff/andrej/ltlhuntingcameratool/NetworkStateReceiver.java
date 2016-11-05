@@ -43,11 +43,12 @@ public class NetworkStateReceiver extends BroadcastReceiver {
                 //    String push = "", smtpToMail = "";
                 Cursor cur = db.query("smtp", new String[]{"push", "smtpToMail", "smtpToPassword"}, null, null, null, null, null);
                 if (cur.moveToFirst()) {
-                    do {
-                        push = cur.getString(cur.getColumnIndex("push"));
+           //         do {
                         smtpToMail = cur.getString(cur.getColumnIndex("smtpToMail"));
                         smtpToPwd = cur.getString(cur.getColumnIndex("smtpToPassword"));
-                    } while (cur.moveToNext());
+                        push = cur.getString(cur.getColumnIndex("push"));
+           //             if (push!=null) break;
+            //        } while (cur.moveToNext());
                 }
                 cur.close();
                 db.close();

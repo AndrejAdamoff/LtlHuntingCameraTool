@@ -35,7 +35,7 @@ public class HuntingCameraService extends Service {
 
         try {type = intent.getStringExtra("type");}
         catch (NullPointerException e){return 0;}
-
+System.out.println("8888 MMS: new MMS");
         if (type.equals("MMS") || type.equals("SMS")) {
             try {phone = intent.getStringExtra("phone");}
             catch (NullPointerException e){return 0;}
@@ -59,6 +59,7 @@ public class HuntingCameraService extends Service {
        //             } // номер нашли, выходим
        //         }
        //         while (cur.moveToNext());
+ System.out.println("8888 MMS: MMS for Acorn");
             } else {
                 Cursor cur2 = db.query("sifar", columns, "pphone=?", new String[]{phone}, null, null, null);
                 if (cur2.moveToFirst()) {
@@ -182,6 +183,7 @@ public class HuntingCameraService extends Service {
                                                    //          Log.d("tag33", "MMS33 count = " + c);
                                                    c++;
                                                    String dat = curdata.getString(curdata.getColumnIndex("_data"));
+                                                   String _id = curdata.getString(curdata.getColumnIndex("_id"));
                                                    //   dat ="1";
                                                    //--------------
                                                    //    проверяем, не пустой ли path
@@ -189,6 +191,7 @@ public class HuntingCameraService extends Service {
                                                        // сразу пишем в поля БД камер:
                                                        //                        db = dbHelper.getWritableDatabase();
                                                        ContentValues cv = new ContentValues();
+                                                       cv.put("id", _id);
                                                        cv.put("mmsid", Id);
                                                        cv.put("time", date);
                                                        cv.put("path", dat);

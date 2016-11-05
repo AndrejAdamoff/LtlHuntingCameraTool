@@ -143,7 +143,7 @@
                     android:id="@+id/numberPicker14"
                     android:layout_alignParentBottom="true"
                     android:layout_toRightOf="@+id/numberPicker13"
-                    android:layout_toEndOf="@+id/numberPicker14" />
+                    />
 
             </RelativeLayout>
         </LinearLayout>

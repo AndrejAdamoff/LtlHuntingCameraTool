@@ -87,8 +87,11 @@ String To1, ToPWD1;
   //      hm = new HashMap<String, Integer>();
 
         // получаем данные из интента:
+
+
+
         intent = getIntent();
-        type = intent.getStringExtra("type");
+        type = intent.getStringExtra("type");  if (type==null) type = "acorn"; // Preference defaultValue doesn't work
         action = intent.getStringExtra("action");
         if (action.equals("add") || action.equals("edit")) {
             pphone = intent.getStringExtra("phone");
