@@ -232,18 +232,7 @@ public class cameraView extends Activity {
             sms1 = updateDbwithSMS(pphone, table);
         }
 
-       if (camtype.equals("other")) {   Button btngph = (Button) findViewById(R.id.button4);
-        btngph.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                setbtngetphone();
-                return false;
-            }
-        });
-    }
-
         updatescreen();
-
       }
 
     @Override
@@ -264,9 +253,20 @@ public class cameraView extends Activity {
 //        viewPager.setAdapter(null); // удаляет из памяти предыдущий адаптер, помогает избежать переполнения памяти
 
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-    //        setContentView(R.layout.activity_camera_view);
-    //        viewPager = (ViewPager) findViewById(R.id.view_pager);
-            if (NumberOfPages == 0) {
+
+            if (camtype.equals("other")) {
+
+                Button btngph = (Button) findViewById(R.id.button4);
+                btngph.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        setbtngetphone();
+                        return false;
+                    }
+                });
+            }
+
+       if (NumberOfPages == 0) {
                 viewPager.setAdapter(mPagerAdapter1);
             } else viewPager.setAdapter(mPagerAdapter);
 

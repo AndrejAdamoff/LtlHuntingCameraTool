@@ -50,7 +50,7 @@
     <string name="sure">Yes, sure!</string>
     <string name="read">Read</string>
     <string name="about">About application</string>
-    <string name="version">Version 3.0 by Andy Adamoff \nSupport: \nandrej.adamoff@gmail.com</string>
+    <string name="version">Version 3.0.1 by Andy Adamoff \nSupport: \nandrej.adamoff@gmail.com</string>
     <string name="downloadMMS">Searching new \nMMS photo...</string>
     <string name="downloadSMTP">Downloading new \nphoto from email ...</string>
     <string name="received">Received</string>
@@ -113,7 +113,7 @@
     </string-array>
 
     <string name="camtype_sum">Choose camera type</string>
-    <string name="title_activity_sifar_control">Sifar camera SMS control</string>
+    <string name="title_activity_sifar_control">SiFar SMS control</string>
     <string name="title_activity_other_control">camera SMS control</string>
     <string name="smscntrl">SMS control</string>
     <string name="other_editcommand">Edit commands</string>

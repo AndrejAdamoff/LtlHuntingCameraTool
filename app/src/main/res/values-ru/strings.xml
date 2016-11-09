@@ -50,7 +50,7 @@
     <string name="sure">Да, уверен!</string>
     <string name="read">Посмотреть</string>
     <string name="about">О программе</string>
-    <string name="version">Версия 3.0 \nРазработка Andrej Adamoff \nПоддержка: \nandrej.adamoff@gmail.com</string>
+    <string name="version">Версия 3.0.1 \nРазработка Andrej Adamoff \nПоддержка: \nandrej.adamoff@gmail.com</string>
     <string name="received">Получено</string>
     <string name="from">от</string>
     <string name="downloadMMS">Поиск новых \nMMS фото...</string>
@@ -109,7 +109,7 @@
     <string name="smscntrl">SMS управление</string>
     <string name="other_editcommand">Редактировать команды</string>
     <string name="btngetphoto">Редактировать кнопку "Получить фото"</string>
-    <string name="title_activity_sifar_control">SMS управление Sifar</string>
+    <string name="title_activity_sifar_control">SMS управление SiFar</string>
     <string name="title_activity_other_control">SMS управление</string>
     <string name="cancel">Отмена</string>
     <string name="sendsms">Отправить</string>

@@ -311,8 +311,9 @@ public class AcornControl extends ActionBarActivity {
         dserial.getWindow().setAttributes(lp);
         dserial.setTitle("Set camera name");
         tview29 = (TextView)findViewById(R.id.textView29);
-        if (serial.equals("")) tview29.setText("4 digits/letters");
-           else tview29.setText(serial);
+        tview29.setText(serial);
+     //   if (serial.equals("")) tview29.setText("4 digits/letters");
+      //     else tview29.setText(serial);
         // далее см. setSerial2()
 
         dsense = new Dialog(AcornControl.this);
@@ -1534,7 +1535,8 @@ public class AcornControl extends ActionBarActivity {
            public void onClick(View v) {
                phone2orEmail = edtxtphone2.getText().toString();
                SMS = "ltl12*"+phone2orEmail+"#aa";
-               txtviewphone2.setText(phone2orEmail);
+               if (txtviewphone2.equals("")) txtviewphone2.setText("phone2 or e-mail");
+               else txtviewphone2.setText(phone2orEmail);
                dphone2.dismiss();
                db = dbHelper.getWritableDatabase();
                String args[] = new String[]{pphone};
@@ -1562,7 +1564,8 @@ public class AcornControl extends ActionBarActivity {
             public void onClick(View v) {
                 phone3orEmail = edtxtphone3.getText().toString();
                 SMS = "ltl13*"+phone3orEmail+"#aa";
-                txtviewphone3.setText(phone3orEmail);
+                if (txtviewphone3.equals("")) txtviewphone3.setText("phone3 or e-mail");
+                else txtviewphone3.setText(phone3orEmail);
                 db = dbHelper.getWritableDatabase();
                 String args[] = new String[]{pphone};
                 cv.put("phone3orEmail", phone3orEmail);
@@ -1593,7 +1596,8 @@ public class AcornControl extends ActionBarActivity {
             public void onClick(View v) {
                 Email = edtxtemail.getText().toString();
                 SMS = "ltl14*"+Email+"#aa";
-                txtviewmail.setText(Email);
+                if (txtviewmail.equals("")) txtviewmail.setText("e-mail");
+                else txtviewmail.setText(Email);
                 demail.dismiss();
                 db = dbHelper.getWritableDatabase();
                 String args[] = new String[]{pphone};

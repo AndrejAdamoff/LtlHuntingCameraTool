@@ -101,6 +101,8 @@ public class IMAPListener extends Service {
         m = 0;
         stop = false;
 
+
+
  //       DevicePolicyManager dpm = (DevicePolicyManager) getSystemService(DEVICE_POLICY_SERVICE);
  //       dpm.lockNow();
 
@@ -112,10 +114,55 @@ public class IMAPListener extends Service {
         if (action.equals("noop")) {
 
             if (tnoop == null) {
+                noop = null;
+                noop = new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            folder.getMessageCount();
+                            n++;
+                            System.out.println("7777 число алармов n= "+n);
+
+                        } catch (Exception e) {  // потеря связи с folder
+                            e.printStackTrace();
+                            System.out.println("7777 NOOP messaging exception");
+                            // рестартуем сервис:
+                           stopSelf();
+
+                      //      im.cancel(true);
+                      //      x=true;
+                        }
+                        tnoop.interrupt();
+                    }
+                };
+
                 tnoop = new Thread(noop);
 //                tnoop.setDaemon(true);
                 System.out.println("7777 new thread tnoop is created");
-            } else { tnoop = null;  tnoop = new Thread(noop);
+            } else { //noop = null;
+                tnoop = null;
+                noop = null;
+                noop = new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            folder.getMessageCount();
+                            n++;
+                            System.out.println("7777 число алармов n= "+n);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("7777 NOOP messaging exception");
+                            // рестартуем сервис:
+                            stopSelf();
+                     //       im.cancel(true);
+                     //       x=true;
+                        }
+                        tnoop.interrupt();
+                    }
+                };
+
+                tnoop = new Thread(noop);
                 // if (!t.isInterrupted()) t.interrupt();
                 System.out.println("7777 thread t is interrupted. Action = noop");
             }
@@ -341,7 +388,27 @@ public class IMAPListener extends Service {
        //         if (tnoop ==null) {
        //             if (tnoop.isInterrupted()) {
                 if (tnoop!=null) tnoop=null;
-                    tnoop = new Thread(noop);
+                noop = null;
+                noop = new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            folder.getMessageCount();
+                            n++;
+                            System.out.println("7777 число алармов n= "+n);
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            System.out.println("7777 NOOP messaging exception");
+                            // рестартуем сервис:
+                            stopSelf();
+                   //         im.cancel(true);
+                   //         x=true;
+                        }
+                        tnoop.interrupt();
+                    }
+                };
+                tnoop = new Thread(noop);
  //                   tnoop.setDaemon(true);
                     System.out.println("7777 new thread tnoop is created");
       //          } else {
@@ -764,22 +831,14 @@ public class IMAPListener extends Service {
                     }
                   }, 1000*60*1000, 1000*60*1000);
 */
-            noop = new Runnable() {
+  /*          noop = new Runnable() {
                 @Override
                 public void run() {
                    try {
                        folder.getMessageCount();
                        n++;
                        System.out.println("7777 число алармов n= "+n);
-                      /*  folder.doCommand(new IMAPFolder.ProtocolCommand() {
-                            public Object doCommand(IMAPProtocol p)
-                                    throws ProtocolException {
-                                p.simpleCommand("NOOP", null);
-                                System.out.println("7777 NOOP");
-                                return null;
-                            }
-                        });
-                        */
+
                     } catch (Exception e) {
                         e.printStackTrace();
                         System.out.println("7777 NOOP messaging exception");
@@ -790,7 +849,7 @@ public class IMAPListener extends Service {
                     tnoop.interrupt();
                 }
             };
-
+*/
             while (!im.isCancelled()) {
                 try {
 

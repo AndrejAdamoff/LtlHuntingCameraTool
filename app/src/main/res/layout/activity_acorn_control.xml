@@ -682,7 +682,7 @@
                 <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="email"
+                    android:text="e-mail"
                     android:id="@+id/txtviewmail"
                     android:clickable="false"
                     android:textSize="18dp"

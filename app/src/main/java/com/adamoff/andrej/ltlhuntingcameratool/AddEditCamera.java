@@ -191,6 +191,7 @@ public class AddEditCamera extends PreferenceActivity implements SharedPreferenc
             name = intent.getStringExtra("name");
 
             // -------------------------- читаем данные из db ----------------------------------------
+// на следующей строке выскочило исключение
             db = MainActivity.dbHelper.getWritableDatabase();
 
         // сначала определяем тип камеры, чтобы выбрать нужную таблицу
